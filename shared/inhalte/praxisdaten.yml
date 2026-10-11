@@ -1,0 +1,65 @@
+# Praxisdaten – eine Quelle für alle drei Entwürfe.
+# Jede Angabe ist belegt (docs/analyse-alte-website.md §6) oder als offen markiert (docs/offene-fragen.md).
+
+praxis:
+  name: Praxis zum Schloss
+  beschreibung: Hausarztpraxis in Berlin-Charlottenburg
+  aerztin: Nalan Bagci-Kaikis            # OF-02: Registerschreibweise, ohne „Dr.“
+  berufsbezeichnung: Fachärztin für Allgemeinmedizin
+  rolle_lehre: Lehrärztin                 # OF-01: aus dem Auftrag, Details offen
+  zusatzbezeichnungen: [Akupunktur, Naturheilverfahren]   # OF-03: Verzeichnisangaben
+  seit: Oktober 2019                      # eigene Praxis (Website, Unsere Praxis)
+  am_standort_seit: April 2021            # Schloßstraße 21 (Website, Kontakt)
+
+adresse:
+  strasse: Schloßstraße 21
+  plz: "14059"
+  ort: Berlin
+  ortsteil: Charlottenburg
+  land: DE
+  geo: { lat: 52.5143189, lon: 13.296208 }   # Kartenlink des Startseiten-Entwurfs (Google-Maps-Eintrag der Praxis)
+
+kontakt:
+  telefon: "030 322 36 12"
+  telefon_link: "tel:+49303223612"
+  telefon_intl: "+49 30 3223612"
+  fax: "030 325 50 50"                    # OF-05: überwiegend als Fax belegt
+  fax_intl: "+49 30 3255050"
+  email: info@hausarztpraxis-zum-schloss.de
+
+termin:
+  url: https://www.doctolib.de/allgemeinmedizin/berlin/nalan-bagci-kaikis-berlin/booking/
+  label: Termin online buchen
+  hinweis: Sie werden zu Doctolib weitergeleitet.
+  regeln:                                  # wörtlich sinngemäß von der alten Kontaktseite
+    - Wir vergeben feste Termine, damit die Wartezeiten so kurz wie möglich bleiben.
+    - Bitte vereinbaren Sie auch bei akuten Beschwerden vorher einen Termin – am besten telefonisch, damit wir planen können.
+    - Kinder und schwer kranke Patientinnen und Patienten werden gelegentlich vorgezogen. Patientinnen und Patienten mit Termin haben Vorrang.
+
+# OF-04: Fassung der alten Website (Kontaktseite = Fuß), vor Livegang bestätigen.
+sprechzeiten:
+  - { tag: 1, name: Montag,     kurz: Mo, schema: Monday,    zeiten: [["09:00", "12:00"], ["15:00", "17:00"]] }
+  - { tag: 2, name: Dienstag,   kurz: Di, schema: Tuesday,   zeiten: [["09:00", "12:00"]] }
+  - { tag: 3, name: Mittwoch,   kurz: Mi, schema: Wednesday, zeiten: [["09:00", "12:00"]] }
+  - { tag: 4, name: Donnerstag, kurz: Do, schema: Thursday,  zeiten: [["09:00", "12:00"], ["15:00", "18:00"]] }
+  - { tag: 5, name: Freitag,    kurz: Fr, schema: Friday,    zeiten: [["09:00", "12:00"]] }
+sprechzeiten_kurz: Mo–Fr 9–12 Uhr · Mo 15–17 Uhr · Do 15–18 Uhr
+
+sprachen:                                   # OF-06: Verzeichnisangabe (arzt-auskunft)
+  - { code: de, name: Deutsch }
+  - { code: en, name: English }
+  - { code: tr, name: Türkçe }
+
+versicherte: Gesetzlich und privat Versicherte sowie Selbstzahlerinnen und Selbstzahler   # arzt-auskunft, Jameda
+zugang: ebenerdig oder mit Aufzug erreichbar   # OF-09: Verzeichnisangabe
+
+notfall:
+  bereitschaftsdienst: { nummer: "116 117", link: "tel:116117", text: Ärztlicher Bereitschaftsdienst außerhalb der Sprechzeiten }
+  notruf: { nummer: "112", link: "tel:112", text: Notruf bei Lebensgefahr }
+
+karten:
+  openstreetmap: https://www.openstreetmap.org/?mlat=52.51432&mlon=13.29621#map=18/52.51432/13.29621
+  google: https://www.google.com/maps/search/?api=1&query=Schlo%C3%9Fstra%C3%9Fe+21%2C+14059+Berlin
+  route: https://www.google.com/maps/dir/?api=1&destination=Schlo%C3%9Fstra%C3%9Fe+21%2C+14059+Berlin
+
+basis_url: https://www.hausarztpraxis-zum-schloss.de/   # OF-51: nur für JSON-LD, vor Livegang anpassen

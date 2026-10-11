@@ -94,4 +94,42 @@ Wird beim Schreiben der Texte (Phase 3) und beim Bau ergänzt: Jede Stelle mit `
 
 ### Platzhalter je Seite
 
-*(wird in Phase 3 ausgefüllt)*
+| Seite (Inhaltsdatei) | Platzhalter | Frage |
+|---|---|---|
+| `aderlass` | Kostenübernahme bzw. Kosten des Aderlasses – Angabe folgt | OF-21 |
+| `akupunktur` | Kosten und Abrechnung in der Praxis – Angabe folgt | OF-21 |
+| `akupunktur` | Dauer einer Sitzung und übliche Anzahl der Sitzungen – Angabe folgt | OF-22 |
+| `aufbaukuren` | Kosten der Kuren – Angabe folgt | OF-21 |
+| `aufbaukuren` | Dauer einer Infusion – Angabe folgt | OF-22 |
+| `blutegeltherapie` | Kosten der Blutegeltherapie – Angabe folgt | OF-21 |
+| `blutegeltherapie` | Dauer einer Behandlung – Angabe folgt | OF-22 |
+| `datenschutz` | Name und Anschrift des Hosting-Anbieters, Auftragsverarbeitungsvertrag – Angabe folgt | OF-43 |
+| `datenschutz` | Speicherdauer der Server-Protokolle – Angabe folgt | OF-43 |
+| `datenschutz` | Angaben zur Zusammenarbeit mit Doctolib (Auftragsverarbeitung) – Angabe folgt | OF-44 |
+| `eigenbluttherapie` | Kosten der Eigenbluttherapie – Angabe folgt | OF-21 |
+| `eigenbluttherapie` | übliche Anzahl und Abstand der Sitzungen – Angabe folgt | OF-22 |
+| `enzymtherapie` | Welche Präparate und Anwendungsformen die Praxis einsetzt – Angabe folgt | OF-24 |
+| `enzymtherapie` | Kosten – Angabe folgt | OF-21 |
+| `impfungen-reisemedizin` | Ob die Praxis zugelassene Gelbfieberimpfstelle ist, wird vor Livegang bestätigt | OF-07 |
+| `impfungen-reisemedizin` | Kosten und Erstattung von Reiseimpfungen – Angabe folgt | OF-21 |
+| `impressum` | Berufsrechtliche Angaben vor Livegang von der Praxis bestätigen lassen | OF-41 |
+| `impressum` | Umsatzsteuer-Identifikationsnummer, falls vorhanden – Angabe folgt | OF-42 |
+| `impressum` | Fotografin oder Fotograf – Angabe folgt | OF-30 |
+| `mesotherapie` | Anwendungsbereiche der Mesotherapie in der Praxis – Angabe folgt | OF-23 |
+| `mesotherapie` | Kosten je Sitzung – Angabe folgt | OF-21 |
+| `naturheilkunde` | Kostenrahmen je Verfahren – Angaben folgen | OF-21 |
+| `neuraltherapie` | Kostenübernahme bzw. Kosten der Neuraltherapie – Angabe folgt | OF-21 |
+| `neuraltherapie` | Dauer einer Sitzung und übliche Anzahl – Angabe folgt | OF-22 |
+| `orthomolekulare-medizin` | Kostenübernahme von Laborwerten und Präparaten – Angabe folgt | OF-21 |
+| `phytotherapie-homoeopathie` | Kostenübernahme der Beratung und der Mittel – Angabe folgt | OF-21 |
+| `psychosomatik` | Qualifikation und Angebot ärztliche Hypnotherapie – Angabe folgt | OF-25 |
+| `psychosomatik` | Dauer eines Gesprächstermins – Angabe folgt | OF-22 |
+| `schroepfen` | Kosten je Sitzung – Angabe folgt | OF-21 |
+| `schroepfen` | Dauer einer Sitzung – Angabe folgt | OF-22 |
+| `startseite` | Hinweise zu Bus, Bahn und Parken folgen | OF-10 |
+| `termin-kontakt` | Haltestellen von Bus und Bahn sowie Parkmöglichkeiten – Angaben folgen | OF-10 |
+| `unsere-praxis` | Hochschule, Umfang und seit wann die Praxis Lehrpraxis ist – Angaben folgen | OF-01 |
+| `unsere-praxis` | Fotos der Praxisräume und des Praxisteams folgen | OF-32 |
+| `vorsorge` | Dauer eines Vorsorgetermins – Angabe folgt | OF-22 |
+
+Zusätzlich in allen Entwürfen: **Bildplatzhalter** für Praxisräume, Team, Eingang (OF-32) auf der Praxisseite und auf Termin & Kontakt, gestaltet je Entwurf.
