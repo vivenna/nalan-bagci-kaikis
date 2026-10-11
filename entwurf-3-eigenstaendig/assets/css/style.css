@@ -1,0 +1,366 @@
+/* =====================================================================
+   Praxis zum Schloss – Entwurf 3 „Register“ (vivenna)
+   ---------------------------------------------------------------------
+   Leitidee: Die Praxis als präzise geordnetes Register – wie das
+   Inhaltsverzeichnis einer guten Monografie oder das Wegeleitsystem
+   eines Museums. Schweizer Moderne: eine Schriftfamilie (Archivo), deren
+   Breitenachse die Hierarchie trägt; Aubergine als Markenfläche, Messing
+   als Linie und Ziffer, Kalkstein als Grund. Bewegung liegt in den
+   Seitenübergängen (View Transitions) und in der Bedienung – die Seite
+   selbst steht ruhig.
+   Gliederung: 1 Schrift · 2 Tokens · 3 Grundlagen · 4 Register (Navigation)
+   · 5 Bausteine · 6 Startseite · 7 Unterseiten · 8 Fuß · 9 Bewegung
+   ===================================================================== */
+
+/* ---------- 1 Schrift (lokal, OFL; latin + latin-ext für Türkisch) ---------- */
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap;
+  src: url("../fonts/archivo-latin-standard-normal.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: "Archivo"; font-style: normal; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap;
+  src: url("../fonts/archivo-latin-ext-standard-normal.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+
+/* ---------- 2 Design-Tokens ---------- */
+:root {
+  --aubergine: #3B2235;       /* Markenfläche, Überschriften – 11,9:1 auf Kalkstein */
+  --aubergine-tief: #2A1726;
+  --tinte: #1D191C;           /* Fließtext – 14,5:1 auf Kalkstein */
+  --kalkstein: #EDEAE6;       /* Grund */
+  --papier: #FFFFFF;
+  --stein: #D9D4CD;           /* Linien */
+  --messing: #A8823F;         /* Linien und große Ziffern (nur Deko/Großschrift) */
+  --messing-dunkel: #7A5A22;  /* kleine Ziffern/Marken auf Hell – 5,3:1 */
+  --messing-hell: #D7B77C;    /* auf Aubergine – 7,5:1 */
+  --neben: #5A5257;           /* Nebentext – 6,3:1 auf Kalkstein */
+
+  --schrift: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --breit: 118%;
+  --schmal: 66%;
+
+  --register: 18.5rem;
+  --leiste: 4rem;
+  --rand: clamp(1.1rem, 4vw, 3.5rem);
+  --abstand: clamp(4rem, 8vw, 7rem);
+  --text: 46rem;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+}
+
+/* ---------- 3 Grundlagen ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 1.5rem; }
+@media (max-width: 63.99em) { html { scroll-padding-top: calc(var(--leiste) + 1rem); } }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--kalkstein); color: var(--tinte); font-family: var(--schrift); font-size: 1.1rem; line-height: 1.65; font-weight: 400; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+h1, h2, h3 { margin: 0; color: var(--aubergine); text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 1.1rem + 5vw, 5.6rem); font-stretch: var(--breit); font-weight: 340; line-height: 1.02; letter-spacing: -.025em; }
+h2 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3.1rem); font-stretch: 112%; font-weight: 370; line-height: 1.08; letter-spacing: -.02em; }
+h3 { font-size: 1.22rem; font-weight: 620; line-height: 1.3; }
+p { margin: 0; text-wrap: pretty; }
+p, li, dd { -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
+a { color: inherit; text-decoration-color: var(--messing); text-decoration-thickness: 1px; text-underline-offset: .22em; }
+ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
+.sprite { display: none; }
+.icon { width: 1.1em; height: 1.1em; flex: none; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 2px solid var(--aubergine); outline-offset: 3px; }
+.flaeche-aubergine :focus-visible, .fuss :focus-visible { outline-color: var(--messing-hell); }
+.sprunglink { position: absolute; left: 1rem; top: -6rem; z-index: 400; padding: .8rem 1.1rem; background: var(--aubergine); color: #fff; font-weight: 600; text-decoration: none; }
+.sprunglink:focus { top: 1rem; }
+.marke { display: flex; gap: .8rem; align-items: baseline; font-size: .76rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--neben); margin-bottom: 1.2rem; }
+.marke .nr, .nr { font-stretch: var(--schmal); font-variant-numeric: tabular-nums; letter-spacing: .02em; color: var(--messing-dunkel); }
+.flaeche-aubergine .marke { color: rgb(237 234 230 / .8); }
+.flaeche-aubergine .marke .nr, .flaeche-aubergine .nr { color: var(--messing-hell); }
+
+/* Knöpfe: eckig, ruhig */
+.knopf { display: inline-flex; align-items: center; justify-content: center; gap: .7rem; min-height: 3rem; padding: .8rem 1.4rem; border: 1px solid var(--aubergine); font: 600 1rem/1.1 var(--schrift); letter-spacing: .01em; text-decoration: none; white-space: nowrap; cursor: pointer; transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s; }
+.knopf .icon { transition: transform .3s var(--ease); }
+@media (hover: hover) { .knopf:hover .icon:last-child { transform: translateX(4px); } }
+.knopf--voll { background: var(--aubergine); color: #fff; }
+@media (hover: hover) { .knopf--voll:hover { background: var(--aubergine-tief); } }
+.knopf--leer { background: transparent; color: var(--aubergine); }
+@media (hover: hover) { .knopf--leer:hover { background: var(--papier); } }
+.flaeche-aubergine .knopf--voll { background: var(--kalkstein); color: var(--aubergine); border-color: var(--kalkstein); }
+@media (hover: hover) { .flaeche-aubergine .knopf--voll:hover { background: #fff; } }
+.flaeche-aubergine .knopf--leer { color: var(--kalkstein); border-color: rgb(237 234 230 / .5); }
+@media (hover: hover) { .flaeche-aubergine .knopf--leer:hover { background: rgb(255 255 255 / .08); } }
+.knopf--klein { min-height: 2.75rem; padding: .5rem 1rem; font-size: .92rem; }
+.knopfreihe { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
+.cta-hinweis { margin-top: .7rem; font-size: .86rem; color: var(--neben); }
+.flaeche-aubergine .cta-hinweis { color: rgb(237 234 230 / .78); }
+.pfeillink { display: inline-flex; align-items: center; gap: .6rem; min-height: 2.75rem; font-weight: 600; color: var(--aubergine); text-decoration: none; border-bottom: 1px solid var(--messing); }
+.pfeillink .icon { transition: transform .3s var(--ease); }
+@media (hover: hover) { .pfeillink:hover .icon { transform: translateX(5px); } }
+.flaeche-aubergine .pfeillink { color: var(--kalkstein); border-color: var(--messing-hell); }
+
+.platzhalter { padding: 0 .3em; background: rgb(168 130 63 / .14); border-bottom: 1px dotted var(--messing-dunkel); font-size: .93em; color: var(--tinte); }
+.flaeche-aubergine .platzhalter { background: rgb(215 183 124 / .16); color: var(--kalkstein); border-color: var(--messing-hell); }
+.bild-platzhalter { position: relative; display: grid; align-content: end; gap: .25rem; aspect-ratio: 4 / 3; padding: 1.3rem; background: var(--papier); border: 1px solid var(--stein); }
+.bild-platzhalter::before, .bild-platzhalter::after { content: ""; position: absolute; width: 1.2rem; height: 1.2rem; border-color: var(--messing); border-style: solid; }
+.bild-platzhalter::before { top: .8rem; left: .8rem; border-width: 1px 0 0 1px; }
+.bild-platzhalter::after { top: .8rem; right: .8rem; border-width: 1px 1px 0 0; }
+.bild-platzhalter strong { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--messing-dunkel); }
+.bild-platzhalter span { color: var(--neben); font-size: .95rem; }
+.sprachhinweis { margin: 0 0 1.4rem; padding: .7rem 1rem; border: 1px solid var(--messing-dunkel); font-size: .92rem; max-width: var(--text); }
+.flaeche-aubergine .sprachhinweis { border-color: var(--messing-hell); }
+.sprachhinweis[hidden] { display: none; }
+
+/* ---------- 4 Register: feste Spalte (Desktop) bzw. Bogen von unten (mobil) ---------- */
+.register { background: var(--papier); display: flex; flex-direction: column; gap: 1.6rem; padding: 2rem 1.6rem 1.6rem; font-size: 1rem; }
+.register__logo img { width: 190px; }
+.register__titel { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--neben); margin-bottom: .4rem; }
+.register__liste { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stein); }
+.register__liste > li { position: relative; border-bottom: 1px solid var(--stein); }
+.register__liste > li > a { display: grid; grid-template-columns: 2.6rem 1fr; align-items: center; min-height: 3.1rem; padding-left: .6rem; font-size: 1.08rem; font-weight: 500; text-decoration: none; transition: transform .25s var(--ease); }
+.register__liste > li > a .nr { font-size: 1.05rem; }
+@media (hover: hover) { .register__liste > li > a:hover { transform: translateX(6px); } }
+.register__marke { position: absolute; left: 0; top: .6rem; bottom: .6rem; width: 3px; background: var(--messing); view-transition-name: register-marke; }
+.register__liste > li.ist-aktiv > a { color: var(--aubergine); font-weight: 650; }
+.register__unter { list-style: none; margin: 0 0 .8rem; padding: 0 0 0 3.2rem; font-size: .92rem; }
+.register__unter a { display: flex; align-items: center; min-height: 2.2rem; color: var(--neben); text-decoration: none; }
+.register__unter a[aria-current="page"] { color: var(--aubergine); font-weight: 650; text-decoration: underline; text-decoration-color: var(--messing); }
+@media (hover: hover) { .register__unter a:hover { color: var(--aubergine); } }
+.sprachliste { display: flex; flex-wrap: wrap; gap: .2rem .9rem; list-style: none; margin: 0; padding: 0; }
+.sprachliste li + li::before { content: "/"; margin-right: .9rem; color: var(--stein); }
+.sprachliste button { min-height: 2.75rem; padding: 0; border: 0; background: none; color: var(--neben); font: 500 .98rem/1 var(--schrift); cursor: pointer; }
+.sprachliste button[aria-pressed="true"] { color: var(--aubergine); font-weight: 650; text-decoration: underline; text-decoration-color: var(--messing); text-decoration-thickness: 2px; text-underline-offset: .35em; }
+.register__fuss { margin-top: auto; display: grid; gap: 1rem; }
+.register__fuss .knopf { width: 100%; }
+.register__tel { font-size: .95rem; color: var(--neben); }
+.register__tel a { color: var(--aubergine); font-weight: 600; text-decoration: none; }
+.leiste { display: none; }
+.register__zu { display: none; }
+
+@media (min-width: 64em) {
+  .register { position: fixed; inset: 0 auto 0 0; width: var(--register); z-index: 50; border-right: 1px solid var(--stein); overflow-y: auto; }
+  .register::after { content: ""; position: absolute; top: 0; bottom: 0; right: -1px; width: 1px; background: linear-gradient(var(--messing) 0 6rem, transparent 6rem); }
+  .seite { margin-left: var(--register); }
+}
+@media (max-width: 63.99em) {
+  .leiste { position: sticky; top: 0; z-index: 60; display: flex; align-items: center; gap: .6rem; height: var(--leiste); padding-inline: var(--rand); background: var(--papier); border-bottom: 1px solid var(--stein); }
+  .leiste__logo { margin-right: auto; }
+  .leiste__logo img { width: 150px; }
+  .register-knopf { display: inline-flex; align-items: center; gap: .55rem; min-height: 2.75rem; padding: 0 .9rem; border: 1px solid var(--aubergine); background: none; color: var(--aubergine); font: 600 .95rem/1 var(--schrift); cursor: pointer; }
+  .register-knopf__zeichen { display: grid; gap: 3px; width: 1rem; }
+  .register-knopf__zeichen i { display: block; height: 1.5px; background: currentColor; }
+  .register-knopf__zeichen i:nth-child(2) { width: 70%; }
+  .js .register { position: fixed; left: 0; right: 0; bottom: 0; z-index: 300; max-height: 88vh; overflow-y: auto; overscroll-behavior: contain; padding-top: 1rem; box-shadow: 0 -30px 60px -20px rgb(29 25 28 / .35); transform: translateY(105%); visibility: hidden; transition: transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s .3s; }
+  .js .register.ist-offen { transform: none; visibility: visible; transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
+  .js .register::before { content: ""; display: block; width: 3rem; height: 4px; margin: 0 auto .4rem; background: var(--stein); }
+  .register__logo { display: none; }
+  .js .register__zu { display: inline-flex; align-self: flex-end; }
+  .register-hintergrund { position: fixed; inset: 0; z-index: 250; background: rgb(29 25 28 / .45); }
+  .register-hintergrund[hidden] { display: none; }
+  html:not(.js) .register { border-bottom: 1px solid var(--stein); }
+  html:not(.js) .register-knopf { display: none; }
+}
+@media (max-width: 23.99em) { .leiste__logo img { width: 128px; } .leiste .knopf--klein { padding-inline: .7rem; } }
+
+/* ---------- 5 Bausteine ---------- */
+.huelle { padding-inline: var(--rand); max-width: 78rem; }
+.abschnitt { padding-block: var(--abstand); }
+.abschnitt + .abschnitt { padding-top: 0; }
+.flaeche-aubergine { background: var(--aubergine); color: var(--kalkstein); }
+.flaeche-aubergine h1, .flaeche-aubergine h2, .flaeche-aubergine h3 { color: #fff; }
+.flaeche-papier { background: var(--papier); }
+.abschnitt.flaeche-aubergine + .abschnitt, .abschnitt.flaeche-papier + .abschnitt { padding-top: var(--abstand); }
+.lead { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.38rem); line-height: 1.55; color: var(--neben); max-width: 40rem; }
+.flaeche-aubergine .lead, .flaeche-aubergine p { color: rgb(237 234 230 / .88); }
+.text > * + * { margin-top: 1rem; }
+.text p, .text li { max-width: var(--text); }
+.text ul { list-style: none; padding: 0; border-top: 1px solid var(--stein); }
+.text ul li { display: grid; grid-template-columns: 1.6rem 1fr; padding: .75rem 0; border-bottom: 1px solid var(--stein); }
+.text ul li::before { content: "—"; color: var(--messing-dunkel); }
+.text strong { font-weight: 650; color: var(--aubergine); }
+.text a { font-weight: 600; color: var(--aubergine); }
+.flaeche-aubergine .text ul { border-color: rgb(237 234 230 / .2); }
+.flaeche-aubergine .text ul li { border-color: rgb(237 234 230 / .2); }
+.flaeche-aubergine .text ul li::before { color: var(--messing-hell); }
+.flaeche-aubergine .text strong, .flaeche-aubergine .text a { color: #fff; }
+.kurz p { font-size: clamp(1.3rem, 1.05rem + 1vw, 1.8rem); font-stretch: 108%; font-weight: 360; line-height: 1.4; color: var(--aubergine); max-width: 44rem; }
+.kurz p:first-child::first-letter { color: var(--messing-dunkel); font-weight: 500; }
+.kurz p + p { margin-top: .8rem; }
+
+/* Registerpfad (Brotkrumen) */
+.pfad ol { display: flex; flex-wrap: wrap; gap: .2rem .7rem; list-style: none; margin: 0 0 2rem; padding: 0; font-size: .85rem; font-weight: 500; }
+.pfad li { display: inline-flex; align-items: center; gap: .7rem; }
+.pfad li + li::before { content: "/"; color: var(--messing); }
+.pfad a { display: inline-flex; align-items: center; gap: .35rem; min-height: 1.75rem; text-decoration: none; color: var(--neben); }
+.pfad a:hover { color: var(--aubergine); text-decoration: underline; }
+.pfad [aria-current="page"] { color: var(--aubergine); font-weight: 650; }
+.flaeche-aubergine .pfad a { color: rgb(237 234 230 / .8); }
+.flaeche-aubergine .pfad [aria-current="page"] { color: #fff; }
+
+/* Register-Zeilen (Wege, Hub, Verwandte) */
+.zeilen { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stein); }
+.zeilen > li > a { position: relative; display: grid; grid-template-columns: 3.4rem 1fr auto; grid-template-areas: "nr titel pfeil" "nr text pfeil"; gap: .2rem 1rem; align-items: center; padding: 1.3rem 0; border-bottom: 1px solid var(--stein); text-decoration: none; }
+.zeilen > li > a::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--messing); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
+.zeilen .nr { grid-area: nr; align-self: start; font-size: 1.9rem; font-weight: 300; line-height: 1; color: var(--messing); }
+.zeilen__titel { grid-area: titel; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.6rem); font-stretch: 112%; font-weight: 420; color: var(--aubergine); line-height: 1.2; transition: transform .3s var(--ease); }
+.zeilen__text { grid-area: text; font-size: .98rem; color: var(--neben); max-width: 40rem; transition: transform .3s var(--ease); }
+.zeilen .icon { grid-area: pfeil; color: var(--messing-dunkel); transition: transform .3s var(--ease); }
+@media (hover: hover) {
+  .zeilen > li > a:hover::before { transform: scaleX(1); }
+  .zeilen > li > a:hover .zeilen__titel, .zeilen > li > a:hover .zeilen__text { transform: translateX(12px); }
+  .zeilen > li > a:hover .icon { transform: translateX(6px); }
+  .zeilen > li > a:hover .nr { color: var(--aubergine); }
+}
+.zeilen > li > a:focus-visible { outline-offset: -2px; }
+.zeilen--gross > li > a { grid-template-columns: clamp(3.6rem, 3rem + 3vw, 6rem) 1fr auto; }
+.zeilen--gross .nr { font-size: clamp(2.6rem, 2rem + 2vw, 4rem); }
+.zeilen--gross .zeilen__titel { grid-area: titel; font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem); font-weight: 360; }
+.flaeche-aubergine .zeilen, .flaeche-aubergine .zeilen > li > a { border-color: rgb(237 234 230 / .22); }
+.flaeche-aubergine .zeilen .nr, .flaeche-aubergine .zeilen .icon { color: var(--messing-hell); }
+.flaeche-aubergine .zeilen__titel { color: #fff; }
+.flaeche-aubergine .zeilen__text { color: rgb(237 234 230 / .82); }
+@media (hover: hover) { .flaeche-aubergine .zeilen > li > a:hover .nr { color: #fff; } }
+
+/* Datenblatt */
+.datenblatt { margin: 0; border-top: 2px solid var(--aubergine); }
+.datenblatt > div { display: grid; gap: .3rem 1.6rem; padding: 1.05rem 0; border-bottom: 1px solid var(--stein); }
+@media (min-width: 40em) { .datenblatt > div { grid-template-columns: 10rem 1fr; } }
+.datenblatt dt { font-size: .78rem; font-weight: 600; font-stretch: 85%; letter-spacing: .12em; text-transform: uppercase; color: var(--messing-dunkel); padding-top: .25rem; }
+.datenblatt dd { margin: 0; max-width: var(--text); }
+
+/* Schritte: horizontal (Desktop), vertikal (mobil) */
+.schritte { display: grid; gap: 0; counter-reset: s; border-top: 1px solid var(--stein); }
+@media (min-width: 56em) { .schritte { grid-template-columns: repeat(var(--anzahl, 4), 1fr); gap: 1.6rem; border-top: 0; } }
+.schritt { padding: 1.2rem 0; border-bottom: 1px solid var(--stein); }
+@media (min-width: 56em) { .schritt { border-bottom: 0; border-top: 1px solid var(--messing); padding-top: 1rem; } }
+.schritt .nr { display: block; font-size: 2.8rem; font-weight: 250; line-height: 1; color: var(--messing); margin-bottom: .8rem; }
+.schritt h3 { margin-bottom: .3rem; }
+.schritt p { color: var(--neben); font-size: 1rem; }
+
+/* FAQ */
+.faq { border-top: 2px solid var(--aubergine); counter-reset: f; }
+.faq details { border-bottom: 1px solid var(--stein); counter-increment: f; }
+.faq summary { display: grid; grid-template-columns: 2.6rem 1fr 1.4rem; gap: .8rem; align-items: center; min-height: 3.6rem; padding: 1rem 0; cursor: pointer; list-style: none; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: counter(f, decimal-leading-zero); font-stretch: var(--schmal); color: var(--messing-dunkel); font-variant-numeric: tabular-nums; }
+.faq summary h3 { font-size: clamp(1.05rem, 1rem + .3vw, 1.2rem); font-weight: 560; }
+.faq__zeichen { position: relative; width: 1.1rem; height: 1.1rem; justify-self: end; }
+.faq__zeichen::before, .faq__zeichen::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: var(--aubergine); transition: transform .3s var(--ease); }
+.faq__zeichen::after { transform: rotate(90deg); }
+.faq details[open] .faq__zeichen::after { transform: rotate(0); }
+.faq__antwort { padding: 0 2.2rem 1.3rem 3.4rem; color: var(--neben); max-width: 48rem; }
+.faq__antwort p + p { margin-top: .7rem; }
+
+/* Hinweis, Einordnung */
+.hinweis { padding: 1.2rem 1.4rem; border: 1px solid var(--messing-dunkel); max-width: var(--text); font-size: 1rem; }
+.flaeche-aubergine .hinweis { border-color: var(--messing-hell); }
+
+/* Passepartout (Porträt wie im Museum) */
+.passepartout { position: relative; margin: 0; isolation: isolate; }
+.passepartout__rahmen { position: relative; background: var(--papier); padding: clamp(.8rem, 2vw, 1.3rem) clamp(.8rem, 2vw, 1.3rem) 0; }
+.passepartout__rahmen::after { content: ""; position: absolute; inset: clamp(.8rem, 2vw, 1.3rem) calc(clamp(.8rem, 2vw, 1.3rem) * -1) calc(clamp(.8rem, 2vw, 1.3rem) * -1) clamp(.8rem, 2vw, 1.3rem); border: 1px solid var(--messing); z-index: -1; }
+.passepartout__bild { aspect-ratio: 1; background: #F4F2EF; overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+.passepartout__bild img { width: 76%; }
+.passepartout figcaption { position: relative; display: grid; gap: .1rem; padding: .9rem 0 1rem; margin-inline: clamp(.8rem, 2vw, 1.3rem); background: var(--papier); font-size: .82rem; color: var(--neben); }
+.passepartout figcaption strong { color: var(--tinte); font-weight: 650; }
+
+/* Kontakt-Liste */
+.kontakt { margin: 0; border-top: 2px solid var(--aubergine); }
+.kontakt > div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--stein); }
+.kontakt dt { font-size: .76rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--messing-dunkel); padding-top: .2rem; }
+.kontakt dd { margin: 0; font-weight: 500; }
+.kontakt a { color: var(--aubergine); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--messing); }
+.flaeche-aubergine .kontakt { border-color: var(--messing-hell); }
+.flaeche-aubergine .kontakt > div { border-color: rgb(237 234 230 / .22); }
+.flaeche-aubergine .kontakt dt { color: var(--messing-hell); }
+.flaeche-aubergine .kontakt a { color: #fff; border-color: var(--messing-hell); }
+
+/* Sprechzeiten */
+.zeiten { width: 100%; border-collapse: collapse; border-top: 2px solid var(--aubergine); }
+.zeiten th, .zeiten td { padding: .85rem 0; border-bottom: 1px solid var(--stein); text-align: left; font-weight: 500; }
+.zeiten th { width: 42%; font-weight: 600; }
+.zeiten tr.ist-heute th { color: var(--aubergine); }
+.zeiten tr.ist-heute th::after { content: " ●"; color: var(--messing); font-size: .7em; vertical-align: middle; }
+.notfall { margin-top: 1.6rem; display: grid; gap: .3rem; font-size: .98rem; }
+.notfall a { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 700; color: var(--aubergine); text-decoration: none; border-bottom: 1px solid var(--messing); }
+.notfall__titel { font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--neben); }
+.zwei { display: grid; gap: 2.6rem; }
+@media (min-width: 56em) { .zwei { grid-template-columns: 1fr 1fr; gap: 3.5rem; } }
+.drei { display: grid; gap: 2.4rem; }
+@media (min-width: 64em) { .drei { grid-template-columns: 1.15fr 1fr 1fr; gap: 3rem; } }
+.drei h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); }
+
+/* ---------- 6 Startseite ---------- */
+.held { padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem); }
+.held__raster { display: grid; gap: 3rem; align-items: center; }
+@media (min-width: 80em) { .held__raster { grid-template-columns: minmax(0, 1fr) minmax(17rem, 22rem); gap: 4rem; } }
+@media (min-width: 48em) and (max-width: 79.99em) { .held__raster { grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem); } }
+.held__name { font-size: .82rem; font-weight: 650; letter-spacing: .2em; text-transform: uppercase; color: var(--messing-hell); margin-bottom: 1.2rem; }
+.held h1 { font-size: clamp(2.3rem, .8rem + 4.3vw, 5.2rem); font-stretch: 110%; -webkit-hyphens: manual; hyphens: manual; }
+.held .lead { margin-top: 1.8rem; max-width: 36rem; }
+.held .passepartout { max-width: 22rem; justify-self: center; width: 100%; }
+.wege { padding-block: var(--abstand); }
+.wege__kopf { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 2rem; }
+
+/* ---------- 7 Unterseiten ---------- */
+.seitenkopf { padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
+.seitenkopf h1 { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 4.8rem); max-width: 20ch; view-transition-name: seitentitel; }
+.seitenkopf .lead { margin-top: 1.5rem; }
+.seitenkopf__raster { display: grid; gap: 2.5rem; align-items: end; }
+@media (min-width: 64em) { .seitenkopf__raster--bild { grid-template-columns: 1fr minmax(15rem, 20rem); gap: 4rem; } }
+.lp-raster { display: grid; gap: 3rem; }
+@media (min-width: 80em) { .lp-raster { grid-template-columns: minmax(0, 1fr) 14rem; gap: 4rem; } }
+.lp-raster > div > section + section { margin-top: var(--abstand); }
+.inhaltsregister { display: none; }
+@media (min-width: 80em) {
+  .inhaltsregister { display: block; position: sticky; top: 2rem; align-self: start; font-size: .92rem; }
+  .inhaltsregister__liste { position: relative; border-left: 1px solid var(--stein); }
+  .inhaltsregister ol { list-style: none; margin: 0; padding: 0 0 0 1rem; }
+  .inhaltsregister a { display: flex; align-items: center; min-height: 2.3rem; color: var(--neben); text-decoration: none; }
+  .inhaltsregister a.ist-aktiv { color: var(--aubergine); font-weight: 650; }
+  .inhaltsregister__marke { position: absolute; left: -1.5px; width: 2px; background: var(--messing); top: 0; height: 2.3rem; transition: transform .35s var(--ease); }
+}
+.einordnung { padding: clamp(1.6rem, 4vw, 2.8rem); }
+.zwischen { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 2.4rem; padding: 1.4rem 0; border-top: 1px solid var(--stein); border-bottom: 1px solid var(--stein); }
+.zwischen p { color: var(--neben); max-width: 30rem; }
+.zwischen .knopfreihe { margin-top: 0; }
+.kapitel__nr { display: block; font-size: clamp(3rem, 2rem + 3vw, 5rem); font-weight: 200; font-stretch: var(--schmal); line-height: .9; color: var(--messing); margin-bottom: 1rem; }
+.zitat { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); font-stretch: 112%; font-weight: 320; line-height: 1.3; color: var(--aubergine); max-width: 52rem; }
+.flaeche-aubergine .zitat { color: #fff; }
+.lesespalte h2 { font-size: clamp(1.35rem, 1.15rem + .8vw, 1.8rem); margin: 2.4rem 0 .8rem; }
+.lesespalte h2:first-child { margin-top: 0; }
+.lesespalte p, .lesespalte li { max-width: var(--text); }
+.lesespalte p + p { margin-top: .8rem; }
+.lesespalte ul { padding-left: 1.2rem; }
+
+.nowrap { white-space: nowrap; }
+
+/* kompakte Registerliste (Startseite) */
+.kompakt { list-style: none; margin: 0; padding: 0; display: grid; border-top: 1px solid var(--stein); }
+@media (min-width: 48em) { .kompakt { grid-template-columns: 1fr 1fr; column-gap: 2.4rem; } }
+.kompakt a { display: grid; grid-template-columns: 3.2rem 1fr auto; align-items: center; min-height: 3.4rem; border-bottom: 1px solid var(--stein); text-decoration: none; font-weight: 500; }
+.kompakt .icon { color: var(--messing-dunkel); transition: transform .3s var(--ease); }
+@media (hover: hover) { .kompakt a:hover { color: var(--aubergine); } .kompakt a:hover .icon { transform: translateX(5px); } }
+
+/* ---------- 8 Fuß ---------- */
+.fuss { background: var(--aubergine-tief); color: var(--kalkstein); padding-block: 3.5rem 2rem; font-size: .95rem; }
+.fuss__raster { display: grid; gap: 2.4rem; }
+@media (min-width: 56em) { .fuss__raster { grid-template-columns: 1.1fr 1.4fr 1fr; } }
+.fuss h2 { font-size: .74rem; font-weight: 600; font-stretch: 100%; letter-spacing: .16em; text-transform: uppercase; color: var(--messing-hell); margin-bottom: .7rem; }
+.fuss p { color: rgb(237 234 230 / .82); }
+.fuss ul { list-style: none; margin: 0; padding: 0; }
+.fuss a { display: inline-flex; align-items: center; min-height: 2.5rem; color: #fff; text-decoration: none; }
+.fuss a:hover { text-decoration: underline; text-decoration-color: var(--messing-hell); }
+.fuss__natur { columns: 2; column-gap: 1.6rem; }
+.fuss__natur .nr { color: var(--messing-hell); margin-right: .5rem; }
+.fuss__unten { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem 2rem; margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid rgb(237 234 230 / .18); font-size: .86rem; color: rgb(237 234 230 / .72); }
+.entwurf-plakette { position: fixed; right: 1rem; bottom: 1rem; z-index: 90; display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem; background: var(--papier); color: var(--tinte); border: 1px solid var(--messing); font-size: .76rem; }
+.entwurf-plakette strong { color: var(--aubergine); }
+.entwurf-plakette__punkt { width: .45rem; height: .45rem; background: var(--messing); }
+@media (max-width: 63.99em) { .entwurf-plakette__lang { display: none; } .entwurf-plakette { right: .6rem; bottom: .6rem; font-size: .7rem; } }
+
+/* ---------- 9 Bewegung: Seitenübergänge und Mikrointeraktionen ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition { navigation: auto; }
+  ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .24s; animation-timing-function: var(--ease); }
+  ::view-transition-group(seitentitel), ::view-transition-group(register-marke) { animation-duration: .38s; animation-timing-function: var(--ease); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
+}
+@media print { .register, .leiste, .entwurf-plakette, .knopfreihe { display: none !important; } .seite { margin: 0 !important; } }
