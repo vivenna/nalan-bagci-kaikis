@@ -49,8 +49,8 @@ Die Kartenlinks öffnen OpenStreetMap bzw. Google Maps in einem neuen Fenster. A
 
 Die Online-Buchung ist kein Notfallweg. Bei akuten Beschwerden rufen Sie uns bitte während der Sprechzeiten an.
 
-- **116 117:** Ärztlicher Bereitschaftsdienst außerhalb der Sprechzeiten
-- **112:** Notruf bei Lebensgefahr
+- **[116 117](tel:116117):** Ärztlicher Bereitschaftsdienst außerhalb der Sprechzeiten
+- **[112](tel:112):** Notruf bei Lebensgefahr
 
 ## Häufige Fragen {#faq}
 

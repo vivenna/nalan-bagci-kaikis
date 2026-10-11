@@ -61,7 +61,7 @@ Korrekturen gegenüber dem Startseiten-Entwurf: Die Nummern der Verfahrensliste 
 - **Rechtliches:** schlichte Lesespalte.
 - **Platzhalter:** gepunktete Pille „Angabe folgt“.
 
-**Begründung:** Der Startseiten-Entwurf erfüllt die Haltung bereits und ist gemessen schnell und barrierearm. Er wird erweitert statt verändert. Die einzigen inhaltlichen Eingriffe betreffen die Rollenhierarchie im Hero: Die H1-Vorzeile nennt „Fachärztin für Allgemeinmedizin · Berlin-Charlottenburg“, die Unterzeile nennt Lehre und erst danach Naturheilkunde. Außerdem führen alle Termin-Knöpfe jetzt zu Doctolib.
+**Begründung:** Der Startseiten-Entwurf erfüllt die Haltung bereits und ist gemessen schnell und barrierearm. Er wird erweitert statt verändert. Die einzigen inhaltlichen Eingriffe betreffen die Rollenhierarchie im Hero: Die H1-Vorzeile nennt „Fachärztin für Allgemeinmedizin · Berlin-Charlottenburg“, die Unterzeile nennt Lehre und erst danach Naturheilkunde. Außerdem führen alle Termin-Knöpfe jetzt zu Doctolib. Auf der Startseite steht der Abschnitt „Ihre Ärztin“ jetzt vor den Leistungen: Erst kommen Fachärztin und Lehre, dann das Leistungsspektrum mit der Naturheilkunde. Die Leistungskacheln verlinken auf die Unterseiten.
 
 ---
 
