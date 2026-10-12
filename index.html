@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Drei Website-Entwürfe · Praxis zum Schloss</title>
+  <meta name="description" content="Drei Entwürfe für die neue Website der Praxis zum Schloss von Nalan Bagci-Kaikis, Berlin-Charlottenburg – zur Ansicht, nicht die offizielle Website.">
+  <link rel="icon" href="shared/assets/logo/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="shared/assets/logo/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="shared/assets/logo/apple-touch-icon.png">
+  <style>
+    /* Übersicht der drei Entwürfe (vivenna) – bewusst neutral gestaltet, damit kein
+       Entwurf bevorzugt wirkt. Nur die Kartentitel stehen in der Schrift des jeweiligen
+       Entwurfs; Schriften kommen aus den Entwurfsordnern, nichts wird extern geladen. */
+    @font-face { font-family: "Fraunces"; font-weight: 100 900; font-display: swap; src: url("entwurf-1-fundament/assets/fonts/fraunces-latin-opsz-normal.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Instrument Sans"; font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; src: url("entwurf-2-verwandt/assets/fonts/instrument-sans-latin-standard-normal.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("entwurf-3-eigenstaendig/assets/fonts/archivo-latin-standard-normal.woff2") format("woff2-variations"); }
+
+    :root {
+      --grund: #F7F6F3;
+      --papier: #FFFFFF;
+      --text: #1E2230;
+      --neben: #545A6B;        /* 6,6:1 auf --grund */
+      --linie: #DEDBD4;
+      --rand: clamp(1rem, 4vw, 3rem);
+      --system: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body { margin: 0; background: var(--grund); color: var(--text); font: 400 1.0625rem/1.6 var(--system); }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #1E2230; outline-offset: 3px; }
+    .huelle { max-width: 84rem; margin: 0 auto; padding: 0 var(--rand); }
+    .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+    /* Kopf */
+    .kopf { padding: clamp(1.5rem, 4vw, 2.5rem) 0 clamp(2.5rem, 6vw, 4.5rem); }
+    .kopf__zeile { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+    .kopf__logo { width: 180px; }
+    .schild { display: inline-flex; align-items: center; gap: .5rem; padding: .35rem .8rem; border: 1px solid var(--linie); border-radius: 999px; background: var(--papier); font-size: .85rem; color: var(--neben); }
+    .schild::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: #00A09B; }
+    .kicker { margin: 0 0 .8rem; font-size: .8rem; font-weight: 650; letter-spacing: .14em; text-transform: uppercase; color: var(--neben); }
+    h1 { margin: 0; max-width: 18ch; font-size: clamp(2.2rem, 1.4rem + 3.4vw, 4rem); line-height: 1.05; letter-spacing: -.025em; font-weight: 650; text-wrap: balance; }
+    .lead { max-width: 44rem; margin: 1.2rem 0 0; font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem); color: var(--neben); }
+
+    /* Karten */
+    .karten { display: grid; gap: clamp(1.5rem, 3vw, 2.2rem); padding: 0; margin: 0; list-style: none; }
+    @media (min-width: 70em) { .karten { grid-template-columns: repeat(3, 1fr); } }
+    .karte { --dunkel: #1E2230; display: flex; flex-direction: column; min-width: 0; background: var(--papier); border: 1px solid var(--linie); border-top: 6px solid var(--dunkel); border-radius: 6px; overflow: hidden; }
+    .karte--e1 { --dunkel: #2C3662; --schrift: "Fraunces", Georgia, serif; }
+    .karte--e2 { --dunkel: #1F2A47; --schrift: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; }
+    .karte--e3 { --dunkel: #3B2235; --schrift: "Archivo", "Helvetica Neue", Arial, sans-serif; }
+    .vorschau { position: relative; margin: 0; padding: 1.2rem 1.2rem 0; background: var(--grund); border-bottom: 1px solid var(--linie); }
+    .vorschau__desktop { width: 86%; border: 1px solid var(--linie); border-bottom: 0; border-radius: 4px 4px 0 0; box-shadow: 0 10px 30px -18px rgb(30 34 48 / .45); }
+    .vorschau__mobil { position: absolute; right: 1.2rem; bottom: 0; width: 24%; border: 1px solid var(--linie); border-bottom: 0; border-radius: 10px 10px 0 0; box-shadow: 0 10px 30px -14px rgb(30 34 48 / .5); }
+    .karte__text { display: flex; flex-direction: column; flex: 1; padding: clamp(1.3rem, 2.5vw, 1.8rem); }
+    .karte h2 { margin: 0; font-family: var(--schrift); font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.5rem); line-height: 1.1; font-weight: 450; color: var(--dunkel); }
+    .karte--e2 h2 { font-weight: 600; font-stretch: 90%; letter-spacing: -.02em; }
+    .karte--e3 h2 { font-weight: 400; font-stretch: 112%; }
+    .karte .kicker { margin-bottom: .4rem; }
+    .karte__idee { margin: .7rem 0 0; font-size: 1.12rem; font-weight: 550; line-height: 1.45; }
+    .karte__beschreibung { margin: .8rem 0 0; color: var(--neben); }
+    .eckdaten { margin: 1.3rem 0 0; border-top: 1px solid var(--linie); }
+    .eckdaten div { display: grid; grid-template-columns: 7.5rem 1fr; gap: .8rem; padding: .55rem 0; border-bottom: 1px solid var(--linie); font-size: .95rem; }
+    .eckdaten dt { color: var(--neben); }
+    .eckdaten dd { margin: 0; min-width: 0; }
+    .farben { display: flex; flex-wrap: wrap; gap: .3rem .9rem; margin: 0; padding: 0; list-style: none; font-size: .9rem; color: var(--neben); }
+    .farben li { display: inline-flex; align-items: center; gap: .4rem; }
+    .farben i { width: 1rem; height: 1rem; border-radius: 50%; border: 1px solid rgb(30 34 48 / .18); }
+    .aktionen { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.4rem; margin-top: auto; padding-top: 1.6rem; }
+    .knopf { display: inline-flex; align-items: center; gap: .6rem; min-height: 3rem; padding: .7rem 1.3rem; border-radius: 4px; background: var(--dunkel); color: #fff; font-weight: 650; text-decoration: none; }
+    .knopf svg { width: 1.1rem; height: 1.1rem; }
+    .direkt { margin: 1.2rem 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: .2rem 1.2rem; font-size: .95rem; }
+    .direkt a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--dunkel); font-weight: 600; text-decoration-thickness: 1px; text-underline-offset: .2em; }
+    @media (prefers-reduced-motion: no-preference) {
+      .knopf svg { transition: transform .25s ease; }
+      .knopf:hover svg { transform: translateX(4px); }
+    }
+
+    /* Gemeinsames und Unterlagen */
+    .abschnitt { padding: clamp(3rem, 7vw, 5rem) 0 0; }
+    .abschnitt h2 { margin: 0 0 1.2rem; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); line-height: 1.2; letter-spacing: -.01em; }
+    .spalten { display: grid; gap: 2.5rem; }
+    @media (min-width: 56em) { .spalten { grid-template-columns: 1.4fr 1fr; gap: 4rem; } }
+    .liste { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--linie); }
+    .liste li { padding: .75rem 0; border-bottom: 1px solid var(--linie); }
+    .liste strong { font-weight: 650; }
+    .liste a { display: inline-flex; min-height: 1.75rem; align-items: center; font-weight: 600; text-underline-offset: .2em; }
+    .liste span { display: block; color: var(--neben); font-size: .95rem; }
+    .fuss { margin-top: clamp(3.5rem, 8vw, 6rem); padding: 1.8rem 0 2.4rem; border-top: 1px solid var(--linie); font-size: .9rem; color: var(--neben); }
+    .fuss p { margin: 0; }
+  </style>
+</head>
+<body>
+  <header class="kopf">
+    <div class="huelle">
+      <div class="kopf__zeile">
+        <img class="kopf__logo" src="shared/assets/logo/logo-praxis-zum-schloss.svg" width="200" height="51" alt="Praxis zum Schloss">
+        <p class="schild">Entwürfe zur Ansicht – nicht die offizielle Website</p>
+      </div>
+      <p class="kicker">Neue Website · Praxis zum Schloss</p>
+      <h1>Drei Entwürfe zum Vergleich</h1>
+      <p class="lead">Für die hausärztliche Praxis von Nalan Bagci-Kaikis, Fachärztin für Allgemeinmedizin in Berlin-Charlottenburg. Alle drei Entwürfe sind vollständig klickbar und beruhen auf denselben Texten und Praxisdaten. Sie unterscheiden sich in Gestaltung, Navigation und darin, wie weit sie die Seitenstruktur der bisherigen Website umbauen.</p>
+    </div>
+  </header>
+
+  <main class="huelle">
+    <h2 class="sr-only">Die Entwürfe</h2>
+    <ul class="karten">
+      <li class="karte karte--e1">
+        <figure class="vorschau">
+          <img class="vorschau__desktop" src="vorschau/entwurf-1-fundament-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 1 am Desktop: Titel „Den Menschen als Ganzes sehen.“ neben dem Porträt im türkisen Bogenfenster">
+          <img class="vorschau__mobil" src="vorschau/entwurf-1-fundament-mobil.webp" width="390" height="844" alt="" loading="lazy">
+        </figure>
+        <div class="karte__text">
+          <p class="kicker">Entwurf 1</p>
+          <h2>„Fundament“</h2>
+          <p class="karte__idee">Baut nahtlos auf dem vorhandenen Startseiten-Entwurf auf.</p>
+          <p class="karte__beschreibung">Das Bogenfenster aus dem Schloss-Emblem kehrt als Formelement wieder. Die Seite ist die vollständige Referenz: Jede inhaltlich richtige Seite der bisherigen Website hat hier eine Entsprechung, jede Leistung eine eigene Seite.</p>
+          <dl class="eckdaten">
+            <div><dt>Seiten</dt><dd>23 – alle Leistungen einzeln</dd></div>
+            <div><dt>Navigation</dt><dd>Kopfleiste mit Untermenü, mobil als Vollbild-Menü</dd></div>
+            <div><dt>Schrift</dt><dd>Fraunces und Figtree</dd></div>
+            <div><dt>Farben</dt><dd><ul class="farben"><li><i style="background:#2C3662"></i>Marineblau</li><li><i style="background:#47CCC8"></i>Türkis</li><li><i style="background:#F6F3ED"></i>Creme</li></ul></dd></div>
+            <div><dt>Bewegung</dt><dd>gezeichnete Linien, schwebende Karten, Laufband</dd></div>
+          </dl>
+          <div class="aktionen">
+            <a class="knopf" href="entwurf-1-fundament/index.html">Entwurf 1 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 1">
+            <li><a href="entwurf-1-fundament/leistungen/index.html">Leistungen</a></li>
+            <li><a href="entwurf-1-fundament/leistungen/akupunktur.html">Akupunktur</a></li>
+            <li><a href="entwurf-1-fundament/termin-kontakt.html">Termin &amp; Kontakt</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="karte karte--e2">
+        <figure class="vorschau">
+          <img class="vorschau__desktop" src="vorschau/entwurf-2-verwandt-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 2 am Desktop: Serviceleiste, Titel „Nalan Bagci-Kaikis, Fachärztin für Allgemeinmedizin“ neben einem großen Porträt">
+          <img class="vorschau__mobil" src="vorschau/entwurf-2-verwandt-mobil.webp" width="390" height="844" alt="" loading="lazy">
+        </figure>
+        <div class="karte__text">
+          <p class="kicker">Entwurf 2</p>
+          <h2>„Verwandt“</h2>
+          <p class="karte__idee">Gleiche Herkunft, ruhigere und sachlichere Haltung.</p>
+          <p class="karte__beschreibung">Eine redaktionelle Gestaltung mit klarer Typografie und Haarlinien. Die Leistungen sind gestrafft: Das Hausärztliche steht gebündelt auf einer Seite, drei kleinere Verfahren auf der Naturheilkunde-Seite. Die Landing Pages sind wie ein Dossier aufgebaut.</p>
+          <dl class="eckdaten">
+            <div><dt>Seiten</dt><dd>18 – Leistungen zusammengefasst</dd></div>
+            <div><dt>Navigation</dt><dd>Serviceleiste, Mega-Menü, mobil als Vollbild-Menü</dd></div>
+            <div><dt>Schrift</dt><dd>Instrument Sans und Source Serif 4</dd></div>
+            <div><dt>Farben</dt><dd><ul class="farben"><li><i style="background:#1F2A47"></i>Tinte</li><li><i style="background:#0E4F57"></i>Petrol</li><li><i style="background:#F5F7F6"></i>Porzellan</li></ul></dd></div>
+            <div><dt>Bewegung</dt><dd>Text- und Bildmasken, Haarlinien, Fortschrittsanzeige</dd></div>
+          </dl>
+          <div class="aktionen">
+            <a class="knopf" href="entwurf-2-verwandt/index.html">Entwurf 2 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 2">
+            <li><a href="entwurf-2-verwandt/leistungen/index.html">Leistungen</a></li>
+            <li><a href="entwurf-2-verwandt/leistungen/akupunktur.html">Akupunktur</a></li>
+            <li><a href="entwurf-2-verwandt/termin-kontakt.html">Termin &amp; Kontakt</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="karte karte--e3">
+        <figure class="vorschau">
+          <img class="vorschau__desktop" src="vorschau/entwurf-3-eigenstaendig-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 3 am Desktop: feste Register-Spalte links, auberginefarbene Einstiegsfläche mit dem Titel „Fachärztin für Allgemeinmedizin“ und Porträt im Passepartout">
+          <img class="vorschau__mobil" src="vorschau/entwurf-3-eigenstaendig-mobil.webp" width="390" height="844" alt="" loading="lazy">
+        </figure>
+        <div class="karte__text">
+          <p class="kicker">Entwurf 3</p>
+          <h2>„Eigenständig“</h2>
+          <p class="karte__idee">Ein eigenes Konzept: die Website als Register.</p>
+          <p class="karte__beschreibung">Ein festes, nummeriertes Register wie in einem Nachschlagewerk führt durch die Seiten. Die hausärztlichen Leistungen sind nach Anliegen geordnet statt als Liste, das Porträt sitzt im Passepartout. Nur Logo, Porträt und Texte teilt dieser Entwurf mit den anderen.</p>
+          <dl class="eckdaten">
+            <div><dt>Seiten</dt><dd>17 – Struktur nach Anliegen</dd></div>
+            <div><dt>Navigation</dt><dd>feste Register-Spalte, mobil als Bogen von unten</dd></div>
+            <div><dt>Schrift</dt><dd>Archivo – eine Familie, die Breite trägt die Hierarchie</dd></div>
+            <div><dt>Farben</dt><dd><ul class="farben"><li><i style="background:#3B2235"></i>Aubergine</li><li><i style="background:#9A7637"></i>Messing</li><li><i style="background:#EDEAE6"></i>Kalkstein</li></ul></dd></div>
+            <div><dt>Bewegung</dt><dd>Seitenübergänge, Lesemarke im Inhaltsregister</dd></div>
+          </dl>
+          <div class="aktionen">
+            <a class="knopf" href="entwurf-3-eigenstaendig/index.html">Entwurf 3 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 3">
+            <li><a href="entwurf-3-eigenstaendig/leistungen/index.html">Anliegen</a></li>
+            <li><a href="entwurf-3-eigenstaendig/leistungen/akupunktur.html">Akupunktur</a></li>
+            <li><a href="entwurf-3-eigenstaendig/termin-kontakt.html">Termin &amp; Kontakt</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+
+    <div class="spalten abschnitt">
+      <section aria-labelledby="t-gemeinsam">
+        <h2 id="t-gemeinsam">In allen drei Entwürfen gleich</h2>
+        <ul class="liste">
+          <li><strong>Ärztin vor Leistungen.</strong><span>Zuerst die Fachärztin für Allgemeinmedizin, dann die Lehrärztin, die Naturheilkunde als ärztliche Ergänzung nach einer Diagnose.</span></li>
+          <li><strong>Termine über Doctolib.</strong><span>Jeder Termin-Knopf führt zur Buchungsseite der Praxis bei Doctolib (neues Fenster). Es gibt kein Anfrageformular.</span></li>
+          <li><strong>Nichts erfunden.</strong><span>Was noch fehlt (Fotos der Praxis, Kosten, einzelne Angaben), ist als Platzhalter sichtbar markiert und als offene Frage gesammelt.</span></li>
+          <li><strong>Sprachmenü als Demo.</strong><span>Englisch und Türkisch sind für Startseite, Termin &amp; Kontakt und Akupunktur sowie für Menüs und Knöpfe übersetzt. Die übrigen Seiten zeigen einen Hinweis.</span></li>
+          <li><strong>Keine Cookies, keine fremden Dienste.</strong><span>Schriften liegen lokal, es gibt keine eingebetteten Karten und keine Statistik.</span></li>
+        </ul>
+      </section>
+      <section aria-labelledby="t-unterlagen">
+        <h2 id="t-unterlagen">Unterlagen</h2>
+        <ul class="liste">
+          <li><a href="docs/offene-fragen.md">Offene Fragen</a><span>an Praxis und Ärztin – vor dem Livegang zu klären</span></li>
+          <li><a href="docs/design-entscheidungen.md">Design-Entscheidungen</a><span>Gestaltungsidee, Farben, Schriften und Bewegung je Entwurf</span></li>
+          <li><a href="docs/sitemap.md">Sitemap</a><span>Seitenstruktur je Entwurf und Zuordnung der alten Adressen</span></li>
+          <li><a href="docs/landing-page-konzept.md">Landing-Page-Konzept</a><span>Aufbau der Naturheilkunde-Seiten</span></li>
+          <li><a href="docs/qa-bericht.md">QA-Bericht</a><span>Prüfungen, Ergebnisse und offene Punkte</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="fuss">
+    <div class="huelle">
+      <p>Entwürfe von vivenna für die Praxis zum Schloss, Schloßstraße 21, 14059 Berlin · Stand Oktober 2026 · Diese Seiten sind nicht die offizielle Website der Praxis und werden nicht von Suchmaschinen erfasst.</p>
+    </div>
+  </footer>
+</body>
+</html>
