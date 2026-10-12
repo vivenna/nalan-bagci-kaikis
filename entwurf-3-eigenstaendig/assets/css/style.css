@@ -28,7 +28,7 @@
   --kalkstein: #EDEAE6;       /* Grund */
   --papier: #FFFFFF;
   --stein: #D9D4CD;           /* Linien */
-  --messing: #A8823F;         /* Linien und große Ziffern (nur Deko/Großschrift) */
+  --messing: #9A7637;         /* Linien und große Ziffern (Großschrift) – 3,5:1 auf Kalkstein, 4,2:1 auf Papier */
   --messing-dunkel: #7A5A22;  /* kleine Ziffern/Marken auf Hell – 5,3:1 */
   --messing-hell: #D7B77C;    /* auf Aubergine – 7,5:1 */
   --neben: #5A5257;           /* Nebentext – 6,3:1 auf Kalkstein */
@@ -170,8 +170,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .text > * + * { margin-top: 1rem; }
 .text p, .text li { max-width: var(--text); }
 .text ul { list-style: none; padding: 0; border-top: 1px solid var(--stein); }
-.text ul li { display: grid; grid-template-columns: 1.6rem 1fr; padding: .75rem 0; border-bottom: 1px solid var(--stein); }
-.text ul li::before { content: "—"; color: var(--messing-dunkel); }
+/* Strich absolut statt Raster: Punkte mit Fett- oder Link-Anteil bleiben einspaltig lesbar */
+.text ul li { position: relative; padding: .75rem 0 .75rem 1.6rem; border-bottom: 1px solid var(--stein); }
+.text ul li::before { content: "—"; position: absolute; left: 0; color: var(--messing-dunkel); }
 .text strong { font-weight: 650; color: var(--aubergine); }
 .text a { font-weight: 600; color: var(--aubergine); }
 .flaeche-aubergine .text ul { border-color: rgb(237 234 230 / .2); }
@@ -194,9 +195,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 
 /* Register-Zeilen (Wege, Hub, Verwandte) */
 .zeilen { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stein); }
-.zeilen > li > a { position: relative; display: grid; grid-template-columns: 3.4rem 1fr auto; grid-template-areas: "nr titel pfeil" "nr text pfeil"; gap: .2rem 1rem; align-items: center; padding: 1.3rem 0; border-bottom: 1px solid var(--stein); text-decoration: none; }
+.zeilen > li > a { position: relative; display: grid; grid-template-columns: minmax(3.4rem, max-content) 1fr auto; grid-template-areas: "nr titel pfeil" "nr text pfeil"; gap: .2rem 1rem; align-items: center; padding: 1.3rem 0; border-bottom: 1px solid var(--stein); text-decoration: none; }
 .zeilen > li > a::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--messing); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
-.zeilen .nr { grid-area: nr; align-self: start; font-size: 1.9rem; font-weight: 300; line-height: 1; color: var(--messing); }
+.zeilen .nr { grid-area: nr; align-self: start; white-space: nowrap; font-size: 1.9rem; font-weight: 300; line-height: 1; color: var(--messing); }
 .zeilen__titel { grid-area: titel; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.6rem); font-stretch: 112%; font-weight: 420; color: var(--aubergine); line-height: 1.2; transition: transform .3s var(--ease); }
 .zeilen__text { grid-area: text; font-size: .98rem; color: var(--neben); max-width: 40rem; transition: transform .3s var(--ease); }
 .zeilen .icon { grid-area: pfeil; color: var(--messing-dunkel); transition: transform .3s var(--ease); }
@@ -207,7 +208,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   .zeilen > li > a:hover .nr { color: var(--aubergine); }
 }
 .zeilen > li > a:focus-visible { outline-offset: -2px; }
-.zeilen--gross > li > a { grid-template-columns: clamp(3.6rem, 3rem + 3vw, 6rem) 1fr auto; }
+.zeilen--gross > li > a { grid-template-columns: minmax(clamp(3.6rem, 3rem + 3vw, 6rem), max-content) 1fr auto; }
 .zeilen--gross .nr { font-size: clamp(2.6rem, 2rem + 2vw, 4rem); }
 .zeilen--gross .zeilen__titel { grid-area: titel; font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem); font-weight: 360; }
 .flaeche-aubergine .zeilen, .flaeche-aubergine .zeilen > li > a { border-color: rgb(237 234 230 / .22); }
@@ -282,7 +283,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .zwei { display: grid; gap: 2.6rem; }
 @media (min-width: 56em) { .zwei { grid-template-columns: 1fr 1fr; gap: 3.5rem; } }
 .drei { display: grid; gap: 2.4rem; }
-@media (min-width: 64em) { .drei { grid-template-columns: 1.15fr 1fr 1fr; gap: 3rem; } }
+/* neben der festen Register-Spalte erst ab 80em Platz für drei Spalten */
+@media (min-width: 64em) { .drei { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+@media (min-width: 80em) { .drei { grid-template-columns: 1.15fr 1fr 1fr; } }
 .drei h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); }
 
 /* ---------- 6 Startseite ---------- */
@@ -299,7 +302,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 
 /* ---------- 7 Unterseiten ---------- */
 .seitenkopf { padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
-.seitenkopf h1 { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 4.8rem); max-width: 20ch; view-transition-name: seitentitel; }
+.seitenkopf h1 { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 4.8rem); max-width: 20ch; view-transition-name: seitentitel; -webkit-hyphens: auto; hyphens: auto; }
 .seitenkopf .lead { margin-top: 1.5rem; }
 .seitenkopf__raster { display: grid; gap: 2.5rem; align-items: end; }
 @media (min-width: 64em) { .seitenkopf__raster--bild { grid-template-columns: 1fr minmax(15rem, 20rem); gap: 4rem; } }
@@ -347,7 +350,8 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .fuss a { display: inline-flex; align-items: center; min-height: 2.5rem; color: #fff; text-decoration: none; }
 .fuss a:hover { text-decoration: underline; text-decoration-color: var(--messing-hell); }
 .fuss__natur { columns: 2; column-gap: 1.6rem; }
-.fuss__natur .nr { color: var(--messing-hell); margin-right: .5rem; }
+.fuss .nr { color: var(--messing-hell); }
+.fuss__natur .nr { margin-right: .5rem; }
 .fuss__unten { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem 2rem; margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid rgb(237 234 230 / .18); font-size: .86rem; color: rgb(237 234 230 / .72); }
 .entwurf-plakette { position: fixed; right: 1rem; bottom: 1rem; z-index: 90; display: inline-flex; align-items: center; gap: .5rem; padding: .45rem .8rem; background: var(--papier); color: var(--tinte); border: 1px solid var(--messing); font-size: .76rem; }
 .entwurf-plakette strong { color: var(--aubergine); }
@@ -364,3 +368,10 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
 @media print { .register, .leiste, .entwurf-plakette, .knopfreihe { display: none !important; } .seite { margin: 0 !important; } }
+/* Schmale Bildschirme: lange Wörter und Adressen dürfen Rasterspalten nicht aufdrücken */
+.zwei > *, .drei > *, .lp-raster > *, .held__raster > *, .seitenkopf__raster > * { min-width: 0; }
+.kontakt dd, .datenblatt dd { overflow-wrap: anywhere; }
+
+/* Silbentrennung nur bei längeren Wörtern und mit mindestens vier Zeichen je Teil
+   (verhindert z. B. „Ber-lin“ oder „Ter-mine“ auf schmalen Bildschirmen). */
+p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }

@@ -277,9 +277,10 @@ html:not(.js) .schritte::after { transform: none; }
 .dunkel .schritt.ist-erreicht .schritt__nr { background: #fff; color: var(--tinte); border-color: #fff; }
 
 /* Faktentabelle (Was Sie wissen sollten) */
-.fakten { margin: 0; border-top: 1.5px solid var(--tinte); }
+.fakten { margin: 0; border-top: 1.5px solid var(--tinte); container-type: inline-size; }
 .fakten > div { display: grid; gap: .3rem 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid var(--linie); }
-@media (min-width: 48em) { .fakten > div { grid-template-columns: 12rem 1fr; } }
+/* zweispaltig nach eigener Breite, nicht nach Fensterbreite (in .zwei sonst zu schmal) */
+@container (min-width: 30rem) { .fakten > div { grid-template-columns: 12rem 1fr; } }
 .fakten dt { font: 600 .82rem/1.4 var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--tuerkis-text); padding-top: .2rem; }
 .fakten dd { margin: 0; max-width: 44rem; }
 
@@ -408,6 +409,7 @@ html:not(.js) .schritte::after { transform: none; }
 .zeitachse dt { font: 600 1rem/1.4 var(--sans); font-stretch: 92%; }
 .zeitachse dd { margin: 0; color: var(--neben); }
 .portraitfeld { position: relative; max-width: 22rem; justify-self: end; width: 100%; }
+@media (max-width: 63.99em) { .portraitfeld { justify-self: start; width: calc(100% - 1.5rem); } }
 .portraitfeld .held__rahmen { margin: 0; aspect-ratio: 4 / 5; }
 .portraitfeld::before { content: ""; position: absolute; inset: 12% -1.5rem -1.5rem 22%; background: var(--petrol); }
 .anker-nav { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin-top: 2rem; font-family: var(--sans); }
@@ -460,3 +462,11 @@ html:not(.js) .schritte::after { transform: none; }
 }
 @media print { .kopf, .service, .entwurf-plakette, .knopfreihe { display: none !important; } }
 .menue-ebene.dunkel { background: var(--tinte); }
+/* Schmale Bildschirme: lange Wörter und Adressen dürfen Rasterspalten nicht aufdrücken */
+.zwei > *, .saeulen > *, .seitenkopf__raster > *, .held__raster > *, .abschnitt__raster > * { min-width: 0; }
+.kontaktliste dd, .fakten dd { overflow-wrap: anywhere; }
+.bild-platzhalter { min-width: 0; }
+
+/* Silbentrennung nur bei längeren Wörtern und mit mindestens vier Zeichen je Teil
+   (verhindert z. B. „Ber-lin“ oder „Ter-mine“ auf schmalen Bildschirmen). */
+p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }

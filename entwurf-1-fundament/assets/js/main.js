@@ -114,10 +114,12 @@
       if (!nav.classList.contains('ist-offen')) return;
       if (e.key === 'Escape') { menue(false); menueKnopf.focus(); return; }
       if (e.key !== 'Tab') return;
+      // Reihenfolge selbst führen: Der Knopf steht im Quelltext hinter der Navigation,
+      // der Browser würde von ihm aus sonst in den verdeckten Seiteninhalt springen.
       var fokussierbar = [menueKnopf].concat($$('a[href], button:not([disabled])', nav).filter(function (el) { return el.offsetParent !== null; }));
-      var erstes = fokussierbar[0], letztes = fokussierbar[fokussierbar.length - 1];
-      if (e.shiftKey && document.activeElement === erstes) { e.preventDefault(); letztes.focus(); }
-      else if (!e.shiftKey && document.activeElement === letztes) { e.preventDefault(); erstes.focus(); }
+      var i = fokussierbar.indexOf(document.activeElement), n = fokussierbar.length;
+      e.preventDefault();
+      fokussierbar[e.shiftKey ? (i <= 0 ? n - 1 : i - 1) : (i + 1) % n].focus();
     });
   }
 
@@ -174,6 +176,7 @@
         x.setAttribute('aria-selected', String(an)); x.tabIndex = an ? 0 : -1;
         var panel = document.getElementById(x.getAttribute('aria-controls'));
         panel.hidden = !an;
+        panel.removeAttribute('data-js-versteckt');
         if (an && animieren) { panel.classList.remove('ist-neu'); void panel.offsetWidth; panel.classList.add('ist-neu'); }
       });
       setzeZeiger(tab); if (fokus) tab.focus();

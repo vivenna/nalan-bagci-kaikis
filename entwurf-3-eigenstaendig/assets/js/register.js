@@ -7,7 +7,6 @@
 
   var $ = function (s, k) { return (k || document).querySelector(s); };
   var $$ = function (s, k) { return Array.prototype.slice.call((k || document).querySelectorAll(s)); };
-  var t = function (key, de) { return window.Sprache ? window.Sprache.t(key, de) : de; };
 
   /* ---------- Register als Bogen von unten (nur schmale Bildschirme) ---------- */
   var register = $('#register'), oeffner = $('[data-register-oeffnen]'), schliesser = $('[data-register-schliessen]'), hintergrund = $('[data-register-hintergrund]');
@@ -63,9 +62,4 @@
     var nr = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 }[tag];
     $$('[data-tag="' + nr + '"]').forEach(function (z) { z.classList.add('ist-heute'); });
   } catch (e) { /* ohne Intl keine Markierung */ }
-
-  /* ---------- Sprachwechsel: Beschriftungen, die das Skript setzt ---------- */
-  document.addEventListener('sprachewechsel', function () {
-    if (oeffner) oeffner.setAttribute('aria-label', t('allg.menue.oeffnen', 'Menü öffnen'));
-  });
 })();

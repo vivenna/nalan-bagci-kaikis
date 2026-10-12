@@ -33,7 +33,7 @@ Stand: 11.10.2026 · Grundlage: `master-prompt.md` Abschnitte 2, 3, 9 · Startse
 
 Korrekturen gegenüber dem Startseiten-Entwurf: Die Nummern der Verfahrensliste werden auf Marine 74 % angehoben (vorher 2,45 : 1). Nebentext auf Glaskarten bekommt mindestens 4,5 : 1.
 
-**Schriften:** Fraunces (Titel; Achsen opsz + wght, normal und kursiv) und Figtree (Text, wght 300–900), beide OFL. **Neu:** latin-ext-Dateien aus `@fontsource-variable/fraunces` und `/figtree` per `unicode-range` ergänzt, damit ğ, İ, ş, Ğ, Ş gesetzt werden. Typo-Skala unverändert (h1 `clamp(3rem, 1.2rem + 7.2vw, 6.6rem)`, h2 `clamp(2.3rem, 1.4rem + 3.6vw, 4.4rem)`, Text 1.125rem/1.65). Unterseiten-H1 eine Stufe kleiner (`clamp(2.4rem, 1.4rem + 4.4vw, 4.6rem)`).
+**Schriften:** Fraunces (Titel; Achsen opsz + wght, normal und kursiv) und Figtree (Text, wght 300–900), beide OFL. **Neu:** latin-ext-Dateien aus `@fontsource-variable/fraunces` und `/figtree` per `unicode-range` ergänzt, damit ğ, İ, ş, Ğ, Ş gesetzt werden. Typo-Skala bis auf den Einstiegstitel unverändert (h1 `clamp(3rem, 1.2rem + 7.2vw, 6.3rem)`, ab 64em `clamp(4.5rem, 7.2vw, 6.3rem)` – im Startseiten-Entwurf 6.6rem; bei 1440 px lag „als Ganzes sehen.“ 1 px unter der Spaltenbreite und brach je nach Schriftdarstellung um, bei 1024 px brach die Zeile immer; h2 `clamp(2.3rem, 1.4rem + 3.6vw, 4.4rem)`, Text 1.125rem/1.65). Unterseiten-H1 eine Stufe kleiner (`clamp(2.4rem, 1.4rem + 4.4vw, 4.6rem)`). **Ersatzschriften gegen Layoutverschiebung:** Bis Fraunces/Figtree geladen sind, zeigt der Browser Georgia bzw. Arial, per `size-adjust` auf die Laufweite der Webschriften skaliert („Fraunces Ersatz“ nur im Einstiegstitel, „Figtree Ersatz“ für den Fließtext). Dadurch bricht beim Schriftwechsel keine Zeile anders um (CLS der Startseite vorher 0,21, jetzt 0; Messung in `docs/qa-bericht.md`).
 
 **Navigationskonzept:** klassische Kopfleiste wie im Entwurf (Logo links, Glas-Effekt beim Scrollen, blendet beim Herunterscrollen aus). Sie wird mehrseitig:
 - Menü: Ihre Ärztin · Leistungen (Aufklapper mit drei Gruppen) · Naturheilkunde · Termin & Kontakt.
@@ -151,7 +151,7 @@ Bei `prefers-reduced-motion: reduce` entfällt alles. Ohne JS ist alles sofort s
 | Kalkstein | `#EDEAE6` | Grundfläche (hellgrau, nicht cremig) | – |
 | Papier | `#FFFFFF` | Register-Spalte, Karten, Bildrahmen | – |
 | Stein | `#D9D4CD` | Linien | – |
-| Messing | `#A8823F` | Linien, große Ziffern (nur Deko/Großschrift) | 2,95 : 1 (nicht für kleinen Text) |
+| Messing | `#9A7637` | Linien, große Ziffern (Großschrift) | 3,5 : 1 auf Kalkstein (≥ 3 : 1 für große Schrift), 4,2 : 1 auf Papier; nicht für kleinen Text |
 | Messing dunkel | `#7A5A22` | kleine Ziffern und Marken auf Hell | 5,3 : 1 auf Kalkstein, 6,3 : 1 auf Weiß |
 | Messing hell | `#D7B77C` | Ziffern und Marken auf Aubergine | 7,5 : 1 |
 | Nebentext | `#5A5257` | sekundärer Text | 6,3 : 1 auf Kalkstein |
@@ -214,7 +214,7 @@ Bei `prefers-reduced-motion: reduce` gibt es keine View Transitions und keine Be
 | | Entwurf 1 „Fundament“ | Entwurf 2 „Verwandt“ | Entwurf 3 „Eigenständig“ |
 |---|---|---|---|
 | **Leitidee** | Bogenfenster aus dem Schloss-Emblem als Bühne; warm, freundlich, einladend | ruhiges Dossier; editoriales Raster, Haarlinien, Fachpublikation | Register; Schweizer Moderne, nummerierte Wege, Museums-Anmutung |
-| **Farbpalette** | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED` | Tinte `#1F2A47`, Nacht-Petrol `#0E4F57`, Türkis-Linie `#00A09B`, Porzellan `#F5F7F6`, Sand `#E3CFA6` | Aubergine `#3B2235`, Kalkstein `#EDEAE6`, Messing `#A8823F` / `#7A5A22`, Tinte `#1D191C` |
+| **Farbpalette** | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED` | Tinte `#1F2A47`, Nacht-Petrol `#0E4F57`, Türkis-Linie `#00A09B`, Porzellan `#F5F7F6`, Sand `#E3CFA6` | Aubergine `#3B2235`, Kalkstein `#EDEAE6`, Messing `#9A7637` / `#7A5A22`, Tinte `#1D191C` |
 | **Schriften** | Fraunces (Serife, Titel) + Figtree (Sans, Text) | Instrument Sans (Sans, Titel/UI) + Source Serif 4 (Serife, Text) | Archivo allein (Breitenachse trägt die Hierarchie) |
 | **Navigation** | Glas-Kopfleiste, Aufklapper „Leistungen“, Vollflächen-Menü mobil | Service-Leiste + Mega-Menü, Vollbild-Überlagerung mobil | feste Register-Spalte links, Bottom Sheet mobil |
 | **Sprachmenü** | Pille „DE ▾“ mit Liste | Segment-Schalter „DE \| EN \| TR“ in der Service-Leiste | Textliste „Deutsch / English / Türkçe“ im Register |

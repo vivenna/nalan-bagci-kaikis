@@ -46,6 +46,25 @@
   unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
+/* Angepasste Ersatzschriften: Bis die Webschrift geladen ist, zeigt der Browser eine
+   Systemschrift, die auf die Laufweite der Webschrift skaliert ist. So bricht beim
+   Schriftwechsel keine Zeile anders um und die Seite verschiebt sich nicht (CLS).
+   Werte gemessen in Chrome: Fraunces ist bei Titelgröße ≈ 85 % so breit wie Georgia
+   (kursiv ≈ 78 %), Figtree ≈ 96 % so breit wie Arial. „Fraunces Ersatz“ gilt nur für
+   den großen Einstiegstitel – bei kleiner optischer Größe läuft Fraunces breiter. */
+@font-face {
+  font-family: "Fraunces Ersatz"; font-style: normal; src: local("Georgia");
+  size-adjust: 85%; ascent-override: 115%; descent-override: 31%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Fraunces Ersatz"; font-style: italic; src: local("Georgia Italic"), local("Georgia-Italic");
+  size-adjust: 78%; ascent-override: 126%; descent-override: 33%; line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Figtree Ersatz"; src: local("Arial"), local("ArialMT");
+  size-adjust: 96%; ascent-override: 99%; descent-override: 26%; line-gap-override: 0%;
+}
+
 /* ---------- 2 Design-Tokens ---------- */
 :root {
   /* Farben – exakt aus Logo und bisheriger Website */
@@ -66,7 +85,7 @@
 
   /* Schrift */
   --schrift-titel: "Fraunces", "Iowan Old Style", Georgia, serif;
-  --schrift-text: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --schrift-text: "Figtree", "Figtree Ersatz", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Maße */
   --huelle: 80rem;
@@ -276,6 +295,11 @@ html:not(.js) .sprachwahl { display: none; }
   .hauptnav .hauptnav__extra > .pfeil-link { font-size: 1.25rem; }
 }
 
+/* Status-Pille: Platz reservieren, damit die Navigation beim Einblenden nicht springt */
+@media (min-width: 88em) { .js .status[hidden] { display: inline-flex !important; visibility: hidden; } .status { min-width: 11.5rem; justify-content: center; } }
+/* Zweiter Reiter ist mit JS von Anfang an verborgen (kein Aufblitzen, keine Verschiebung) */
+.js [data-js-versteckt] { display: none; }
+
 /* =====================================================================
    6 Startseite (aus dem Startseiten-Entwurf) und gemeinsame Bausteine
    ===================================================================== */
@@ -288,7 +312,8 @@ html:not(.js) .sprachwahl { display: none; }
 .held__raster { display: grid; gap: clamp(2.5rem, 6vw, 4rem); align-items: center; }
 @media (min-width: 64em) { .held__raster { grid-template-columns: 1.08fr .92fr; min-height: min(calc(100svh - 9rem), 50rem); } }
 
-.held__titel { display: block; font-size: clamp(3rem, 1.2rem + 7.2vw, 6.6rem); line-height: .98; letter-spacing: -.035em; font-weight: 380; }
+.held__titel { display: block; font-family: "Fraunces", "Fraunces Ersatz", "Iowan Old Style", Georgia, serif; font-size: clamp(3rem, 1.2rem + 7.2vw, 6.3rem); line-height: .98; letter-spacing: -.035em; font-weight: 380; }
+@media (min-width: 64em) { .held__titel { font-size: clamp(4.5rem, 7.2vw, 6.3rem); } }
 .held__titel .vorzeile { display: flex; align-items: center; gap: .8rem; font: 700 .8rem/1.4 var(--schrift-text); letter-spacing: .18em; text-transform: uppercase; color: var(--marine); margin-bottom: 1.6rem; }
 .held__titel .vorzeile::before { content: ""; width: 2rem; height: 2px; background: var(--tuerkis); border-radius: 2px; }
 .zeile { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
@@ -745,6 +770,15 @@ html:not(.js) .zeitleiste::after { transform: none; }
 .fakten-liste { display: grid; gap: .75rem; margin-top: 1.4rem; }
 .fakten-liste li { display: grid; gap: .1rem; padding: 1rem 1.2rem; border-radius: 18px; background: rgb(255 255 255 / .7); border: 1px solid rgb(255 255 255 / .9); box-shadow: var(--schatten); color: var(--text-weich); }
 .fakten-liste strong { color: var(--marine); font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; }
+
+/* Schmale Bildschirme: lange Wörter und Adressen dürfen Rasterspalten nicht aufdrücken */
+.zwei-spalten > *, .kontakt-karten > *, .praxis-kurz > *, .seitenkopf__raster > *, .zeiten__raster > *, .kontakt__raster > * { min-width: 0; }
+.seitenkopf__titel { -webkit-hyphens: auto; hyphens: auto; }
+.fakten-liste li, .kontakt-karte p { overflow-wrap: anywhere; }
+
+/* Silbentrennung nur bei längeren Wörtern und mit mindestens vier Zeichen je Teil
+   (verhindert z. B. „Ber-lin“ oder „Ter-mine“ auf schmalen Bildschirmen). */
+p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }
 
 @media (max-width: 63.99em) {
   .entwurf-plakette { left: .75rem; bottom: calc(.75rem + env(safe-area-inset-bottom)); font-size: .74rem; padding: .35rem .75rem; }

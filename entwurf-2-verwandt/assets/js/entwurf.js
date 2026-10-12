@@ -20,7 +20,21 @@
   }
   if (megaKnopf && mega) {
     megaKnopf.addEventListener('click', function (e) { e.stopPropagation(); megaSetzen(megaKnopf.getAttribute('aria-expanded') !== 'true', false); });
-    megaKnopf.addEventListener('keydown', function (e) { if (e.key === 'ArrowDown') { e.preventDefault(); megaSetzen(true, true); } });
+    megaKnopf.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown') { e.preventDefault(); megaSetzen(true, true); }
+      // Das Panel steht im Quelltext hinter dem Kopf: Tab führt vom offenen Knopf direkt hinein.
+      else if (e.key === 'Tab' && !e.shiftKey && !mega.hidden) { var erster = $('a', mega); if (erster) { e.preventDefault(); erster.focus(); } }
+    });
+    mega.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var links = $$('a[href]', mega);
+      if (e.shiftKey && document.activeElement === links[0]) { e.preventDefault(); megaKnopf.focus(); }
+      else if (!e.shiftKey && document.activeElement === links[links.length - 1]) {
+        // nach dem letzten Link weiter zum nächsten Punkt der Hauptnavigation
+        var li = megaKnopf.closest('li'), weiter = li && li.nextElementSibling && $('a, button', li.nextElementSibling);
+        if (weiter) { e.preventDefault(); megaSetzen(false); weiter.focus(); }
+      }
+    });
     document.addEventListener('click', function (e) { if (!mega.hidden && !mega.contains(e.target)) megaSetzen(false); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mega.hidden) { megaSetzen(false); megaKnopf.focus(); } });
     document.addEventListener('focusin', function (e) { if (!mega.hidden && !mega.contains(e.target) && e.target !== megaKnopf) megaSetzen(false); });
