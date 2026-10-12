@@ -147,7 +147,7 @@ Zusätzlich gelesen wurden die Einstiege aller drei Startseiten. Die Reihenfolge
 | Seiten | 23 (jede alte Leistung einzeln) | 18 (Hausärztliches gebündelt, drei kleine Verfahren auf der Naturheilkunde-Seite) | 17 (Hub „Anliegen“ statt Leistungsliste, Kernset von 8 Landing Pages) |
 | Navigation | Kopfleiste mit Untermenü, Overlay mobil | Serviceleiste, Mega-Menü, Overlay mobil | feste Register-Spalte, mobil als Bogen von unten |
 | Schrift | Fraunces + Figtree | Instrument Sans + Source Serif 4 | Archivo allein (Breitenachse) |
-| Farbe | Marine/Türkis/Creme | Tinte/Petrol/Porzellan | Aubergine/Kalkstein/Messing |
+| Farbe | Marine/Türkis/Creme | Marine/Türkis/Creme | Marine/Türkis/Creme |
 | Bewegung | Zeichnen, Schweben, Laufband | Masken-, Clip- und Haarlinien-Reveals, Fortschritt | Seitenübergänge (View Transitions), Lesemarke |
 
 - **Gemessen:** E1–E2 teilen 17 % ihrer CSS-Klassen, E1–E3 13 %, E2–E3 22 %. Gemeinsam sind fast nur Hilfsklassen wie `sr-only`, `huelle` oder `platzhalter`. Bei den Farben überschneiden sich E1–E2 bei 9 % (Logo-Türkis, Weiß), E1–E3 und E2–E3 bei je 5 % (nur Weiß).

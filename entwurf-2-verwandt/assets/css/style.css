@@ -2,9 +2,9 @@
    Praxis zum Schloss – Entwurf 2 „Verwandt“ (vivenna)
    ---------------------------------------------------------------------
    Leitidee: Die Praxis als ruhiges, klar gegliedertes Dossier. Dieselbe
-   Farbfamilie wie Entwurf 1 (Marine, Türkis, helle Fläche), ins Kühle
-   und Grafische verschoben: Porzellan statt Creme, Nacht-Petrol als
-   große Fläche, Türkis nur als feine Linie. Editoriales 12er-Raster mit
+   Farbwelt wie Entwurf 1 (Marineblau, Türkis, Creme), ins Grafische
+   verschoben: Türkis als Knopf und Fläche, Marine als dunkle Fläche,
+   helles Türkis als zweite Grundfläche. Editoriales 12er-Raster mit
    nummerierter Abschnittsleiste, Haarlinien statt Rundungen,
    serifenlose Titel (Instrument Sans) über Serifen-Text (Source Serif 4).
    Bewegung: Masken- und Clip-Reveals, zeichnende Haarlinien,
@@ -35,19 +35,18 @@
 
 /* ---------- 2 Design-Tokens ---------- */
 :root {
-  --tinte: #1F2A47;          /* Text, Kopf, Knöpfe – 13,2:1 auf Porzellan */
-  --petrol: #0E4F57;         /* große Flächen – Weiß darauf 9,2:1 */
-  --petrol-tief: #0A3E45;
-  --tuerkis: #00A09B;        /* Logo-Türkis: nur Linien und Marken (3,0:1) */
-  --tuerkis-text: #00756F;   /* Links auf Hell – 5,2:1 auf Porzellan */
-  --tuerkis-hell: #7FD9D3;   /* auf Petrol – 5,6:1 */
-  --sand: #E3CFA6;           /* warme Gegenmarke auf Petrol – 6,0:1 */
-  --porzellan: #F5F7F6;      /* Grundfläche */
-  --nebel: #E4ECEA;          /* zweite Fläche – Tinte darauf 11,8:1 */
+  --tinte: #2C3662;          /* Marineblau (Logo „PRAXIS ZUM“): Text, Knöpfe, dunkle Flächen – 10,5:1 auf Creme */
+  --tinte-tief: #222A4E;     /* Fuß, Serviceleiste, Hover */
+  --tuerkis: #00A09B;        /* Logo-Türkis: Linien und Marken (2,9:1 – nie für Text) */
+  --tuerkis-flaeche: #47CCC8;/* Hauptfarbe der bisherigen Website: Knöpfe, Flächen – Marine darauf 5,9:1 */
+  --tuerkis-text: #0A6F6B;   /* Links und kleine Marken auf Hell – 5,4:1 auf Creme */
+  --tuerkis-hell: #47CCC8;   /* Text und Linien auf Marine – 5,9:1 */
+  --porzellan: #F6F3ED;      /* Grundfläche (Creme wie Entwurf 1) */
+  --nebel: #D9F1EF;          /* zweite Fläche: helles Türkis – Marine darauf 9,8:1 */
   --weiss: #FFFFFF;
-  --linie: #C8D4D1;          /* Haarlinien */
+  --linie: #D8D2C5;          /* Haarlinien */
   --linie-dunkel: rgb(255 255 255 / .22);
-  --neben: #4A5568;          /* Nebentext – 7,0:1 auf Porzellan */
+  --neben: #4D5675;          /* Nebentext – 6,5:1 auf Creme */
 
   --sans: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
@@ -91,19 +90,21 @@ em { font-style: italic; }
 .marke-text { display: flex; align-items: baseline; gap: .7rem; font: 600 .78rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--neben); margin: 0 0 1.2rem; }
 .marke-text b { font-weight: 600; color: var(--tuerkis-text); font-variant-numeric: tabular-nums; }
 .dunkel .marke-text { color: rgb(255 255 255 / .78); }
-.dunkel .marke-text b { color: var(--sand); }
+.dunkel .marke-text b { color: var(--tuerkis-hell); }
 
 /* Knöpfe: eckig, Haarlinie, gefüllt nur der Primärknopf */
 .knopf { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .65rem; min-height: 3rem; padding: .8rem 1.4rem; border: 1.5px solid var(--tinte); border-radius: var(--radius); font: 600 1rem/1.1 var(--sans); letter-spacing: .01em; text-decoration: none; white-space: nowrap; cursor: pointer; overflow: hidden; isolation: isolate; transition: color .45s var(--ease); }
 .knopf .icon { transition: transform .45s var(--ease); }
 .knopf::before { content: ""; position: absolute; inset: 0; z-index: -1; transform: scaleX(0); transform-origin: right; transition: transform .5s var(--ease); }
 @media (hover: hover) { .knopf:hover::before { transform: scaleX(1); transform-origin: left; } .knopf:hover .icon:last-child { transform: translateX(4px); } }
-.knopf--primaer { background: var(--tinte); color: #fff; }
-.knopf--primaer::before { background: var(--petrol); }
+.knopf--primaer { background: var(--tuerkis-flaeche); color: var(--tinte); border-color: var(--tuerkis-flaeche); }
+.knopf--primaer::before { background: var(--tinte); }
+@media (hover: hover) { .knopf--primaer:hover { color: #fff; } }
 .knopf--rahmen { background: transparent; color: var(--tinte); }
 .knopf--rahmen::before { background: var(--nebel); }
-.dunkel .knopf--primaer { background: #fff; color: var(--tinte); border-color: #fff; }
-.dunkel .knopf--primaer::before { background: var(--nebel); }
+.dunkel .knopf--primaer { background: var(--tuerkis-flaeche); color: var(--tinte); border-color: var(--tuerkis-flaeche); }
+.dunkel .knopf--primaer::before { background: #fff; }
+@media (hover: hover) { .dunkel .knopf--primaer:hover { color: var(--tinte); } }
 .dunkel .knopf--rahmen { color: #fff; border-color: rgb(255 255 255 / .55); }
 .dunkel .knopf--rahmen::before { background: rgb(255 255 255 / .1); }
 .knopf--klein { min-height: 2.75rem; padding: .55rem 1rem; font-size: .92rem; }
@@ -126,7 +127,7 @@ em { font-style: italic; }
 .sprachhinweis[hidden] { display: none; }
 
 /* ---------- 4 Kopf: Service-Leiste, Hauptleiste, Mega-Menü, Überlagerung ---------- */
-.service { background: var(--tinte); color: #fff; font: 500 .85rem/1 var(--sans); }
+.service { background: var(--tinte-tief); color: #fff; font: 500 .85rem/1 var(--sans); }
 .service__innen { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; min-height: 2.6rem; }
 .service a { color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: .45rem; min-height: 2.6rem; }
 .service__info { display: flex; align-items: center; gap: 1.6rem; }
@@ -144,7 +145,7 @@ em { font-style: italic; }
 .segment--hell button { color: var(--tinte); min-height: 2.75rem; padding-inline: 1rem; }
 .segment--hell button[aria-pressed="true"] { background: var(--tinte); color: #fff; }
 
-.kopf { position: sticky; top: 0; z-index: 100; background: rgb(245 247 246 / .96); border-bottom: 1px solid var(--linie); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+.kopf { position: sticky; top: 0; z-index: 100; background: rgb(246 243 237 / .96); border-bottom: 1px solid var(--linie); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 .kopf__innen { display: flex; align-items: center; gap: 2rem; height: var(--kopf); }
 .kopf .logo img { width: 172px; }
 @media (max-width: 23.99em) { .kopf .logo img { width: 140px; } }
@@ -169,7 +170,7 @@ em { font-style: italic; }
 @media (min-width: 64em) { .kopf__aktion .knopf__kurz { display: none; } }
 
 /* Mega-Menü: Panel in voller Breite unter dem Kopf */
-.mega { position: absolute; left: 0; right: 0; top: 100%; background: var(--porzellan); border-bottom: 1px solid var(--linie); box-shadow: 0 30px 60px -40px rgb(31 42 71 / .45); }
+.mega { position: absolute; left: 0; right: 0; top: 100%; background: var(--porzellan); border-bottom: 1px solid var(--linie); box-shadow: 0 30px 60px -40px rgb(34 42 78 / .45); }
 .mega[hidden] { display: none; }
 .mega__raster { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--spalte); padding-block: 2.6rem 3rem; }
 .mega__spalte { grid-column: span 4; }
@@ -202,7 +203,7 @@ em { font-style: italic; }
 .menue-ebene details[open] summary::after { transform: rotate(45deg); }
 .menue-ebene details ul { list-style: none; margin: 0 0 1rem; padding: 0; }
 .menue-ebene details a { display: flex; align-items: center; min-height: 2.75rem; font: 500 1.05rem/1.3 var(--sans); color: rgb(255 255 255 / .9); text-decoration: none; }
-.menue-ebene__gruppe { font: 600 .72rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--sand); margin: .8rem 0 .2rem; }
+.menue-ebene__gruppe { font: 600 .72rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tuerkis-hell); margin: .8rem 0 .2rem; }
 .menue-ebene__extra { display: grid; gap: 1.2rem; margin-top: 2rem; justify-items: start; }
 .menue-ebene__extra .textlink { font-size: 1.2rem; }
 
@@ -219,7 +220,7 @@ em { font-style: italic; }
   .abschnitt__inhalt--schmal { grid-column: 4 / span 7; }
 }
 .flaeche { background: var(--nebel); }
-.dunkel { background: var(--petrol); color: #fff; }
+.dunkel { background: var(--tinte); color: #fff; }
 .dunkel h2, .dunkel h3 { color: #fff; }
 .lead { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.35rem); line-height: 1.55; color: var(--neben); max-width: 40rem; }
 .dunkel .lead, .dunkel p { color: rgb(255 255 255 / .86); }
@@ -273,7 +274,7 @@ html:not(.js) .schritte::after { transform: none; }
 .schritt p { color: var(--neben); max-width: 40rem; }
 .dunkel .schritte::before { background: var(--linie-dunkel); }
 .dunkel .schritte::after { background: var(--tuerkis-hell); }
-.dunkel .schritt__nr { background: var(--petrol); border-color: var(--linie-dunkel); color: #fff; }
+.dunkel .schritt__nr { background: var(--tinte); border-color: var(--linie-dunkel); color: #fff; }
 .dunkel .schritt.ist-erreicht .schritt__nr { background: #fff; color: var(--tinte); border-color: #fff; }
 
 /* Faktentabelle (Was Sie wissen sollten) */
@@ -327,7 +328,7 @@ html:not(.js) .schritte::after { transform: none; }
 @media (hover: hover) { .zeilen a:hover .icon { transform: translateX(6px); } }
 .dunkel .zeilen { border-color: var(--linie-dunkel); }
 .dunkel .zeilen a { border-color: var(--linie-dunkel); color: #fff; }
-.dunkel .zeilen a > span:first-child, .dunkel .zeilen .icon { color: var(--sand); }
+.dunkel .zeilen a > span:first-child, .dunkel .zeilen .icon { color: var(--tuerkis-hell); }
 .dunkel .zeilen a small { color: rgb(255 255 255 / .78); }
 
 /* Weitere Verfahren (Akkordeon im Naturheilkunde-Hub) */
@@ -373,11 +374,11 @@ html:not(.js) .schritte::after { transform: none; }
 .held h1 .zeile { display: block; }
 .held .lead { margin-top: 1.8rem; }
 .held__bild { position: relative; align-self: stretch; min-height: 26rem; }
-.held__feld { position: absolute; inset: 8% -8% 0 18%; background: var(--petrol); }
+.held__feld { position: absolute; inset: 8% -8% 0 18%; background: var(--tuerkis-flaeche); }
 @media (min-width: 64em) { .held__feld { right: calc(var(--rand) * -1 - 4vw); } }
 .held__rahmen { position: relative; margin: 0 12% 0 0; aspect-ratio: 3 / 4; background: var(--nebel); overflow: hidden; }
 .held__rahmen img { position: absolute; left: 50%; bottom: 0; width: 88%; transform: translateX(-50%); }
-.held__legende { position: relative; margin: .7rem 0 0 calc(18% + .2rem); padding-bottom: 1rem; font: 500 .82rem/1.4 var(--sans); color: rgb(255 255 255 / .85); padding-left: 1rem; }
+.held__legende { position: relative; margin: .7rem 0 0 calc(18% + .2rem); padding-bottom: 1rem; font: 500 .82rem/1.4 var(--sans); color: var(--tinte); padding-left: 1rem; }
 @media (max-width: 63.99em) { .held__bild { min-height: 0; } .held__rahmen { margin-right: 18%; } .held__feld { inset: 12% calc(var(--rand) * -1) 0 30%; } }
 .faktenleiste { margin-top: 0; border-top: 1px solid var(--linie); border-bottom: 1px solid var(--linie); background: var(--porzellan); position: relative; }
 .faktenleiste dl { display: grid; margin: 0; }
@@ -391,7 +392,7 @@ html:not(.js) .schritte::after { transform: none; }
 @media (min-width: 64em) { .saeulen { grid-template-columns: 1fr 1fr; } }
 .saeule { padding: clamp(1.6rem, 3.5vw, 2.8rem); }
 .saeule--hell { background: var(--nebel); }
-.saeule--dunkel { background: var(--petrol); color: #fff; }
+.saeule--dunkel { background: var(--tinte); color: #fff; }
 .saeule h3 { font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.3rem); margin-bottom: .8rem; }
 .saeule > p { margin-bottom: 1.6rem; color: var(--neben); max-width: 34rem; }
 .saeule--dunkel > p { color: rgb(255 255 255 / .86); }
@@ -411,17 +412,17 @@ html:not(.js) .schritte::after { transform: none; }
 .portraitfeld { position: relative; max-width: 22rem; justify-self: end; width: 100%; }
 @media (max-width: 63.99em) { .portraitfeld { justify-self: start; width: calc(100% - 1.5rem); } }
 .portraitfeld .held__rahmen { margin: 0; aspect-ratio: 4 / 5; }
-.portraitfeld::before { content: ""; position: absolute; inset: 12% -1.5rem -1.5rem 22%; background: var(--petrol); }
+.portraitfeld::before { content: ""; position: absolute; inset: 12% -1.5rem -1.5rem 22%; background: var(--tuerkis-flaeche); }
 .anker-nav { display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin-top: 2rem; font-family: var(--sans); }
 
 /* ---------- 8 Fuß ---------- */
-.fuss { background: var(--tinte); color: #fff; padding-block: 4rem 2rem; font-family: var(--sans); }
+.fuss { background: var(--tinte-tief); color: #fff; padding-block: 4rem 2rem; font-family: var(--sans); }
 .fuss__raster { display: grid; gap: 2.4rem var(--spalte); }
 @media (min-width: 48em) { .fuss__raster { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 64em) { .fuss__raster { grid-template-columns: 1.4fr 1fr 1.3fr 1fr; } }
 .fuss__marke img { width: 180px; background: #fff; padding: .7rem .9rem; margin-bottom: 1rem; box-sizing: content-box; }
 .fuss p { color: rgb(255 255 255 / .8); font-size: .95rem; }
-.fuss h2 { font: 600 .74rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--sand); margin-bottom: .6rem; }
+.fuss h2 { font: 600 .74rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; color: var(--tuerkis-hell); margin-bottom: .6rem; }
 .fuss ul { list-style: none; margin: 0; padding: 0; }
 .fuss a { display: inline-flex; align-items: center; min-height: 2.6rem; color: #fff; text-decoration: none; font-size: .98rem; }
 .fuss a:hover { text-decoration: underline; text-decoration-color: var(--tuerkis-hell); }
@@ -461,7 +462,7 @@ html:not(.js) .schritte::after { transform: none; }
   .schritt__nr { border-color: var(--tuerkis); }
 }
 @media print { .kopf, .service, .entwurf-plakette, .knopfreihe { display: none !important; } }
-.menue-ebene.dunkel { background: var(--tinte); }
+.menue-ebene.dunkel { background: var(--tinte-tief); }
 /* Schmale Bildschirme: lange Wörter und Adressen dürfen Rasterspalten nicht aufdrücken */
 .zwei > *, .saeulen > *, .seitenkopf__raster > *, .held__raster > *, .abschnitt__raster > * { min-width: 0; }
 .kontaktliste dd, .fakten dd { overflow-wrap: anywhere; }

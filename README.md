@@ -24,7 +24,7 @@ Im Repo-Root starten, dann `http://localhost:8000` öffnen. Die Übersichtsseite
 | Seiten | 23 – jede alte Leistung einzeln | 18 – Hausärztliches gebündelt | 17 – Leistungen nach Anliegen |
 | Navigation | Kopfleiste mit Untermenü | Serviceleiste und Mega-Menü | feste Register-Spalte, mobil als Bogen von unten |
 | Schrift | Fraunces + Figtree | Instrument Sans + Source Serif 4 | Archivo |
-| Farben | Marineblau, Türkis, Creme | Tinte, Petrol, Porzellan | Aubergine, Messing, Kalkstein |
+| Farben | Marineblau, Türkis, Creme | dieselbe Farbwelt, Türkis als Knopf und Fläche | dieselbe Farbwelt, Türkis als Knopf, Linie und Ziffer |
 
 Ausführlich: [docs/design-entscheidungen.md](docs/design-entscheidungen.md) und [docs/sitemap.md](docs/sitemap.md).
 
