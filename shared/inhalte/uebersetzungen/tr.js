@@ -294,7 +294,7 @@
   "startseite.meta.title": "Nalan Bagci-Kaikis · Berlin-Charlottenburg’da aile hekimi",
   "termin-kontakt.anfahrt.1": "Muayenehane, Berlin-Charlottenburg’da, Charlottenburg Sarayı’nın yakınında, Schloßstraße 21 adresindedir. Zemin kattan veya asansörle ulaşılabilir.",
   "termin-kontakt.anfahrt.2": "<span class=\"platzhalter\" title=\"Yer tutucu: yayından önce muayenehane ile netleştirilecek\">Otobüs ve tren durakları ile park imkânları – bilgiler eklenecek</span>",
-  "termin-kontakt.anfahrt.3": "Harita bağlantıları OpenStreetMap veya Google Maps’i yeni bir pencerede açar. Bu sayfaya harita yerleştirilmemiştir.",
+  "termin-kontakt.anfahrt.3": "Harita bağlantıları Google Maps’i yeni bir pencerede açar. Bu sayfaya harita yerleştirilmemiştir.",
   "termin-kontakt.anfahrt.titel": "Ulaşım",
   "termin-kontakt.faq.1.antwort": "<p>“Online randevu alın” düğmesine tıklayın. Doctolib’e yönlendirilirsiniz; orada başvuru nedenini ve saati seçersiniz. Doctolib randevunuzu onaylar.</p>",
   "termin-kontakt.faq.1.frage": "Online randevuyu nasıl alırım?",

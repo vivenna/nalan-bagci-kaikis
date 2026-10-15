@@ -35,15 +35,15 @@ Die Verbindung ist per TLS verschlüsselt.
 
 ## Terminbuchung über Doctolib {#doctolib}
 
-Für die Online-Terminbuchung verlinken wir auf die Plattform Doctolib. Erst wenn Sie auf „Termin online buchen“ klicken, öffnet sich die Website von Doctolib in einem neuen Fenster. Vorher werden keine Daten an Doctolib übermittelt. Für die Verarbeitung Ihrer Daten bei der Buchung gelten die Datenschutzhinweise von Doctolib. {{platzhalter: Angaben zur Zusammenarbeit mit Doctolib (Auftragsverarbeitung) – Angabe folgt}}
+Für Online-Termine nutzen wir Doctolib. Die Seite von Doctolib öffnet sich erst, wenn Sie auf „Termin online buchen“ klicken – vorher werden keine Daten übertragen. Die Daten Ihrer Terminbuchung verarbeitet Doctolib für uns als Auftragsverarbeiter (Art. 28 DSGVO). {{platzhalter: Rolle von Doctolib vor Livegang mit dem Vertrag der Praxis abgleichen}}
+
+## Links zu anderen Websites {#links}
+
+Links zu anderen Anbietern, etwa zu Google Maps, öffnen sich in einem neuen Fenster. Erst mit dem Klick werden Daten wie Ihre IP-Adresse an den jeweiligen Anbieter übertragen. Für die Verarbeitung dort gelten dessen Datenschutzhinweise.
 
 ## Kontakt per Telefon oder E-Mail {#kontakt}
 
 Wenn Sie uns anrufen oder eine E-Mail schreiben, verarbeiten wir Ihre Angaben, um Ihr Anliegen zu bearbeiten (Art. 6 Abs. 1 lit. b DSGVO, bei Gesundheitsdaten Art. 9 Abs. 2 lit. h DSGVO). Es gilt die ärztliche Schweigepflicht. Bitte senden Sie uns keine Befunde oder ausführlichen Gesundheitsangaben per unverschlüsselter E-Mail – rufen Sie uns dafür lieber an.
-
-## Kartenlinks {#karten}
-
-Auf der Seite „Termin & Kontakt“ verlinken wir auf OpenStreetMap und Google Maps. Es ist keine Karte eingebettet. Erst wenn Sie einen Link anklicken, öffnet sich der jeweilige Dienst, und es gelten dessen Datenschutzhinweise.
 
 ## Speicherung der Sprachauswahl {#sprache}
 

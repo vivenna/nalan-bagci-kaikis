@@ -58,7 +58,6 @@ notfall:
   notruf: { nummer: "112", link: "tel:112", text: Notruf bei Lebensgefahr }
 
 karten:
-  openstreetmap: https://www.openstreetmap.org/?mlat=52.51432&mlon=13.29621#map=18/52.51432/13.29621
   google: https://www.google.com/maps/search/?api=1&query=Schlo%C3%9Fstra%C3%9Fe+21%2C+14059+Berlin
   route: https://www.google.com/maps/dir/?api=1&destination=Schlo%C3%9Fstra%C3%9Fe+21%2C+14059+Berlin
 

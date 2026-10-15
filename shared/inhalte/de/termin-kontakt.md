@@ -43,7 +43,7 @@ Die Praxis liegt in der Schloßstraße 21 in Berlin-Charlottenburg, in der Nähe
 
 {{platzhalter: Haltestellen von Bus und Bahn sowie Parkmöglichkeiten – Angaben folgen}}
 
-Die Kartenlinks öffnen OpenStreetMap bzw. Google Maps in einem neuen Fenster. Auf dieser Seite ist keine Karte eingebettet.
+Die Kartenlinks öffnen Google Maps in einem neuen Fenster. Auf dieser Seite ist keine Karte eingebettet.
 
 ## Notfälle {#notfall}
 

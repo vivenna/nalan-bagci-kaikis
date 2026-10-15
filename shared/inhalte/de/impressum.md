@@ -48,8 +48,3 @@ Nalan Bagci-Kaikis, Anschrift wie oben.
 ## Verbraucherstreitbeilegung {#streitbeilegung}
 
 Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
-
-## Bildnachweis {#bildnachweis}
-
-- Porträt: {{platzhalter: Fotografin oder Fotograf – Angabe folgt}}
-- Logo und Bildmarke: Praxis zum Schloss

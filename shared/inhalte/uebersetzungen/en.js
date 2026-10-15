@@ -294,7 +294,7 @@
   "startseite.meta.title": "Nalan Bagci-Kaikis · Family doctor in Berlin-Charlottenburg",
   "termin-kontakt.anfahrt.1": "The practice is located at Schloßstraße 21 in Berlin-Charlottenburg, near Charlottenburg Palace. It is accessible step-free or by lift.",
   "termin-kontakt.anfahrt.2": "<span class=\"platzhalter\" title=\"Placeholder: to be confirmed with the practice before launch\">Bus and train stops and parking – details to follow</span>",
-  "termin-kontakt.anfahrt.3": "The map links open OpenStreetMap or Google Maps in a new window. No map is embedded on this page.",
+  "termin-kontakt.anfahrt.3": "The map links open Google Maps in a new window. No map is embedded on this page.",
   "termin-kontakt.anfahrt.titel": "Getting here",
   "termin-kontakt.faq.1.antwort": "<p>Click “Book an appointment online”. You will be redirected to Doctolib, where you choose the reason for your visit and a time. Doctolib will confirm your appointment.</p>",
   "termin-kontakt.faq.1.frage": "How do I book an appointment online?",
