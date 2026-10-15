@@ -106,6 +106,8 @@
 
   /* ---------- Sprachwechsel: Beschriftungen, die das Skript setzt ---------- */
   document.addEventListener('sprachewechsel', function () {
+    // Sprache gewählt: Überlagerung schließt sich, dahinter erscheint die Seite in der neuen Sprache
+    if (ebene && !ebene.hidden) ebeneSetzen(false);
     if (oeffner) oeffner.setAttribute('aria-label', t('allg.menue.oeffnen', 'Menü öffnen'));
     if (schliesser) schliesser.setAttribute('aria-label', t('allg.menue.schliessen', 'Menü schließen'));
   });

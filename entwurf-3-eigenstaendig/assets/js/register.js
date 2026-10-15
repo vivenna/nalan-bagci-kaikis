@@ -36,6 +36,9 @@
     schmal.addEventListener('change', function () { if (!schmal.matches) { register.classList.remove('ist-offen'); hintergrund.hidden = true; document.body.style.overflow = ''; } });
   }
 
+  // Sprache gewählt: Register schließt sich, dahinter erscheint die Seite in der neuen Sprache
+  document.addEventListener('sprachewechsel', function () { if (register && register.classList.contains('ist-offen')) setzen(false); });
+
   /* ---------- Inhaltsregister: Lesemarke folgt dem aktiven Abschnitt ---------- */
   var toc = $('[data-inhaltsregister]');
   if (toc && 'IntersectionObserver' in window) {

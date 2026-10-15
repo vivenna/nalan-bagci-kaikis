@@ -286,6 +286,8 @@
   document.addEventListener('sprachewechsel', function (e) {
     $$('[data-sprache-kuerzel]').forEach(function (el) { el.textContent = e.detail.sprache.toUpperCase(); });
     $$('.sprachwahl.ist-offen').forEach(function (w) { w.classList.remove('ist-offen'); $('.sprachwahl__knopf', w).setAttribute('aria-expanded', 'false'); });
+    // Sprache gewählt: mobiles Menü schließt sich, dahinter erscheint die Seite in der neuen Sprache
+    if (nav && nav.classList.contains('ist-offen')) { menue(false); if (menueKnopf) menueKnopf.focus(); }
     if (menueKnopf) menueKnopf.setAttribute('aria-label', menueKnopf.getAttribute('aria-expanded') === 'true' ? t('allg.menue.schliessen', 'Menü schließen') : t('allg.menue.oeffnen', 'Menü öffnen'));
   });
 })();
