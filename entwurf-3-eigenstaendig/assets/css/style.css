@@ -165,7 +165,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .flaeche-marine { background: var(--marine); color: var(--creme); }
 .flaeche-marine h1, .flaeche-marine h2, .flaeche-marine h3 { color: #fff; }
 .flaeche-papier { background: var(--papier); }
-.abschnitt.flaeche-marine + .abschnitt, .abschnitt.flaeche-papier + .abschnitt { padding-top: var(--abstand); }
+.abschnitt.flaeche-marine, .abschnitt.flaeche-papier, .abschnitt.flaeche-marine + .abschnitt, .abschnitt.flaeche-papier + .abschnitt { padding-top: var(--abstand); }
 .lead { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.38rem); line-height: 1.55; color: var(--neben); max-width: 40rem; }
 .flaeche-marine .lead, .flaeche-marine p { color: rgb(246 243 237 / .88); }
 .text > * + * { margin-top: 1rem; }
@@ -245,12 +245,13 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .flaeche-marine .hinweis { border-color: var(--tuerkis); }
 
 /* Passepartout (Porträt wie im Museum) */
-.passepartout { position: relative; margin: 0; isolation: isolate; }
-.passepartout__rahmen { position: relative; background: var(--papier); padding: clamp(.8rem, 2vw, 1.3rem) clamp(.8rem, 2vw, 1.3rem) 0; }
-.passepartout__rahmen::after { content: ""; position: absolute; inset: clamp(.8rem, 2vw, 1.3rem) calc(clamp(.8rem, 2vw, 1.3rem) * -1) calc(clamp(.8rem, 2vw, 1.3rem) * -1) clamp(.8rem, 2vw, 1.3rem); border: 1px solid var(--tuerkis-logo); z-index: -1; }
-.passepartout__bild { aspect-ratio: 1; background: var(--creme-tief); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
-.passepartout__bild img { width: 76%; }
-.passepartout figcaption { position: relative; display: grid; gap: .1rem; padding: .9rem 0 1rem; margin-inline: clamp(.8rem, 2vw, 1.3rem); background: var(--papier); font-size: .82rem; color: var(--neben); }
+.passepartout { --pp: clamp(.8rem, 2vw, 1.3rem); position: relative; margin: 0; isolation: isolate; padding: var(--pp); }
+.passepartout::before { content: ""; position: absolute; inset: 0; background: var(--papier); z-index: -1; }
+.passepartout::after { content: ""; position: absolute; inset: var(--pp) calc(var(--pp) * -1) calc(var(--pp) * -1) var(--pp); border: 1px solid var(--tuerkis-logo); z-index: -2; }
+.passepartout__rahmen { position: relative; }
+.passepartout__bild { aspect-ratio: 4 / 5; background: var(--creme-tief); overflow: hidden; display: flex; align-items: flex-end; justify-content: center; }
+.passepartout__bild img { width: 82%; }
+.passepartout figcaption { display: grid; gap: .1rem; padding: .9rem .2rem .2rem; font-size: .82rem; color: var(--neben); }
 .passepartout figcaption strong { color: var(--tinte); font-weight: 650; }
 
 /* Kontakt-Liste */
