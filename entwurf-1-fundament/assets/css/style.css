@@ -282,7 +282,14 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 /* Termin-Knopf im Kopf: Langtext ab Desktop, mobil „Termin“ */
 .nur-klein { display: none; }
 @media (max-width: 63.99em) { .kopf__aktionen .nur-gross { display: none; } .kopf__aktionen .nur-klein { display: inline; } }
-@media (min-width: 64em) and (max-width: 87.99em) { .status { display: none !important; } }
+/* Status-Pille nur, wenn der Kopf genug Platz hat: ab 100em wird der Kopf breiter als der Inhalt und reserviert ihren Platz */
+@media (min-width: 64em) { .status { display: none !important; } }
+@media (min-width: 100em) {
+  .kopf__innen { max-width: 94rem; }
+  .js .status[hidden] { display: inline-flex !important; visibility: hidden; }
+  .status:not([hidden]) { display: inline-flex !important; }
+  .status { min-width: 11.5rem; justify-content: center; }
+}
 @media (min-width: 64em) {
   .untermenue { grid-template-columns: 1fr 1fr 1.7fr; }
   .untermenue > div:last-child ul { columns: 2; column-gap: 1.6rem; }
@@ -295,8 +302,6 @@ html:not(.js) .sprachwahl { display: none; }
   .hauptnav .hauptnav__extra > .pfeil-link { font-size: 1.25rem; }
 }
 
-/* Status-Pille: Platz reservieren, damit die Navigation beim Einblenden nicht springt */
-@media (min-width: 88em) { .js .status[hidden] { display: inline-flex !important; visibility: hidden; } .status { min-width: 11.5rem; justify-content: center; } }
 /* Zweiter Reiter ist mit JS von Anfang an verborgen (kein Aufblitzen, keine Verschiebung) */
 .js [data-js-versteckt] { display: none; }
 
