@@ -43,7 +43,7 @@
   --register: 18.5rem;
   --leiste: 4rem;
   --rand: clamp(1.1rem, 4vw, 3.5rem);
-  --abstand: clamp(4rem, 8vw, 7rem);
+  --abstand: clamp(5rem, 10vw, 9rem);
   --text: 46rem;
   --ease: cubic-bezier(.2, .8, .2, 1);
 }
@@ -53,12 +53,12 @@
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; scroll-padding-top: 1.5rem; }
 @media (max-width: 63.99em) { html { scroll-padding-top: calc(var(--leiste) + 1rem); } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-body { margin: 0; background: var(--creme); color: var(--tinte); font-family: var(--schrift); font-size: 1.1rem; line-height: 1.65; font-weight: 400; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body { margin: 0; background: var(--creme); color: var(--tinte); font-family: var(--schrift); font-size: 1.1rem; line-height: 1.75; font-weight: 400; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img, svg { display: block; max-width: 100%; }
 img { height: auto; }
 h1, h2, h3 { margin: 0; color: var(--marine); text-wrap: balance; }
 h1 { font-size: clamp(2.3rem, 1.1rem + 5vw, 5.6rem); font-stretch: var(--breit); font-weight: 340; line-height: 1.02; letter-spacing: -.025em; }
-h2 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3.1rem); font-stretch: 112%; font-weight: 370; line-height: 1.08; letter-spacing: -.02em; }
+h2 { font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.4rem); font-stretch: 112%; font-weight: 370; line-height: 1.08; letter-spacing: -.02em; }
 h3 { font-size: 1.22rem; font-weight: 620; line-height: 1.3; }
 p { margin: 0; text-wrap: pretty; }
 p, li, dd { -webkit-hyphens: auto; hyphens: auto; overflow-wrap: break-word; }
@@ -168,11 +168,11 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .abschnitt.flaeche-marine, .abschnitt.flaeche-papier, .abschnitt.flaeche-marine + .abschnitt, .abschnitt.flaeche-papier + .abschnitt { padding-top: var(--abstand); }
 .lead { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.38rem); line-height: 1.55; color: var(--neben); max-width: 40rem; }
 .flaeche-marine .lead, .flaeche-marine p { color: rgb(246 243 237 / .88); }
-.text > * + * { margin-top: 1rem; }
+.text > * + * { margin-top: 1.4rem; }
 .text p, .text li { max-width: var(--text); }
-.text ul { list-style: none; padding: 0; border-top: 1px solid var(--stein); }
+.text ul { list-style: none; padding: 0; }
 /* Strich absolut statt Raster: Punkte mit Fett- oder Link-Anteil bleiben einspaltig lesbar */
-.text ul li { position: relative; padding: .75rem 0 .75rem 1.6rem; border-bottom: 1px solid var(--stein); }
+.text ul li { position: relative; padding: .55rem 0 .55rem 1.6rem; }
 .text ul li::before { content: "—"; position: absolute; left: 0; color: var(--tuerkis-text); }
 .text strong { font-weight: 650; color: var(--marine); }
 .text a { font-weight: 600; color: var(--marine); }
@@ -180,9 +180,8 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .flaeche-marine .text ul li { border-color: rgb(246 243 237 / .2); }
 .flaeche-marine .text ul li::before { color: var(--tuerkis); }
 .flaeche-marine .text strong, .flaeche-marine .text a { color: #fff; }
-.kurz p { font-size: clamp(1.3rem, 1.05rem + 1vw, 1.8rem); font-stretch: 108%; font-weight: 360; line-height: 1.4; color: var(--marine); max-width: 44rem; }
-.kurz p:first-child::first-letter { color: var(--tuerkis-text); font-weight: 500; }
-.kurz p + p { margin-top: .8rem; }
+.kurz p { font-size: clamp(1.15rem, 1.05rem + .45vw, 1.35rem); line-height: 1.55; color: var(--tinte); max-width: var(--text); }
+.kurz p + p { margin-top: 1.2rem; }
 
 /* Registerpfad (Brotkrumen) */
 
@@ -190,7 +189,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .zeilen { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stein); }
 .zeilen > li > a { position: relative; display: grid; grid-template-columns: minmax(3.4rem, max-content) 1fr auto; grid-template-areas: "nr titel pfeil" "nr text pfeil"; gap: .2rem 1rem; align-items: center; padding: 1.3rem 0; border-bottom: 1px solid var(--stein); text-decoration: none; }
 .zeilen > li > a::before { content: ""; position: absolute; left: 0; bottom: -1px; height: 1px; width: 100%; background: var(--tuerkis-logo); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
-.zeilen .nr { grid-area: nr; align-self: start; white-space: nowrap; font-size: 1.9rem; font-weight: 300; line-height: 1; color: var(--tuerkis-gross); }
+.zeilen .nr { grid-area: nr; align-self: start; white-space: nowrap; font-size: 1.35rem; font-weight: 300; line-height: 1; color: var(--neben); }
 .zeilen__titel { grid-area: titel; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.6rem); font-stretch: 112%; font-weight: 420; color: var(--marine); line-height: 1.2; transition: transform .3s var(--ease); }
 .zeilen__text { grid-area: text; font-size: .98rem; color: var(--neben); max-width: 40rem; transition: transform .3s var(--ease); }
 .zeilen .icon { grid-area: pfeil; color: var(--tuerkis-text); transition: transform .3s var(--ease); }
@@ -201,9 +200,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   .zeilen > li > a:hover .nr { color: var(--marine); }
 }
 .zeilen > li > a:focus-visible { outline-offset: -2px; }
-.zeilen--gross > li > a { grid-template-columns: minmax(clamp(3.6rem, 3rem + 3vw, 6rem), max-content) 1fr auto; }
-.zeilen--gross .nr { font-size: clamp(2.6rem, 2rem + 2vw, 4rem); }
-.zeilen--gross .zeilen__titel { grid-area: titel; font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem); font-weight: 360; }
+.zeilen--gross > li > a { grid-template-columns: minmax(3.6rem, max-content) 1fr auto; }
+.zeilen--gross .nr { font-size: clamp(1.5rem, 1.3rem + .6vw, 1.9rem); }
+.zeilen--gross .zeilen__titel { grid-area: titel; font-size: clamp(1.3rem, 1.15rem + .6vw, 1.7rem); font-weight: 400; }
 .flaeche-marine .zeilen, .flaeche-marine .zeilen > li > a { border-color: rgb(246 243 237 / .22); }
 .flaeche-marine .zeilen .nr, .flaeche-marine .zeilen .icon { color: var(--tuerkis); }
 .flaeche-marine .zeilen__titel { color: #fff; }
@@ -211,18 +210,15 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 @media (hover: hover) { .flaeche-marine .zeilen > li > a:hover .nr { color: #fff; } }
 
 /* Datenblatt */
-.datenblatt { margin: 0; border-top: 2px solid var(--marine); }
-.datenblatt > div { display: grid; gap: .3rem 1.6rem; padding: 1.05rem 0; border-bottom: 1px solid var(--stein); }
-@media (min-width: 40em) { .datenblatt > div { grid-template-columns: 10rem 1fr; } }
+.datenblatt { margin: 0; border-top: 1px solid var(--stein); max-width: var(--text); }
+.datenblatt > div { display: grid; gap: .45rem 1.6rem; padding: 1.5rem 0; border-bottom: 1px solid var(--stein); }
 .datenblatt dt { font-size: .78rem; font-weight: 600; font-stretch: 85%; letter-spacing: .12em; text-transform: uppercase; color: var(--tuerkis-text); padding-top: .25rem; }
 .datenblatt dd { margin: 0; max-width: var(--text); }
 
-/* Schritte: horizontal (Desktop), vertikal (mobil) */
-.schritte { display: grid; gap: 0; counter-reset: s; border-top: 1px solid var(--stein); }
-@media (min-width: 56em) { .schritte { grid-template-columns: repeat(var(--anzahl, 4), 1fr); gap: 1.6rem; border-top: 0; } }
-.schritt { padding: 1.2rem 0; border-bottom: 1px solid var(--stein); }
-@media (min-width: 56em) { .schritt { border-bottom: 0; border-top: 1px solid var(--tuerkis-logo); padding-top: 1rem; } }
-.schritt .nr { display: block; font-size: 2.8rem; font-weight: 250; line-height: 1; color: var(--tuerkis-gross); margin-bottom: .8rem; }
+/* Schritte: eine Liste, Ziffer links */
+.schritte { display: grid; gap: 2rem; counter-reset: s; max-width: var(--text); }
+.schritt { display: grid; grid-template-columns: 3rem 1fr; column-gap: 1rem; }
+.schritt .nr { grid-row: span 2; font-size: 1.35rem; font-weight: 300; line-height: 1.3; color: var(--neben); }
 .schritt h3 { margin-bottom: .3rem; }
 .schritt p { color: var(--neben); font-size: 1rem; }
 
@@ -241,7 +237,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .faq__antwort p + p { margin-top: .7rem; }
 
 /* Hinweis, Einordnung */
-.hinweis { padding: 1.2rem 1.4rem; border: 1px solid var(--tuerkis-text); max-width: var(--text); font-size: 1rem; }
+.hinweis { padding: .5rem 0 .5rem 1.4rem; border-left: 2px solid var(--stein); max-width: var(--text); font-size: 1rem; color: var(--neben); }
 .flaeche-marine .hinweis { border-color: var(--tuerkis); }
 
 /* Passepartout (Porträt wie im Museum) */
@@ -274,13 +270,10 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .notfall { margin-top: 1.6rem; display: grid; gap: .3rem; font-size: .98rem; }
 .notfall a { display: inline-flex; align-items: center; min-height: 2.75rem; font-weight: 700; color: var(--marine); text-decoration: none; border-bottom: 1px solid var(--tuerkis-logo); }
 .notfall__titel { font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--neben); }
-.zwei { display: grid; gap: 2.6rem; }
-@media (min-width: 56em) { .zwei { grid-template-columns: 1fr 1fr; gap: 3.5rem; } }
-.drei { display: grid; gap: 2.4rem; }
-/* neben der festen Register-Spalte erst ab 80em Platz für drei Spalten */
-@media (min-width: 64em) { .drei { grid-template-columns: 1fr 1fr; gap: 3rem; } }
-@media (min-width: 80em) { .drei { grid-template-columns: 1.15fr 1fr 1fr; } }
-.drei h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2.1rem); }
+/* Bewusst einspaltig: eine Sache nach der anderen, in Lesebreite */
+.zwei, .drei { display: grid; gap: clamp(2.4rem, 5vw, 3.4rem); max-width: var(--text); }
+.zwei .bild-platzhalter { max-width: 30rem; }
+.drei h2 { font-size: clamp(1.3rem, 1.15rem + .5vw, 1.6rem); font-weight: 450; }
 
 /* ---------- 6 Startseite ---------- */
 .held { padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem); }
@@ -292,11 +285,11 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .held .lead { margin-top: 1.8rem; max-width: 36rem; }
 .held .passepartout { max-width: 22rem; justify-self: center; width: 100%; }
 .wege { padding-block: var(--abstand); }
-.wege__kopf { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; margin-bottom: 2rem; }
+.wege__kopf { display: grid; gap: 1rem; margin-bottom: 2rem; }
 
 /* ---------- 7 Unterseiten ---------- */
 .seitenkopf { padding-block: clamp(2rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
-.seitenkopf h1 { font-size: clamp(2.2rem, 1.1rem + 4.4vw, 4.8rem); max-width: 20ch; view-transition-name: seitentitel; -webkit-hyphens: auto; hyphens: auto; }
+.seitenkopf h1 { font-size: clamp(2.1rem, 1.1rem + 3.4vw, 3.8rem); max-width: 20ch; view-transition-name: seitentitel; -webkit-hyphens: auto; hyphens: auto; }
 .seitenkopf .lead { margin-top: 1.5rem; }
 .seitenkopf__raster { display: grid; gap: 2.5rem; align-items: end; }
 @media (min-width: 64em) { .seitenkopf__raster--bild { grid-template-columns: 1fr minmax(15rem, 20rem); gap: 4rem; } }
@@ -312,11 +305,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   .inhaltsregister a.ist-aktiv { color: var(--marine); font-weight: 650; }
   .inhaltsregister__marke { position: absolute; left: -1.5px; width: 2px; background: var(--tuerkis-logo); top: 0; height: 2.3rem; transition: transform .35s var(--ease); }
 }
-.einordnung { padding: clamp(1.6rem, 4vw, 2.8rem); }
-.zwischen { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 2.4rem; padding: 1.4rem 0; border-top: 1px solid var(--stein); border-bottom: 1px solid var(--stein); }
-.zwischen p { color: var(--neben); max-width: 30rem; }
-.zwischen .knopfreihe { margin-top: 0; }
-.kapitel__nr { display: block; font-size: clamp(3rem, 2rem + 3vw, 5rem); font-weight: 200; font-stretch: var(--schmal); line-height: .9; color: var(--tuerkis-gross); margin-bottom: 1rem; }
+.einordnung { padding: .2rem 0 .2rem 1.4rem; border-left: 2px solid var(--stein); }
+.einordnung.flaeche-marine { padding: clamp(1.6rem, 4vw, 2.6rem); border-left: 0; }
+.kapitel__nr { display: block; font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem); font-weight: 300; font-stretch: var(--schmal); line-height: .9; color: var(--neben); margin-bottom: 1rem; }
 .zitat { font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.5rem); font-stretch: 112%; font-weight: 320; line-height: 1.3; color: var(--marine); max-width: 52rem; }
 .flaeche-marine .zitat { color: #fff; }
 .lesespalte h2 { font-size: clamp(1.35rem, 1.15rem + .8vw, 1.8rem); margin: 2.4rem 0 .8rem; }

@@ -188,7 +188,7 @@
   "e3.start.meta.title": "Aile Hekimliği Uzmanı · Praxis zum Schloss",
   "e3.start.natur.titel": "Tamamlayıcı – tıbbi teşhise dayalı",
   "e3.start.titel": "Aile Hekimliği Uzmanı",
-  "e3.start.wege.text": "Önce aile hekimliği, ardından hekim sorumluluğunda tamamlayıcı tıp – ve her ikisinin arkasındaki doktor.",
+  "e3.start.wege.text": "Doktor ve muayenehanesi, aile hekimliği hizmetleri ve – tamamlayıcı olarak – hekim sorumluluğunda tamamlayıcı tıp.",
   "e3.start.wege.titel": "Muayenehanede üç yol",
   "e3.toc.datenblatt": "Bilgi tablosu",
   "e3.toc.kurz": "Kısaca",

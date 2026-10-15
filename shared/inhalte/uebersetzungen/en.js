@@ -188,7 +188,7 @@
   "e3.start.meta.title": "Specialist in General Medicine · Praxis zum Schloss",
   "e3.start.natur.titel": "Complementary – based on a medical diagnosis",
   "e3.start.titel": "Specialist in General Medicine",
-  "e3.start.wege.text": "First primary care, then physician-led complementary medicine – and the doctor behind both.",
+  "e3.start.wege.text": "The doctor and her practice, primary care and – as a complement – physician-led complementary medicine.",
   "e3.start.wege.titel": "Three ways through the practice",
   "e3.toc.datenblatt": "Fact sheet",
   "e3.toc.kurz": "In brief",
