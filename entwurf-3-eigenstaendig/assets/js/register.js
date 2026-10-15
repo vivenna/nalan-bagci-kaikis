@@ -1,5 +1,5 @@
 // Praxis zum Schloss – Entwurf 3 „Register“ (vivenna)
-// Register als Bogen von unten (mobil), Lesemarke im Inhaltsregister der Landing Pages,
+// Register als Bogen von oben (mobil), Lesemarke im Inhaltsregister der Landing Pages,
 // Markierung des heutigen Tags in den Sprechzeiten. Seitenübergänge laufen über CSS
 // (View Transitions). Ohne JavaScript steht das Register als normale Navigation oben.
 (function () {
@@ -8,7 +8,7 @@
   var $ = function (s, k) { return (k || document).querySelector(s); };
   var $$ = function (s, k) { return Array.prototype.slice.call((k || document).querySelectorAll(s)); };
 
-  /* ---------- Register als Bogen von unten (nur schmale Bildschirme) ---------- */
+  /* ---------- Register als Bogen von oben (nur schmale Bildschirme) ---------- */
   var register = $('#register'), oeffner = $('[data-register-oeffnen]'), schliesser = $('[data-register-schliessen]'), hintergrund = $('[data-register-hintergrund]');
   var schmal = window.matchMedia('(max-width: 63.99em)');
   function setzen(offen) {

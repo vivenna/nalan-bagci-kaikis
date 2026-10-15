@@ -107,7 +107,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .flaeche-marine .sprachhinweis { border-color: var(--tuerkis); }
 .sprachhinweis[hidden] { display: none; }
 
-/* ---------- 4 Register: feste Spalte (Desktop) bzw. Bogen von unten (mobil) ---------- */
+/* ---------- 4 Register: feste Spalte (Desktop) bzw. Bogen von oben (mobil) ---------- */
 .register { background: var(--papier); display: flex; flex-direction: column; gap: 1.6rem; padding: 2rem 1.6rem 1.6rem; font-size: 1rem; }
 .register__logo img { width: 190px; }
 .register__titel { font-size: .72rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--neben); margin-bottom: .4rem; }
@@ -146,9 +146,9 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   .register-knopf__zeichen { display: grid; gap: 3px; width: 1rem; }
   .register-knopf__zeichen i { display: block; height: 1.5px; background: currentColor; }
   .register-knopf__zeichen i:nth-child(2) { width: 70%; }
-  .js .register { position: fixed; left: 0; right: 0; bottom: 0; z-index: 300; max-height: 88vh; overflow-y: auto; overscroll-behavior: contain; padding-top: 1rem; box-shadow: 0 -30px 60px -20px rgb(34 42 78 / .4); transform: translateY(105%); visibility: hidden; transition: transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s .3s; }
+  .js .register { position: fixed; left: 0; right: 0; top: 0; z-index: 300; max-height: 92vh; overflow-y: auto; overscroll-behavior: contain; padding-top: 1rem; box-shadow: 0 30px 60px -20px rgb(34 42 78 / .4); transform: translateY(-105%); visibility: hidden; transition: transform .3s cubic-bezier(.2, .8, .2, 1), visibility 0s .3s; }
   .js .register.ist-offen { transform: none; visibility: visible; transition: transform .3s cubic-bezier(.2, .8, .2, 1); }
-  .js .register::before { content: ""; display: block; width: 3rem; height: 4px; margin: 0 auto .4rem; background: var(--stein); }
+  .js .register::before { content: ""; order: 99; flex: none; display: block; width: 3rem; height: 4px; margin: .4rem auto 0; background: var(--stein); }
   .register__logo { display: none; }
   .js .register__zu { display: inline-flex; align-self: flex-end; }
   .register-hintergrund { position: fixed; inset: 0; z-index: 250; background: rgb(34 42 78 / .5); }
