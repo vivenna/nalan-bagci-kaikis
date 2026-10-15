@@ -90,8 +90,6 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 @media (hover: hover) { .flaeche-marine .knopf--leer:hover { background: rgb(255 255 255 / .08); } }
 .knopf--klein { min-height: 2.75rem; padding: .5rem 1rem; font-size: .92rem; }
 .knopfreihe { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
-.cta-hinweis { margin-top: .7rem; font-size: .86rem; color: var(--neben); }
-.flaeche-marine .cta-hinweis { color: rgb(246 243 237 / .78); }
 .pfeillink { display: inline-flex; align-items: center; gap: .6rem; min-height: 2.75rem; font-weight: 600; color: var(--marine); text-decoration: none; border-bottom: 1px solid var(--tuerkis-logo); }
 .pfeillink .icon { transition: transform .3s var(--ease); }
 @media (hover: hover) { .pfeillink:hover .icon { transform: translateX(5px); } }
@@ -187,14 +185,6 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 .kurz p + p { margin-top: .8rem; }
 
 /* Registerpfad (Brotkrumen) */
-.pfad ol { display: flex; flex-wrap: wrap; gap: .2rem .7rem; list-style: none; margin: 0 0 2rem; padding: 0; font-size: .85rem; font-weight: 500; }
-.pfad li { display: inline-flex; align-items: center; gap: .7rem; }
-.pfad li + li::before { content: "/"; color: var(--tuerkis-logo); }
-.pfad a { display: inline-flex; align-items: center; gap: .35rem; min-height: 1.75rem; text-decoration: none; color: var(--neben); }
-.pfad a:hover { color: var(--marine); text-decoration: underline; }
-.pfad [aria-current="page"] { color: var(--marine); font-weight: 650; }
-.flaeche-marine .pfad a { color: rgb(246 243 237 / .8); }
-.flaeche-marine .pfad [aria-current="page"] { color: #fff; }
 
 /* Register-Zeilen (Wege, Hub, Verwandte) */
 .zeilen { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stein); }
@@ -378,3 +368,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
 /* Silbentrennung nur bei längeren Wörtern und mit mindestens vier Zeichen je Teil
    (verhindert z. B. „Ber-lin“ oder „Ter-mine“ auf schmalen Bildschirmen). */
 p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-before: 4; -webkit-hyphenate-limit-after: 4; }
+
+/* Hinweiszeile */
+.cta-hinweis { margin-top: .7rem; font-size: .86rem; color: var(--neben); }
+.flaeche-marine .cta-hinweis { color: rgb(246 243 237 / .78); }
