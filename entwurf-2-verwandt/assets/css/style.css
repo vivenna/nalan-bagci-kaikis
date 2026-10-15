@@ -467,3 +467,6 @@ p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-b
 /* Hinweiszeile */
 .cta-hinweis { margin-top: .7rem; font: 400 .88rem/1.4 var(--sans); color: var(--neben); }
 .dunkel .cta-hinweis { color: rgb(255 255 255 / .75); }
+
+/* Links zu (noch) nicht vorhandenen Seiten: Text bleibt, Klick bewirkt nichts */
+a[aria-disabled="true"] { cursor: default; }

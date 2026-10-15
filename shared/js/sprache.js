@@ -9,8 +9,10 @@
      übersetzt Attribute. Deutsch steht im HTML und wird beim Zurück-
      schalten wiederhergestellt. data-i18n-Elemente nicht verschachteln.
    - Knöpfe mit data-sprache-wahl="de|en|tr" schalten um (aria-pressed).
-   - Elemente mit data-sprache-hinweis erscheinen auf Seiten ohne
-     vollständige Übersetzung (body ohne data-i18n-seite="voll").
+   - Übersetzt wird nur die Startseite (body mit data-i18n-seite="voll").
+     Auf allen anderen Seiten bleibt das Sprachmenü sichtbar, ein Klick
+     darauf bewirkt nichts; die Seite bleibt Deutsch, auch wenn auf der
+     Startseite eine andere Sprache gewählt wurde.
    - Die Wahl wird in localStorage gemerkt; <html lang> wird gesetzt.
    - Die Übersetzungen (shared/inhalte/uebersetzungen/en.js, tr.js) werden
      erst bei Bedarf als <script> nachgeladen – kein fetch, daher auch per
@@ -31,6 +33,9 @@
   var basis = skript ? skript.src.replace(/js\/sprache\.js(?:[?#].*)?$/, '') : '';
   var original = new Map();
   var aktuell = 'de';
+
+  // Nur Seiten mit data-i18n-seite="voll" (die Startseiten) sind übersetzbar.
+  function uebersetzbar() { return !!document.body && document.body.getAttribute('data-i18n-seite') === 'voll'; }
 
   function lies() { try { return localStorage.getItem(SPEICHER); } catch (e) { return null; } }
   function merke(l) { try { localStorage.setItem(SPEICHER, l); } catch (e) { /* privat/gesperrt: dann eben nicht merken */ } }
@@ -83,9 +88,8 @@
     wurzel.setAttribute('lang', l);
     wurzel.setAttribute('data-sprache', l);
 
-    var vollstaendig = document.body && document.body.getAttribute('data-i18n-seite') === 'voll';
     document.querySelectorAll('[data-sprache-hinweis]').forEach(function (el) {
-      el.hidden = l === 'de' || vollstaendig;
+      el.hidden = l === 'de' || uebersetzbar();
     });
 
     document.querySelectorAll('[data-sprache-wahl]').forEach(function (knopf) {
@@ -98,6 +102,7 @@
   }
 
   function setze(l) {
+    if (!uebersetzbar()) return;
     if (SPRACHEN.indexOf(l) < 0) l = 'de';
     merke(l);
     lade(l, function () { anwenden(l); wurzel.classList.remove('sprache-laedt'); });
@@ -113,6 +118,14 @@
     }
   };
 
+  // Auf Unterseiten: Klicks auf das Sprachmenü (Knopf und Auswahl) laufen ins Leere.
+  document.addEventListener('click', function (e) {
+    if (uebersetzbar() || !e.target.closest) return;
+    if (!e.target.closest('[data-sprache-wahl], .sprachwahl__knopf')) return;
+    e.preventDefault();
+    e.stopPropagation();
+  }, true);
+
   document.addEventListener('click', function (e) {
     var knopf = e.target.closest ? e.target.closest('[data-sprache-wahl]') : null;
     if (!knopf) return;
@@ -121,6 +134,11 @@
   });
 
   function start() {
+    if (!uebersetzbar()) {
+      anwenden('de');
+      wurzel.classList.remove('sprache-laedt');
+      return;
+    }
     var l = lies();
     if (SPRACHEN.indexOf(l) < 0) l = 'de';
     if (l === 'de') {

@@ -254,7 +254,7 @@ ul[role="list"], ol[role="list"] { list-style: none; margin: 0; padding: 0; }
   @media (hover: hover) { .hauptnav > ul > li > a:hover::after { transform: scaleX(1); transform-origin: left; } }
   .hat-untermenue { position: relative; display: flex; align-items: center; gap: 0; }
   .hat-untermenue .untermenue-knopf { width: 2rem; margin-left: .1rem; }
-  .untermenue { position: absolute; z-index: 5; top: calc(100% + .9rem); left: 50%; width: min(56rem, 88vw); transform: translateX(-42%); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 1.8rem 2rem; border-radius: var(--radius); background: rgb(255 255 255 / .97); border: 1px solid var(--linie); box-shadow: var(--schatten-gross); }
+  .untermenue { position: absolute; z-index: 5; top: calc(100% + .9rem); left: 50%; width: min(56rem, 88vw); transform: translateX(-42%); display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 1.8rem 2rem; border-radius: var(--radius); background: #fff; border: 1px solid var(--linie); box-shadow: var(--schatten-gross); }
   .untermenue[hidden] { display: none; }
   .untermenue a { padding-block: .2rem; }
   .untermenue a:hover { text-decoration: underline; text-decoration-color: var(--tuerkis); text-decoration-thickness: 2px; text-underline-offset: .3em; }
@@ -791,3 +791,6 @@ p, li, dd, h1, h2, h3 { hyphenate-limit-chars: 10 4 4; -webkit-hyphenate-limit-b
 /* Hinweiszeile */
 .cta-hinweis { margin-top: .9rem; font-size: .9rem; color: var(--text-weich); }
 .cta-band .cta-hinweis { color: rgb(246 243 237 / .78); }
+
+/* Links zu (noch) nicht vorhandenen Seiten: Text bleibt, Klick bewirkt nichts */
+a[aria-disabled="true"] { cursor: default; }
