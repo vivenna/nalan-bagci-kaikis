@@ -1,6 +1,6 @@
 # QA-Bericht – Phase 5
 
-Stand: 12. Oktober 2026 · geprüft: alle drei Entwürfe, 58 Seiten (E1 23, E2 18, E3 17)
+Stand: 12. Oktober 2026 · geprüft: alle drei Entwürfe, 58 Seiten (E1 23, E2 17, E3 18)
 
 Dieser Bericht hält fest, was geprüft wurde, womit, mit welchem Ergebnis, was dabei repariert wurde und was offen bleibt. Offene Punkte stehen in Abschnitt 5 und sind nicht als erledigt markiert.
 
@@ -10,7 +10,7 @@ Dieser Bericht hält fest, was geprüft wurde, womit, mit welchem Ergebnis, was 
 
 - **Alle Pflichtprüfungen bestanden.** 0 Konsolenfehler, 0 tote Links oder Assets, alle 316 Termin-Links zeigen exakt auf die Doctolib-URL, Sprachmenü und `lang` stimmen, 0 axe-Verstöße (WCAG 2.0–2.2, A/AA) auf allen 58 Seiten bei 375 und 1440 px, kein horizontaler Überlauf von 320 bis 1440 px.
 - **Lighthouse** (12 Schlüsselseiten, mobil und Desktop): Performance 97–100, Barrierefreiheit 100, Best Practices 100. SEO 63 liegt ausschließlich am gewollten `noindex`.
-- **In dieser Phase gefunden und behoben:** 13 Fehler, darunter drei ernste: zerfallene Listen in Entwurf 3, eine wirkungslose Fokusfalle im Mobilmenü von Entwurf 1, ein per Tastatur nicht erreichbares Mega-Menü in Entwurf 2 (Abschnitt 4).
+- **In dieser Phase gefunden und behoben:** 13 Fehler, darunter drei ernste: zerfallene Listen in Entwurf 2, eine wirkungslose Fokusfalle im Mobilmenü von Entwurf 1, ein per Tastatur nicht erreichbares Mega-Menü in Entwurf 3 (Abschnitt 4).
 - **Nicht geprüft:** Firefox (startet in der Prüfumgebung nicht), echte Mobilgeräte, Screenreader von Hand, Rich-Results-Test von Google (Abschnitt 5).
 
 ## 2. Prüfumgebung
@@ -59,17 +59,17 @@ Die Browser-Skripte (Playwright, axe, Lighthouse, Screenshots) lagen außerhalb 
 |---|---|---|---|
 | Sprunglink „Zum Inhalt springen“ erscheint bei Fokus | ✓ | ✓ | ✓ |
 | Mobilmenü: öffnet per Enter, Fokus bleibt bei 40× Tab im Menü, Escape schließt, Fokus kehrt zum Knopf zurück | ✓ (nach Korrektur) | ✓ | ✓ |
-| Desktop-Untermenüs per Tastatur (Enter, Tab hinein, Escape, Fokus zurück) | ✓ Leistungen, Sprache | ✓ Mega-Menü (nach Korrektur) | – (Register ist fest sichtbar) |
-| Sichtbarer Fokus auf allen geprüften Tab-Stopps | ✓ ¹ | ✓ ¹ | ✓ |
+| Desktop-Untermenüs per Tastatur (Enter, Tab hinein, Escape, Fokus zurück) | ✓ Leistungen, Sprache | – (Register ist fest sichtbar) | ✓ Mega-Menü (nach Korrektur) |
+| Sichtbarer Fokus auf allen geprüften Tab-Stopps | ✓ ¹ | ✓ | ✓ ¹ |
 | `prefers-reduced-motion`: kein Text bleibt unsichtbar, keine Bewegung | ✓ | ✓ | ✓ |
 | Ohne JavaScript: alle Inhalte sichtbar, Navigation nutzbar | ✓ | ✓ | ✓ |
 
-¹ Bei Kartenlinks liegt der Fokusrahmen auf der ganzen Karte (`:focus-within`), nicht auf dem Link selbst. Das automatische Skript meldet das als „ohne Fokus“. Per Screenshot geprüft: Der Rahmen ist deutlich sichtbar (E1 3 px Marineblau, E2 2 px Tinte).
+¹ Bei Kartenlinks liegt der Fokusrahmen auf der ganzen Karte (`:focus-within`), nicht auf dem Link selbst. Das automatische Skript meldet das als „ohne Fokus“. Per Screenshot geprüft: Der Rahmen ist deutlich sichtbar (E1 3 px Marineblau, E3 2 px Tinte).
 
 ### 3.5 Kontrast und automatische Barrierefreiheitsprüfung
 
 - **axe, alle 58 Seiten, 375 und 1440 px:** 0 Verstöße gegen WCAG 2.0–2.2 A/AA, Kontrast und Zielgrößen (2.5.8) eingeschlossen.
-- **Experimentelle Regel `p-as-heading`:** 2 Meldungen in E2 (groß gesetzte Telefonnummer) und 11 in E3 (10× groß gesetzter Name der Ärztin im Block „Ihre Praxis“, 1× Telefonnummer). Das sind keine Überschriften, die Meldungen sind Fehltreffer der Heuristik.
+- **Experimentelle Regel `p-as-heading`:** 2 Meldungen in E3 (groß gesetzte Telefonnummer) und 11 in E2 (10× groß gesetzter Name der Ärztin im Block „Ihre Praxis“, 1× Telefonnummer). Das sind keine Überschriften, die Meldungen sind Fehltreffer der Heuristik.
 - **Lighthouse Barrierefreiheit:** 100 auf allen 24 Messungen.
 
 ### 3.6 Darstellung und Überlauf
@@ -89,17 +89,17 @@ Server (b) mit gzip im Unterpfad, also wie bei GitHub Pages. Werte: Performance 
 | E1 | Leistungen-Einstieg | 98 / 2,3 s / 0 | 100 / 0,5 s / 0 | 100 / 100 | 100 | 63 |
 | E1 | Akupunktur (LP) | 100 / 1,8 s / 0 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
 | E1 | Termin & Kontakt | 100 / 1,9 s / 0 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
-| E2 | Startseite | 97 / 2,3 s / 0 | 100 / 0,5 s / 0,009 | 100 / 100 | 100 | 63 |
-| E2 | Leistungen-Einstieg | 99 / 1,9 s / 0 | 100 / 0,4 s / 0,01 | 100 / 100 | 100 | 63 |
-| E2 | Akupunktur (LP) | 99 / 1,8 s / 0,006 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
-| E2 | Termin & Kontakt | 99 / 1,8 s / 0,009 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
-| E3 | Startseite | 99 / 1,8 s / 0 | 100 / 0,4 s / 0,025 | 100 / 100 | 100 | 63 |
-| E3 | Leistungen-Einstieg | 100 / 1,7 s / 0,001 | 100 / 0,4 s / 0,002 | 100 / 100 | 100 | 63 |
-| E3 | Akupunktur (LP) | 100 / 1,7 s / 0 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
-| E3 | Termin & Kontakt | 100 / 1,7 s / 0 | 100 / 0,4 s / 0,004 | 100 / 100 | 100 | 63 |
+| E2 | Startseite | 99 / 1,8 s / 0 | 100 / 0,4 s / 0,025 | 100 / 100 | 100 | 63 |
+| E2 | Leistungen-Einstieg | 100 / 1,7 s / 0,001 | 100 / 0,4 s / 0,002 | 100 / 100 | 100 | 63 |
+| E2 | Akupunktur (LP) | 100 / 1,7 s / 0 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
+| E2 | Termin & Kontakt | 100 / 1,7 s / 0 | 100 / 0,4 s / 0,004 | 100 / 100 | 100 | 63 |
+| E3 | Startseite | 97 / 2,3 s / 0 | 100 / 0,5 s / 0,009 | 100 / 100 | 100 | 63 |
+| E3 | Leistungen-Einstieg | 99 / 1,9 s / 0 | 100 / 0,4 s / 0,01 | 100 / 100 | 100 | 63 |
+| E3 | Akupunktur (LP) | 99 / 1,8 s / 0,006 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
+| E3 | Termin & Kontakt | 99 / 1,8 s / 0,009 | 100 / 0,4 s / 0 | 100 / 100 | 100 | 63 |
 
 - **SEO 63:** Als einziger SEO-Audit schlägt `is-crawlable` fehl, wegen des gewollten `noindex, nofollow`. Ohne `noindex` liegt der Wert rechnerisch bei 100.
-- **Ohne gzip** (`python3 -m http.server`), Startseiten mobil: E1 90 (LCP 3,5 s), E2 94 (LCP 2,8 s), E3 97 (LCP 2,4 s). Der Unterschied kommt vor allem von der Startseite von E1. Sie enthält die Emblem-Linienzeichnung inline (30 KB), weil die Strich-Animation das braucht, und hat ein größeres Stylesheet (67 KB unkomprimiert).
+- **Ohne gzip** (`python3 -m http.server`), Startseiten mobil: E1 90 (LCP 3,5 s), E2 97 (LCP 2,4 s), E3 94 (LCP 2,8 s). Der Unterschied kommt vor allem von der Startseite von E1. Sie enthält die Emblem-Linienzeichnung inline (30 KB), weil die Strich-Animation das braucht, und hat ein größeres Stylesheet (67 KB unkomprimiert).
 - **Messbedingungen:** Gemessen wurde lokal mit simulierter Drosselung. Auf GitHub Pages und echten Geräten weichen die Werte ab.
 
 ### 3.8 Metadaten, JSON-LD, Breadcrumbs, FAQ
@@ -110,8 +110,8 @@ Server (b) mit gzip im Unterpfad, also wie bei GitHub Pages. Werte: Performance 
   - MedicalWebPage: 58.
   - BreadcrumbList: 55; es fehlt nur auf den drei Startseiten.
   - FAQPage: 41.
-- **FAQ-Schema:** Auf jeder Seite mit FAQPage stimmen Anzahl und Wortlaut der Fragen mit den sichtbaren `<details>`-Fragen überein. Das zusätzliche `<details>` in E2 ist das mobile Leistungsmenü, keine FAQ.
-- **Breadcrumbs:** Die Namen im JSON-LD stimmen mit den sichtbaren Brotkrumen überein. Ausnahme ist E3, dort stehen sichtbar die Registernummern davor („03 Naturheilkunde“, „03.1 Akupunktur“). Das ist gewollt, Teil des Registerkonzepts; im JSON-LD stehen die Namen ohne Nummern.
+- **FAQ-Schema:** Auf jeder Seite mit FAQPage stimmen Anzahl und Wortlaut der Fragen mit den sichtbaren `<details>`-Fragen überein. Das zusätzliche `<details>` in E3 ist das mobile Leistungsmenü, keine FAQ.
+- **Breadcrumbs:** Die Namen im JSON-LD stimmen mit den sichtbaren Brotkrumen überein. Ausnahme ist E2, dort stehen sichtbar die Registernummern davor („03 Naturheilkunde“, „03.1 Akupunktur“). Das ist gewollt, Teil des Registerkonzepts; im JSON-LD stehen die Namen ohne Nummern.
 - **Grenze der Prüfung:** Die Daten sind strukturell geprüft (Parsen, Typen, Pflichtfelder, Abgleich mit dem Sichtbaren). Der Rich-Results-Test von Google und der Schema.org-Validator wurden nicht benutzt, weil sie eine öffentlich erreichbare Seite oder das Hochladen des Quelltexts verlangen. Das gehört zum Livegang.
 
 ### 3.9 Texte gegen Abschnitt 7 und 8 des Auftrags
@@ -142,15 +142,15 @@ Zusätzlich gelesen wurden die Einstiege aller drei Startseiten. Die Reihenfolge
 - **Entwurf 1 enthält jede inhaltlich richtige alte Seite.** Alle 78 Ziele der Zuordnung alt → neu (`docs/sitemap.md` §5, drei Entwürfe, Anker eingeschlossen) existieren. Keine der 111 Vorlagenseiten wurde übernommen (Liste in `docs/sitemap.md` §6).
 - **Die drei Entwürfe unterscheiden sich sichtbar und strukturell:**
 
-| | E1 Fundament | E2 Verwandt | E3 Eigenständig |
+| | E1 Fundament | E2 Eigenständig | E3 Verwandt |
 |---|---|---|---|
-| Seiten | 23 (jede alte Leistung einzeln) | 18 (Hausärztliches gebündelt, drei kleine Verfahren auf der Naturheilkunde-Seite) | 17 (Hub „Anliegen“ statt Leistungsliste, Kernset von 8 Landing Pages) |
-| Navigation | Kopfleiste mit Untermenü, Overlay mobil | Serviceleiste, Mega-Menü, Overlay mobil | feste Register-Spalte, mobil als Bogen von unten |
-| Schrift | Fraunces + Figtree | Instrument Sans + Source Serif 4 | Archivo allein (Breitenachse) |
+| Seiten | 23 (jede alte Leistung einzeln) | 17 (Hub „Anliegen“ statt Leistungsliste, Kernset von 8 Landing Pages) | 18 (Hausärztliches gebündelt, drei kleine Verfahren auf der Naturheilkunde-Seite) |
+| Navigation | Kopfleiste mit Untermenü, Overlay mobil | feste Register-Spalte, mobil als Bogen von unten | Serviceleiste, Mega-Menü, Overlay mobil |
+| Schrift | Fraunces + Figtree | Archivo allein (Breitenachse) | Instrument Sans + Source Serif 4 |
 | Farbe | Marine/Türkis/Creme | Marine/Türkis/Creme | Marine/Türkis/Creme |
-| Bewegung | Zeichnen, Schweben, Laufband | Masken-, Clip- und Haarlinien-Reveals, Fortschritt | Seitenübergänge (View Transitions), Lesemarke |
+| Bewegung | Zeichnen, Schweben, Laufband | Seitenübergänge (View Transitions), Lesemarke | Masken-, Clip- und Haarlinien-Reveals, Fortschritt |
 
-- **Gemessen:** E1–E2 teilen 17 % ihrer CSS-Klassen, E1–E3 13 %, E2–E3 22 %. Gemeinsam sind fast nur Hilfsklassen wie `sr-only`, `huelle` oder `platzhalter`. Bei den Farben überschneiden sich E1–E2 bei 9 % (Logo-Türkis, Weiß), E1–E3 und E2–E3 bei je 5 % (nur Weiß).
+- **Gemessen:** E1–E2 teilen 13 % ihrer CSS-Klassen, E1–E3 17 %, E2–E3 22 %. Gemeinsam sind fast nur Hilfsklassen wie `sr-only`, `huelle` oder `platzhalter`. Bei den Farben überschneiden sich E1–E3 bei 9 % (Logo-Türkis, Weiß), E1–E2 und E2–E3 bei je 5 % (nur Weiß).
 
 ### 3.11 GitHub Pages und `file://`
 
@@ -179,22 +179,22 @@ Das kleine Schild „Entwurf von vivenna“ steht fest am unteren Rand und ersch
 | 2 | E1 | Einstiegstitel „als Ganzes sehen.“ brach bei 1024 px immer, bei 1440 px je nach Schriftdarstellung um (604 von 605 px) | Titelgröße aus dem Startseiten-Entwurf ohne Reserve | max. 6,3 rem statt 6,6 rem, im zweispaltigen Bereich `clamp(4.5rem, 7.2vw, 6.3rem)` (dokumentiert in `design-entscheidungen.md`) |
 | 3 | E1 | Font-Preload lud ins Leere (404) – bei der Arbeit an Nr. 1 entstanden | fehlender Schrägstrich im Pfad | Pfad korrigiert, per Lighthouse/Konsole bestätigt |
 | 4 | E1 | Mobilmenü: Tab sprang aus dem geöffneten Menü in verdeckte Seiteninhalte | Fokusfalle prüfte nur erstes/letztes Element; der Menüknopf steht im Quelltext hinter der Navigation | Falle führt die Tab-Reihenfolge jetzt selbst |
-| 5 | E2 | Mega-Menü „Leistungen“ per Tab nicht erreichbar (Panel schloss sich beim Weiter-Tabben) | Panel steht im Quelltext hinter dem Kopf | Tab führt vom offenen Knopf ins Panel, nach dem letzten Link zum nächsten Hauptpunkt; Shift+Tab zurück |
-| 6 | E3 | Listen mit Fettdruck/Links zerfielen: ein Buchstabe pro Zeile, bis 1650 px hoch (Anliegen: Untersuchungen, Impfungen, Termin & Kontakt: Notfälle) | Listenpunkt als zweispaltiges Raster; Text neben `<strong>` landete als anonymes Element in der 1,6-rem-Strichspalte | Strich absolut positioniert, Listenpunkt einspaltig |
-| 7 | E3 | Nummern „02.1“ … „02.5“ brachen in „02.“ / „1“ um | feste Spaltenbreite | Spalte `minmax(…, max-content)`, `nowrap` |
-| 8 | E3 | Startseite bei 1024 px: Termin-Knopf ragte 21 px aus dem Bild, Telefonnummer in die Nachbarspalte | drei Spalten neben der festen Register-Spalte | drei Spalten erst ab 80em, darunter zwei |
-| 9 | E2 | Unsere Praxis bei 1024 px: 117 px horizontaler Überlauf, Faktenliste mit Worttrennung mitten im Wort | Bildplatzhalter mit Seitenverhältnis wurde breiter als die Spalte; Liste zweispaltig nach Fensterbreite | Platzhalter `min-width: 0`; Liste schaltet per Container-Abfrage nach eigener Breite |
-| 10 | alle | „Label in Name“ (WCAG 2.5.3): E1 Sprachknopf („DE“ hieß „Sprache wählen“), E2 Sprachknöpfe („TR“ hieß „Türkçe“), E3 Register-Knopf („Register“ hieß „Menü öffnen“) | `aria-label` ohne den sichtbaren Text | sichtbarer Text + ergänzender Screenreader-Text, `aria-label` entfernt |
+| 5 | E3 | Mega-Menü „Leistungen“ per Tab nicht erreichbar (Panel schloss sich beim Weiter-Tabben) | Panel steht im Quelltext hinter dem Kopf | Tab führt vom offenen Knopf ins Panel, nach dem letzten Link zum nächsten Hauptpunkt; Shift+Tab zurück |
+| 6 | E2 | Listen mit Fettdruck/Links zerfielen: ein Buchstabe pro Zeile, bis 1650 px hoch (Anliegen: Untersuchungen, Impfungen, Termin & Kontakt: Notfälle) | Listenpunkt als zweispaltiges Raster; Text neben `<strong>` landete als anonymes Element in der 1,6-rem-Strichspalte | Strich absolut positioniert, Listenpunkt einspaltig |
+| 7 | E2 | Nummern „02.1“ … „02.5“ brachen in „02.“ / „1“ um | feste Spaltenbreite | Spalte `minmax(…, max-content)`, `nowrap` |
+| 8 | E2 | Startseite bei 1024 px: Termin-Knopf ragte 21 px aus dem Bild, Telefonnummer in die Nachbarspalte | drei Spalten neben der festen Register-Spalte | drei Spalten erst ab 80em, darunter zwei |
+| 9 | E3 | Unsere Praxis bei 1024 px: 117 px horizontaler Überlauf, Faktenliste mit Worttrennung mitten im Wort | Bildplatzhalter mit Seitenverhältnis wurde breiter als die Spalte; Liste zweispaltig nach Fensterbreite | Platzhalter `min-width: 0`; Liste schaltet per Container-Abfrage nach eigener Breite |
+| 10 | alle | „Label in Name“ (WCAG 2.5.3): E1 Sprachknopf („DE“ hieß „Sprache wählen“), E3 Sprachknöpfe („TR“ hieß „Türkçe“), E2 Register-Knopf („Register“ hieß „Menü öffnen“) | `aria-label` ohne den sichtbaren Text | sichtbarer Text + ergänzender Screenreader-Text, `aria-label` entfernt |
 | 11 | alle | Silbentrennung wie „Ber-lin“, „Ter-mine“ auf schmalen Bildschirmen | `hyphens: auto` ohne Mindestlängen | `hyphenate-limit-chars: 10 4 4` (WebKit: `-webkit-hyphenate-limit-before/after`) |
-| 12 | E3 | Kontrast der Messing-Nummern unter 4,5 : 1 (axe) | Messing `#A8823F` zu hell | `#9A7637`, im Fuß Messing-Hell (dokumentiert in `design-entscheidungen.md`) |
+| 12 | E2 | Kontrast der Messing-Nummern unter 4,5 : 1 (axe) | Messing `#A8823F` zu hell | `#9A7637`, im Fuß Messing-Hell (dokumentiert in `design-entscheidungen.md`) |
 | 13 | alle | Überlauf bei 320/375 px (lange Wörter in Rastern, Seitentitel) | Rasterkinder mit `min-width: auto` | `min-width: 0`, `overflow-wrap`, Silbentrennung in Seitentiteln |
 
 ## 5. Offen – vor dem Livegang zu erledigen oder zu entscheiden
 
 ### Technische Prüfungen, die hier nicht möglich waren
 
-- **Firefox nicht getestet.** Headless-Firefox startet in der Prüfumgebung nicht. Vor dem Livegang einmal von Hand prüfen, vor allem Sprachmenü, Container-Abfragen (Firefox ≥ 110) und die Seitenübergänge in E3 (View Transitions; wo der Browser sie nicht kann, wechselt die Seite ohne Übergang).
-- **Echte Geräte nicht getestet.** Geprüft wurden nur Chrome und die WebKit-Engine über Playwright. iOS Safari (Notch, `100svh`, Bogen von unten in E3) und Android Chrome sollten von Hand geprüft werden.
+- **Firefox nicht getestet.** Headless-Firefox startet in der Prüfumgebung nicht. Vor dem Livegang einmal von Hand prüfen, vor allem Sprachmenü, Container-Abfragen (Firefox ≥ 110) und die Seitenübergänge in E2 (View Transitions; wo der Browser sie nicht kann, wechselt die Seite ohne Übergang).
+- **Echte Geräte nicht getestet.** Geprüft wurden nur Chrome und die WebKit-Engine über Playwright. iOS Safari (Notch, `100svh`, Bogen von unten in E2) und Android Chrome sollten von Hand geprüft werden.
 - **Screenreader nicht von Hand getestet** (VoiceOver, NVDA). Abgedeckt sind nur automatische Prüfungen sowie DOM- und Tastaturtests.
 - **Rich-Results-Test von Google und Schema.org-Validator** erst mit öffentlicher URL möglich.
 - **Lighthouse-Werte** sind lokal und simuliert. Nach dem Livegang mit echten Felddaten (CrUX/PageSpeed Insights) neu bewerten.
@@ -202,7 +202,7 @@ Das kleine Schild „Entwurf von vivenna“ steht fest am unteren Rand und ersch
 ### Bewusste Entwurfszustände (keine Fehler, aber vor Livegang ändern)
 
 - **`noindex, nofollow`** auf allen Seiten, daher SEO 63. Zum Livegang entfernen, dazu `canonical`, `hreflang`, `og:url`, `sitemap.xml` und `robots.txt` ergänzen (siehe `README.md`).
-- **Schild „Entwurf von vivenna“:** Es steht fest unten links (E3: unten rechts) und kann auf schmalen Bildschirmen beim Scrollen Inhalte kurz überdecken. Es ist nur für die Entwürfe gedacht und entfällt live.
+- **Schild „Entwurf von vivenna“:** Es steht fest unten links (E2: unten rechts) und kann auf schmalen Bildschirmen beim Scrollen Inhalte kurz überdecken. Es ist nur für die Entwürfe gedacht und entfällt live.
 - **Sichtbare Platzhalter** (35 Zeilen) bleiben stehen, bis die Praxis die Angaben liefert (`docs/offene-fragen.md`).
 - **EN/TR:** Nur eine Demo. Es gibt drei voll übersetzte Seiten plus die Oberfläche; die Übersetzungen sind nicht muttersprachlich geprüft. Für den Livegang sind eigene URLs (`/en/`, `/tr/`) mit `hreflang` statt der Umschaltung per Skript vorgesehen.
 - **Ärztliche und rechtliche Durchsicht** aller Texte (HWG, Berufsordnung) steht aus, ebenso die offenen Fragen OF-01 (Lehrärztin), OF-02 (Name/Titel), OF-04 (Sprechzeiten), OF-07 (Gelbfieber) und OF-21 (Kosten).
@@ -211,5 +211,5 @@ Das kleine Schild „Entwurf von vivenna“ steht fest am unteren Rand und ersch
 
 - **E1 Startseite ohne gzip:** mobil 90 statt 97, wegen der inline eingebetteten Emblem-Linienzeichnung (30 KB). GitHub Pages komprimiert, für einen anderen Host gzip/brotli aktivieren.
 - **E1 Unsere Praxis bei 1024 px:** Eine Platzhalter-Pille ragt 4 px über ihre Rasterzelle. Nicht sichtbar, entfällt mit dem echten Text.
-- **E3 Brotkrumen:** Sie lesen die Registernummern mit vor („03.1 Akupunktur“). Das ist gewollt, sollte aber bei der Screenreader-Prüfung bewertet werden.
+- **E2 Brotkrumen:** Sie lesen die Registernummern mit vor („03.1 Akupunktur“). Das ist gewollt, sollte aber bei der Screenreader-Prüfung bewertet werden.
 - **Silbentrennung in Safari:** `hyphenate-limit-chars` greift nur in Chromium. Safari erhält die gleichwertigen `-webkit-`-Eigenschaften, Firefox trennt ohne Mindestlängen.

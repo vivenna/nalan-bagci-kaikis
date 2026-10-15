@@ -18,7 +18,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 WURZEL = Path(__file__).resolve().parent.parent
-ORDNER = ['entwurf-1-fundament', 'entwurf-2-verwandt', 'entwurf-3-eigenstaendig']
+ORDNER = ['entwurf-1-fundament', 'entwurf-2-eigenstaendig', 'entwurf-3-verwandt']
 VOID = {'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'source', 'track', 'wbr'}
 
 

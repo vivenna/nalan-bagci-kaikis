@@ -83,8 +83,8 @@ Priorität: **A** = vor Freigabe eines Entwurfs klären · **B** = vor Livegang 
 |---|---|---|
 | OF-70 | Die **mobile Aktionsleiste** des Startseiten-Entwurfs („Anrufen / Termin“, dauerhaft über dem Inhalt) entfällt in Entwurf 1; der kleine Termin-Knopf im mobilen Kopf bleibt. | Auftrag 2.3: keine Sticky-Banner über dem Inhalt |
 | OF-71 | Die **Entwurf-Plakette** („Entwurf von vivenna · nicht die offizielle Website“) bleibt in allen Entwürfen klein sichtbar. | Kennzeichnung als Entwurf; ist kein CTA |
-| OF-72 | Mesotherapie, Enzymtherapie und orthomolekulare Medizin haben nur in Entwurf 1 eigene Seiten. | `docs/sitemap.md` §3, `landing-page-konzept.md` §2 |
-| OF-73 | Diagnostik, Behandlung und Psychosomatik sind in Entwurf 2 auf einer Themenseite gebündelt und in Entwurf 3 Abschnitte des Anliegen-Hubs. | `docs/sitemap.md` §3–4 |
+| OF-72 | Mesotherapie, Enzymtherapie und orthomolekulare Medizin haben nur in Entwurf 1 eigene Seiten. | `docs/sitemap.md` §4, `landing-page-konzept.md` §2 |
+| OF-73 | Diagnostik, Behandlung und Psychosomatik sind in Entwurf 3 auf einer Themenseite gebündelt und in Entwurf 2 Abschnitte des Anliegen-Hubs. | `docs/sitemap.md` §3–4 |
 | OF-74 | Haltungssatz und Leitsatz „Den Menschen als Ganzes sehen“ stammen von der alten Startseite (gekürzt); der Gegensatz „nicht die Symptome, sondern die Ursachen“ wird nicht übernommen. | klingt nach Wirkversprechen |
 | OF-75 | Geburtsjahr/Geburtsort aus dem Lebenslauf werden nicht übernommen. | für die Rolle nicht nötig; Datensparsamkeit |
 

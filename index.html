@@ -14,8 +14,8 @@
        Entwurf bevorzugt wirkt. Nur die Kartentitel stehen in der Schrift des jeweiligen
        Entwurfs; Schriften kommen aus den Entwurfsordnern, nichts wird extern geladen. */
     @font-face { font-family: "Fraunces"; font-weight: 100 900; font-display: swap; src: url("entwurf-1-fundament/assets/fonts/fraunces-latin-opsz-normal.woff2") format("woff2-variations"); }
-    @font-face { font-family: "Instrument Sans"; font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; src: url("entwurf-2-verwandt/assets/fonts/instrument-sans-latin-standard-normal.woff2") format("woff2-variations"); }
-    @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("entwurf-3-eigenstaendig/assets/fonts/archivo-latin-standard-normal.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Archivo"; font-weight: 100 900; font-stretch: 62% 125%; font-display: swap; src: url("entwurf-2-eigenstaendig/assets/fonts/archivo-latin-standard-normal.woff2") format("woff2-variations"); }
+    @font-face { font-family: "Instrument Sans"; font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; src: url("entwurf-3-verwandt/assets/fonts/instrument-sans-latin-standard-normal.woff2") format("woff2-variations"); }
 
     :root {
       --grund: #F7F6F3;
@@ -50,15 +50,15 @@
     @media (min-width: 70em) { .karten { grid-template-columns: repeat(3, 1fr); } }
     .karte { --dunkel: #1E2230; display: flex; flex-direction: column; min-width: 0; background: var(--papier); border: 1px solid var(--linie); border-top: 6px solid var(--dunkel); border-radius: 6px; overflow: hidden; }
     .karte--e1 { --dunkel: #2C3662; --schrift: "Fraunces", Georgia, serif; }
-    .karte--e2 { --dunkel: #1F2A47; --schrift: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; }
-    .karte--e3 { --dunkel: #3B2235; --schrift: "Archivo", "Helvetica Neue", Arial, sans-serif; }
+    .karte--e2 { --dunkel: #3B2235; --schrift: "Archivo", "Helvetica Neue", Arial, sans-serif; }
+    .karte--e3 { --dunkel: #1F2A47; --schrift: "Instrument Sans", "Helvetica Neue", Arial, sans-serif; }
     .vorschau { position: relative; margin: 0; padding: 1.2rem 1.2rem 0; background: var(--grund); border-bottom: 1px solid var(--linie); }
     .vorschau__desktop { width: 86%; border: 1px solid var(--linie); border-bottom: 0; border-radius: 4px 4px 0 0; box-shadow: 0 10px 30px -18px rgb(30 34 48 / .45); }
     .vorschau__mobil { position: absolute; right: 1.2rem; bottom: 0; width: 24%; border: 1px solid var(--linie); border-bottom: 0; border-radius: 10px 10px 0 0; box-shadow: 0 10px 30px -14px rgb(30 34 48 / .5); }
     .karte__text { display: flex; flex-direction: column; flex: 1; padding: clamp(1.3rem, 2.5vw, 1.8rem); }
     .karte h2 { margin: 0; font-family: var(--schrift); font-size: clamp(1.9rem, 1.5rem + 1.2vw, 2.5rem); line-height: 1.1; font-weight: 450; color: var(--dunkel); }
-    .karte--e2 h2 { font-weight: 600; font-stretch: 90%; letter-spacing: -.02em; }
-    .karte--e3 h2 { font-weight: 400; font-stretch: 112%; }
+    .karte--e2 h2 { font-weight: 400; font-stretch: 112%; }
+    .karte--e3 h2 { font-weight: 600; font-stretch: 90%; letter-spacing: -.02em; }
     .karte .kicker { margin-bottom: .4rem; }
     .karte__idee { margin: .7rem 0 0; font-size: 1.12rem; font-weight: 550; line-height: 1.45; }
     .karte__beschreibung { margin: .8rem 0 0; color: var(--neben); }
@@ -139,39 +139,11 @@
 
       <li class="karte karte--e2">
         <figure class="vorschau">
-          <img class="vorschau__desktop" src="vorschau/entwurf-2-verwandt-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 2 am Desktop: Serviceleiste, Titel „Nalan Bagci-Kaikis, Fachärztin für Allgemeinmedizin“ neben einem großen Porträt">
-          <img class="vorschau__mobil" src="vorschau/entwurf-2-verwandt-mobil.webp" width="390" height="844" alt="" loading="lazy">
+          <img class="vorschau__desktop" src="vorschau/entwurf-2-eigenstaendig-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 2 am Desktop: feste Register-Spalte links, marineblaue Einstiegsfläche mit dem Titel „Fachärztin für Allgemeinmedizin“ und Porträt im Passepartout">
+          <img class="vorschau__mobil" src="vorschau/entwurf-2-eigenstaendig-mobil.webp" width="390" height="844" alt="" loading="lazy">
         </figure>
         <div class="karte__text">
           <p class="kicker">Entwurf 2</p>
-          <h2>„Verwandt“</h2>
-          <p class="karte__idee">Gleiche Herkunft, ruhigere und sachlichere Haltung.</p>
-          <p class="karte__beschreibung">Eine redaktionelle Gestaltung mit klarer Typografie und Haarlinien. Die Leistungen sind gestrafft: Das Hausärztliche steht gebündelt auf einer Seite, drei kleinere Verfahren auf der Naturheilkunde-Seite. Die Landing Pages sind wie ein Dossier aufgebaut.</p>
-          <dl class="eckdaten">
-            <div><dt>Seiten</dt><dd>18 – Leistungen zusammengefasst</dd></div>
-            <div><dt>Navigation</dt><dd>Serviceleiste, Mega-Menü, mobil als Vollbild-Menü</dd></div>
-            <div><dt>Schrift</dt><dd>Instrument Sans und Source Serif 4</dd></div>
-            <div><dt>Farben</dt><dd><ul class="farben"><li><i style="background:#2C3662"></i>Marineblau</li><li><i style="background:#47CCC8"></i>Türkis</li><li><i style="background:#F6F3ED"></i>Creme</li></ul></dd></div>
-            <div><dt>Bewegung</dt><dd>Text- und Bildmasken, Haarlinien, Fortschrittsanzeige</dd></div>
-          </dl>
-          <div class="aktionen">
-            <a class="knopf" href="entwurf-2-verwandt/index.html">Entwurf 2 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
-          <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 2">
-            <li><a href="entwurf-2-verwandt/leistungen/index.html">Leistungen</a></li>
-            <li><a href="entwurf-2-verwandt/leistungen/akupunktur.html">Akupunktur</a></li>
-            <li><a href="entwurf-2-verwandt/termin-kontakt.html">Termin &amp; Kontakt</a></li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="karte karte--e3">
-        <figure class="vorschau">
-          <img class="vorschau__desktop" src="vorschau/entwurf-3-eigenstaendig-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 3 am Desktop: feste Register-Spalte links, marineblaue Einstiegsfläche mit dem Titel „Fachärztin für Allgemeinmedizin“ und Porträt im Passepartout">
-          <img class="vorschau__mobil" src="vorschau/entwurf-3-eigenstaendig-mobil.webp" width="390" height="844" alt="" loading="lazy">
-        </figure>
-        <div class="karte__text">
-          <p class="kicker">Entwurf 3</p>
           <h2>„Eigenständig“</h2>
           <p class="karte__idee">Ein eigenes Konzept: die Website als Register.</p>
           <p class="karte__beschreibung">Ein festes, nummeriertes Register wie in einem Nachschlagewerk führt durch die Seiten. Die hausärztlichen Leistungen sind nach Anliegen geordnet statt als Liste, das Porträt sitzt im Passepartout. Nur Logo, Porträt und Texte teilt dieser Entwurf mit den anderen.</p>
@@ -183,12 +155,40 @@
             <div><dt>Bewegung</dt><dd>Seitenübergänge, Lesemarke im Inhaltsregister</dd></div>
           </dl>
           <div class="aktionen">
-            <a class="knopf" href="entwurf-3-eigenstaendig/index.html">Entwurf 3 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="knopf" href="entwurf-2-eigenstaendig/index.html">Entwurf 2 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+          <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 2">
+            <li><a href="entwurf-2-eigenstaendig/leistungen/index.html">Anliegen</a></li>
+            <li><a href="entwurf-2-eigenstaendig/leistungen/akupunktur.html">Akupunktur</a></li>
+            <li><a href="entwurf-2-eigenstaendig/termin-kontakt.html">Termin &amp; Kontakt</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="karte karte--e3">
+        <figure class="vorschau">
+          <img class="vorschau__desktop" src="vorschau/entwurf-3-verwandt-desktop.webp" width="960" height="600" alt="Startseite von Entwurf 3 am Desktop: Serviceleiste, Titel „Nalan Bagci-Kaikis, Fachärztin für Allgemeinmedizin“ neben einem großen Porträt">
+          <img class="vorschau__mobil" src="vorschau/entwurf-3-verwandt-mobil.webp" width="390" height="844" alt="" loading="lazy">
+        </figure>
+        <div class="karte__text">
+          <p class="kicker">Entwurf 3</p>
+          <h2>„Verwandt“</h2>
+          <p class="karte__idee">Gleiche Herkunft, ruhigere und sachlichere Haltung.</p>
+          <p class="karte__beschreibung">Eine redaktionelle Gestaltung mit klarer Typografie und Haarlinien. Die Leistungen sind gestrafft: Das Hausärztliche steht gebündelt auf einer Seite, drei kleinere Verfahren auf der Naturheilkunde-Seite. Die Landing Pages sind wie ein Dossier aufgebaut.</p>
+          <dl class="eckdaten">
+            <div><dt>Seiten</dt><dd>18 – Leistungen zusammengefasst</dd></div>
+            <div><dt>Navigation</dt><dd>Serviceleiste, Mega-Menü, mobil als Vollbild-Menü</dd></div>
+            <div><dt>Schrift</dt><dd>Instrument Sans und Source Serif 4</dd></div>
+            <div><dt>Farben</dt><dd><ul class="farben"><li><i style="background:#2C3662"></i>Marineblau</li><li><i style="background:#47CCC8"></i>Türkis</li><li><i style="background:#F6F3ED"></i>Creme</li></ul></dd></div>
+            <div><dt>Bewegung</dt><dd>Text- und Bildmasken, Haarlinien, Fortschrittsanzeige</dd></div>
+          </dl>
+          <div class="aktionen">
+            <a class="knopf" href="entwurf-3-verwandt/index.html">Entwurf 3 ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
           <ul class="direkt" aria-label="Direkt zu Seiten in Entwurf 3">
-            <li><a href="entwurf-3-eigenstaendig/leistungen/index.html">Anliegen</a></li>
-            <li><a href="entwurf-3-eigenstaendig/leistungen/akupunktur.html">Akupunktur</a></li>
-            <li><a href="entwurf-3-eigenstaendig/termin-kontakt.html">Termin &amp; Kontakt</a></li>
+            <li><a href="entwurf-3-verwandt/leistungen/index.html">Leistungen</a></li>
+            <li><a href="entwurf-3-verwandt/leistungen/akupunktur.html">Akupunktur</a></li>
+            <li><a href="entwurf-3-verwandt/termin-kontakt.html">Termin &amp; Kontakt</a></li>
           </ul>
         </div>
       </li>

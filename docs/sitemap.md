@@ -49,12 +49,56 @@ entwurf-1-fundament/
 - **Fuß:** Praxisname, Ärztin und Berufsbezeichnung, Adresse, Telefon, Sprechzeiten; Links Ihre Ärztin, Leistungen, Naturheilkunde, Termin & Kontakt, Impressum, Datenschutz.
 - **Auf jeder Seite:** Termin-CTA im Kopf; auf Unterseiten sichtbare Brotkrumen.
 
-## 3. Entwurf 2 „Verwandt“ – Leistungen gestrafft (18 Seiten)
+## 3. Entwurf 2 „Eigenständig“ – freiere Gesamtstruktur (17 Seiten)
+
+Die Website ist um **drei Wege** aufgebaut: *Hausärztliche Versorgung* (nach Anliegen), *Naturheilkunde – ärztlich ergänzt* und *Die Praxis kennenlernen*. Praxis, Ärztin, Lehre und Haltung werden auf einer Seite erzählt. Leistungen sind nach Anliegen statt nach Fachbereich geordnet, und Termin & Kontakt heißt „Besuch planen“.
+
+```
+entwurf-2-eigenstaendig/
+├── index.html                              Einstieg mit drei Wegen                      Startseite        Register 00
+├── unsere-praxis.html                      Die Praxis (Ärztin, Lehre, Haltung, Räume)   Informationsseite Register 01
+├── leistungen/
+│   ├── index.html                          Anliegen (Hub nach Anliegen, mit Inhalten)   Hub               Register 02
+│   ├── vorsorge.html                       Vorsorge und Check-up                        Landing Page      Register 02.1
+│   ├── impfungen-reisemedizin.html         Impfungen und Reisemedizin                   Landing Page      Register 02.2
+│   ├── naturheilkunde.html                 Naturheilkunde – ärztlich ergänzt            Hub               Register 03
+│   ├── akupunktur.html                     Akupunktur                                   Landing Page      Register 03.x
+│   ├── neuraltherapie.html                 Neuraltherapie nach Huneke                   Landing Page      Register 03.x
+│   ├── schroepfen.html                     Schröpfen (Hacamat, Hijama)                  Landing Page      Register 03.x
+│   ├── aufbaukuren.html                    Infusionen und Aufbaukuren                   Landing Page      Register 03.x
+│   ├── phytotherapie-homoeopathie.html     Phytotherapie und Homöopathie                Landing Page      Register 03.x
+│   ├── eigenbluttherapie.html              Eigenbluttherapie                            Landing Page      Register 03.x
+│   ├── blutegeltherapie.html               Blutegeltherapie                             Landing Page      Register 03.x
+│   └── aderlass.html                       Aderlass                                     Landing Page      Register 03.x
+├── termin-kontakt.html                     Besuch planen (Termin, Zeiten, Anfahrt)      Termin & Kontakt  Register 04
+├── impressum.html                          Impressum                                    Rechtliches       Fuß
+└── datenschutz.html                        Datenschutz                                  Rechtliches       Fuß
+```
+
+- **Navigation „Register“:** nummeriertes Seitenregister: 01 Die Praxis · 02 Anliegen · 03 Naturheilkunde · 04 Besuch planen. Auf dem Desktop steht es als feste Spalte am linken Rand, mobil öffnet es sich als Bogen von unten. Darunter Sprachwahl und „Termin online buchen“.
+- **„Anliegen“ (`leistungen/index.html`)** ordnet die hausärztlichen Leistungen nach dem, was Patientinnen und Patienten wollen: *Vorsorgen* (→ Vorsorge), *Reisen und impfen* (→ Impfungen), *Abklären* (Diagnostik – vollständiger Inhalt als Abschnitt), *Behandeln und begleiten* (Behandlung und Psychosomatik – vollständige Abschnitte), *Ergänzend behandeln* (→ Naturheilkunde).
+- **Fuß:** reduziert auf Adresse, Telefon, Sprechzeiten heute, Impressum, Datenschutz und das Register der Naturheilkunde-Seiten.
+
+**Abweichungen gegenüber Entwurf 1 und Begründung:**
+
+| Bereich | Entwurf 2 | Begründung |
+|---|---|---|
+| Startseite | Einstieg in drei Wege statt einer langen Seite | Besucher finden in einem Schritt ihren Weg. Die Rollenhierarchie wird als Reihenfolge der Wege sichtbar (Fachärztin zuerst). |
+| Praxis/Ärztin/Lehre | eine erzählte Seite in Kapiteln | Fachärztin → Lehre → Naturheilkunde-Ausbildung als zusammenhängende Geschichte; Lehre bekommt ein eigenes Kapitel |
+| Diagnostik, Behandlung, Psychosomatik | keine eigenen Seiten; vollständig als Abschnitte auf „Anliegen“ | keine eigenständige Suchintention; Inhalte bleiben vollständig und per Anker verlinkbar |
+| Leistungen-Hub | nach Anliegen statt nach Fachbereich | patientennahe Sprache |
+| Mesotherapie, Enzymtherapie, Orthomolekulare Medizin | wie Entwurf 3: nur „Weitere Verfahren“ auf dem Naturheilkunde-Hub | siehe Entwurf 3 |
+| Termin & Kontakt | gleicher Slug, Titel „Besuch planen“ | Termin, Zeiten und Anfahrt als ein Vorgang |
+| Navigation | Register statt Kopfmenü | eigenständiges Navigationskonzept (Auftrag Abschnitt 3) |
+
+Pflichtinhalte sind vollständig vorhanden: Rollenhierarchie, Kontakt, Sprechzeiten, Anfahrt, Qualifikationen, Leistungsübersicht, Impressum, Datenschutz, Termin-Weiterleitung, Sprachmenü und das Kern-Set der Naturheilkunde-Landing-Pages (`landing-page-konzept.md`).
+
+## 4. Entwurf 3 „Verwandt“ – Leistungen gestrafft (18 Seiten)
 
 Struktur wie die alte Website (Startseite, Praxis, Leistungen, Kontakt, Rechtliches). Die Leistungen werden umgebaut: wenige wichtige Leistungen stehen prominent (Mega-Menü, Startseite, Hub), die übrigen sind gebündelt oder als Landing Page ohne Menüplatz erreichbar.
 
 ```
-entwurf-2-verwandt/
+entwurf-3-verwandt/
 ├── index.html                              Startseite                                   Startseite        Menü: Logo
 ├── unsere-praxis.html                      Praxis und Ärztin                            Informationsseite Menü
 ├── leistungen/
@@ -100,50 +144,6 @@ entwurf-2-verwandt/
 | Enzymtherapie | nur unter „Weitere Verfahren“ | alter Text ist Herstellertext mit Spam-Absatz; Datenlage schwach; geringe Suchnachfrage nach Praxisanbietern |
 | Orthomolekulare Medizin | nur unter „Weitere Verfahren“ | alter Text fachlich fehlerhaft; Indikationsliste nicht haltbar; als kurzer, sachlicher Hinweis erhalten |
 
-## 4. Entwurf 3 „Eigenständig“ – freiere Gesamtstruktur (17 Seiten)
-
-Die Website ist um **drei Wege** aufgebaut: *Hausärztliche Versorgung* (nach Anliegen), *Naturheilkunde – ärztlich ergänzt* und *Die Praxis kennenlernen*. Praxis, Ärztin, Lehre und Haltung werden auf einer Seite erzählt. Leistungen sind nach Anliegen statt nach Fachbereich geordnet, und Termin & Kontakt heißt „Besuch planen“.
-
-```
-entwurf-3-eigenstaendig/
-├── index.html                              Einstieg mit drei Wegen                      Startseite        Register 00
-├── unsere-praxis.html                      Die Praxis (Ärztin, Lehre, Haltung, Räume)   Informationsseite Register 01
-├── leistungen/
-│   ├── index.html                          Anliegen (Hub nach Anliegen, mit Inhalten)   Hub               Register 02
-│   ├── vorsorge.html                       Vorsorge und Check-up                        Landing Page      Register 02.1
-│   ├── impfungen-reisemedizin.html         Impfungen und Reisemedizin                   Landing Page      Register 02.2
-│   ├── naturheilkunde.html                 Naturheilkunde – ärztlich ergänzt            Hub               Register 03
-│   ├── akupunktur.html                     Akupunktur                                   Landing Page      Register 03.x
-│   ├── neuraltherapie.html                 Neuraltherapie nach Huneke                   Landing Page      Register 03.x
-│   ├── schroepfen.html                     Schröpfen (Hacamat, Hijama)                  Landing Page      Register 03.x
-│   ├── aufbaukuren.html                    Infusionen und Aufbaukuren                   Landing Page      Register 03.x
-│   ├── phytotherapie-homoeopathie.html     Phytotherapie und Homöopathie                Landing Page      Register 03.x
-│   ├── eigenbluttherapie.html              Eigenbluttherapie                            Landing Page      Register 03.x
-│   ├── blutegeltherapie.html               Blutegeltherapie                             Landing Page      Register 03.x
-│   └── aderlass.html                       Aderlass                                     Landing Page      Register 03.x
-├── termin-kontakt.html                     Besuch planen (Termin, Zeiten, Anfahrt)      Termin & Kontakt  Register 04
-├── impressum.html                          Impressum                                    Rechtliches       Fuß
-└── datenschutz.html                        Datenschutz                                  Rechtliches       Fuß
-```
-
-- **Navigation „Register“:** nummeriertes Seitenregister: 01 Die Praxis · 02 Anliegen · 03 Naturheilkunde · 04 Besuch planen. Auf dem Desktop steht es als feste Spalte am linken Rand, mobil öffnet es sich als Bogen von unten. Darunter Sprachwahl und „Termin online buchen“.
-- **„Anliegen“ (`leistungen/index.html`)** ordnet die hausärztlichen Leistungen nach dem, was Patientinnen und Patienten wollen: *Vorsorgen* (→ Vorsorge), *Reisen und impfen* (→ Impfungen), *Abklären* (Diagnostik – vollständiger Inhalt als Abschnitt), *Behandeln und begleiten* (Behandlung und Psychosomatik – vollständige Abschnitte), *Ergänzend behandeln* (→ Naturheilkunde).
-- **Fuß:** reduziert auf Adresse, Telefon, Sprechzeiten heute, Impressum, Datenschutz und das Register der Naturheilkunde-Seiten.
-
-**Abweichungen gegenüber Entwurf 1 und Begründung:**
-
-| Bereich | Entwurf 3 | Begründung |
-|---|---|---|
-| Startseite | Einstieg in drei Wege statt einer langen Seite | Besucher finden in einem Schritt ihren Weg. Die Rollenhierarchie wird als Reihenfolge der Wege sichtbar (Fachärztin zuerst). |
-| Praxis/Ärztin/Lehre | eine erzählte Seite in Kapiteln | Fachärztin → Lehre → Naturheilkunde-Ausbildung als zusammenhängende Geschichte; Lehre bekommt ein eigenes Kapitel |
-| Diagnostik, Behandlung, Psychosomatik | keine eigenen Seiten; vollständig als Abschnitte auf „Anliegen“ | keine eigenständige Suchintention; Inhalte bleiben vollständig und per Anker verlinkbar |
-| Leistungen-Hub | nach Anliegen statt nach Fachbereich | patientennahe Sprache |
-| Mesotherapie, Enzymtherapie, Orthomolekulare Medizin | wie Entwurf 2: nur „Weitere Verfahren“ auf dem Naturheilkunde-Hub | siehe Entwurf 2 |
-| Termin & Kontakt | gleicher Slug, Titel „Besuch planen“ | Termin, Zeiten und Anfahrt als ein Vorgang |
-| Navigation | Register statt Kopfmenü | eigenständiges Navigationskonzept (Auftrag Abschnitt 3) |
-
-Pflichtinhalte sind vollständig vorhanden: Rollenhierarchie, Kontakt, Sprechzeiten, Anfahrt, Qualifikationen, Leistungsübersicht, Impressum, Datenschutz, Termin-Weiterleitung, Sprachmenü und das Kern-Set der Naturheilkunde-Landing-Pages (`landing-page-konzept.md`).
-
 ## 5. Alt → Neu-Mapping
 
 Alle 22 echten Seiten und die Zweifelsfälle, die echte Inhalte enthalten. Pfade relativ zum jeweiligen Entwurfsordner.
@@ -157,9 +157,9 @@ Alle 22 echten Seiten und die Zweifelsfälle, die echte Inhalte enthalten. Pfade
 | `/services/` und `/?post_type=services` (Zweifel) | `leistungen/index.html` | `leistungen/index.html` | `leistungen/index.html` |
 | `/services/vorsorgeleistungen/` | `leistungen/vorsorge.html` | `leistungen/vorsorge.html` | `leistungen/vorsorge.html` |
 | `/services/impfungen-und-reisemedizin/` | `leistungen/impfungen-reisemedizin.html` | `leistungen/impfungen-reisemedizin.html` | `leistungen/impfungen-reisemedizin.html` |
-| `/services/therapeutische-leistungen/` | `leistungen/behandlung.html` | `leistungen/hausaerztliche-versorgung.html#behandlung` | `leistungen/index.html#behandeln` |
-| `/services/diagnostische-leistungen/` | `leistungen/diagnostik.html` | `leistungen/hausaerztliche-versorgung.html#diagnostik` | `leistungen/index.html#abklaeren` |
-| `/services/psychosomatische-medizin/` | `leistungen/psychosomatik.html` | `leistungen/hausaerztliche-versorgung.html#psychosomatik` | `leistungen/index.html#psychosomatik` |
+| `/services/therapeutische-leistungen/` | `leistungen/behandlung.html` | `leistungen/index.html#behandeln` | `leistungen/hausaerztliche-versorgung.html#behandlung` |
+| `/services/diagnostische-leistungen/` | `leistungen/diagnostik.html` | `leistungen/index.html#abklaeren` | `leistungen/hausaerztliche-versorgung.html#diagnostik` |
+| `/services/psychosomatische-medizin/` | `leistungen/psychosomatik.html` | `leistungen/index.html#psychosomatik` | `leistungen/hausaerztliche-versorgung.html#psychosomatik` |
 | `/services/face-recovery-massage/` (Akupunktur) | `leistungen/akupunktur.html` | `leistungen/akupunktur.html` | `leistungen/akupunktur.html` |
 | `/services/neuraltherapie-nach-huneke/` | `leistungen/neuraltherapie.html` | `leistungen/neuraltherapie.html` | `leistungen/neuraltherapie.html` |
 | `/services/schroepfen-hacamat-hijama/` | `leistungen/schroepfen.html` | `leistungen/schroepfen.html` | `leistungen/schroepfen.html` |

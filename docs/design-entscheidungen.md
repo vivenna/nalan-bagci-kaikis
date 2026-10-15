@@ -65,7 +65,80 @@ Korrekturen gegenüber dem Startseiten-Entwurf: Die Nummern der Verfahrensliste 
 
 ---
 
-## 3. Entwurf 2 „Verwandt“
+## 3. Entwurf 2 „Eigenständig“
+
+**Leitidee:** *Register.* Die Praxis als präzise geordnetes Register, wie das Inhaltsverzeichnis einer guten Monografie oder das Wegeleitsystem eines Museums. Die Gestaltung folgt der Schweizer Moderne: eine einzige Schriftfamilie in mehreren Breiten, nummerierte Wege, viel Raum. Marineblau dient als ruhige Markenfläche, Türkis als Knopf, Linie und Ziffer, Creme als Grund – dieselbe Farbwelt wie Entwurf 1. Das wirkt international und hochwertig, ohne Arztpraxis-Klischee.
+
+**Farbpalette** (geändert am 12.10.2026 auf Wunsch, vorher Aubergine/Messing/Kalkstein)
+
+| Name | Hex | Rolle | Kontrast |
+|---|---|---|---|
+| Marineblau | `#2C3662` | Markenflächen (Hero, CTA-Band), Überschriften | 10,5 : 1 auf Creme; Weiß darauf 11,6 : 1 |
+| Marine tief | `#222A4E` | Fuß, Hover | – |
+| Tinte | `#212848` | Fließtext | 13,0 : 1 auf Creme |
+| Creme | `#F6F3ED` | Grundfläche (wie Entwurf 1) | – |
+| Papier | `#FFFFFF` | Register-Spalte, Karten, Bildrahmen | – |
+| Stein | `#DDD7CA` | Linien | – |
+| Türkis | `#47CCC8` | Primärknöpfe, Ziffern und Marken auf Marine | Marine darauf 5,9 : 1; auf Marine 5,9 : 1 |
+| Logo-Türkis | `#00A09B` | Linien, Markierungen | nur Deko |
+| Türkis groß | `#00928D` | große Ziffern auf Hell | 3,5 : 1 auf Creme (≥ 3 : 1 für große Schrift) |
+| Türkis-Text | `#0A6F6B` | kleine Ziffern, Marken, Hinweisrahmen auf Hell | 5,4 : 1 auf Creme, 6,0 : 1 auf Weiß |
+| Nebentext | `#4D5675` | sekundärer Text | 6,5 : 1 auf Creme |
+
+**Schrift:** eine Familie, *Archivo* (`@fontsource-variable/archivo`, Achsen wdth 62–125, wght 100–900, OFL, latin + latin-ext). Die Breitenachse trägt die Hierarchie:
+- Titel breit und leicht (wdth 115–125, wght 300–420, enge Laufweite)
+- Register-Ziffern schmal (wdth 62–75, tabellarische Ziffern)
+- Marken in Versalien (wdth 100, wght 600, Laufweite .14em)
+- Fließtext normal (wdth 100, wght 400, 1.0625rem/1.65)
+
+Größen: h1 `clamp(2.4rem, 1.2rem + 5.2vw, 5.8rem)`, h2 `clamp(1.8rem, 1.2rem + 2.6vw, 3.2rem)`.
+
+**Layout-Konzept:**
+- Auf dem Desktop eine **feste Register-Spalte** links (288 px, Papierweiß, Türkis-Haarlinie rechts) mit Logo, nummeriertem Register, Sprachwahl und CTA.
+- Daneben eine asymmetrische Inhaltsfläche mit großen typografischen Setzungen und vollflächigen Marine-Bändern.
+- Bildbehandlung im **Passepartout**: Das Porträt steht quadratisch beschnitten in einem weißen Rahmen mit versetzter Türkis-Linie und einer Bildlegende wie ein Museumsschild.
+- Karten als **Register-Zeilen** (ganze Breite, große Ziffer, Titel, eine Zeile Text, Pfeil). Ecken eckig, keine Schatten.
+
+**Navigationskonzept „Register“:**
+- 01 Die Praxis · 02 Anliegen · 03 Naturheilkunde · 04 Besuch planen. Die aktive Seite trägt eine Türkis-Marke.
+- Sprachwahl als Textliste „Deutsch / English / Türkçe“ am Fuß der Spalte.
+- CTA „Termin online buchen“ als Türkis-Knopf.
+- **Mobil:** schlanke Kopfzeile (Logo + Knopf „Register“). Das Register öffnet sich als **Bogen von unten** (Bottom Sheet, Fokusfalle, Esc, Wischgeste nicht nötig).
+- Auf Landing Pages zusätzlich ein haftendes Inhaltsregister „Auf dieser Seite“, dessen Marke dem Lesefortschritt folgt.
+
+**Hero-Komposition:**
+- Vollbreites Marine-Feld mit Eyebrow in Türkis („Praxis zum Schloss · Schloßstraße 21 · Charlottenburg“).
+- H1 breit gesetzt: „Fachärztin für Allgemeinmedizin“, darüber der Name in Versalien.
+- Unterzeile: „Hausärztliche Versorgung – fachärztlich, mit Erfahrung in der Lehre, ergänzt um Naturheilverfahren, wo es ärztlich sinnvoll ist.“
+- Rechts das Porträt im Passepartout.
+- Darunter **drei Wege** als große Register-Zeilen: 01 Hausärztliche Versorgung · 02 Naturheilkunde, ärztlich ergänzt · 03 Die Praxis kennenlernen.
+
+**Bewegungssprache** (anders als 1 und 2):
+1. **Seitenübergänge** mit der View Transitions API (`@view-transition { navigation: auto; }`): Der Seitentitel trägt `view-transition-name: seitentitel` und wechselt weich, die Register-Marke gleitet zum neuen Eintrag, der Inhalt blendet kurz über (220 ms). Browser ohne Unterstützung wechseln die Seite normal.
+2. **Register-Zeilen:** Bei Hover/Fokus rückt der Text um 12 px ein, eine Türkis-Linie wächst von links (`scaleX`, 240 ms), die Ziffer wechselt von Türkis zu Marine.
+3. **Inhaltsregister mit Lesemarke:** Die Marke folgt dem aktiven Abschnitt (IntersectionObserver, `transform`).
+4. **Bottom Sheet** gleitet von unten herein (`translateY`, 300 ms, `cubic-bezier(.2,.8,.2,1)`).
+5. Sonst keine Einblendungen beim Scrollen. Die Seite steht ruhig, die Bewegung liegt im Übergang und in der Bedienung.
+
+Bei `prefers-reduced-motion: reduce` gibt es keine View Transitions und keine Bewegung. Ohne JS bleibt das Register auf dem Desktop sichtbar; mobil ist es als Liste am Seitenende erreichbar.
+
+**Komponenten für Unterseiten:**
+- **Brotkrumen als Registerpfad:** „02 Anliegen / 02.1 Vorsorge“.
+- **Seitenkopf:** Registernummer, H1 breit, Lead.
+- **Kurzantwort:** Absatz mit Türkis-Initialziffer.
+- **Ablauf:** horizontale Schrittfolge mit schmalen Türkis-Ziffern, mobil vertikal.
+- **Was Sie wissen sollten:** „Datenblatt“ mit schmaler Versalien-Labelspalte.
+- **FAQ:** nummerierte Fragen, Plus/Minus.
+- **Hub:** Register-Zeilen.
+- **CTA-Band:** Marine, Creme-Text.
+- **Hinweis:** Rahmen in Türkis-Text.
+- **Platzhalter:** gepunkteter Türkis-Rahmen „Angabe folgt“.
+
+**Abgrenzung:** zu Entwurf 1 (Bogen, Creme, Fraunces, Zeichnen/Schweben) und Entwurf 3 (Mega-Menü, Marine/Türkis/Creme, Masken- und Scroll-Reveals) in Farbe, Schrift, Navigation, Bildbehandlung und Bewegung. Gemeinsam bleiben nur das Logo (auf Papierweiß in Originalfarben) und das Porträt.
+
+---
+
+## 4. Entwurf 3 „Verwandt“
 
 **Leitidee:** *Die Praxis als ruhiges, klar gegliedertes Dossier.* Dieselbe Farbwelt wie Entwurf 1 (Marineblau, Türkis, Creme): Türkis ist Knopf- und Flächenfarbe, Marineblau die dunkle Fläche, ein helles Türkis die zweite Grundfläche. Gestaltung und Bewegung bleiben eigenständig: ein editoriales Raster mit nummerierten Abschnitten und einer Abschnittsleiste links, Haarlinien statt Rundungen, eine serifenlose Titelschrift mit Serifen-Fließtext. Das wirkt wie eine sorgfältig gesetzte Fachpublikation und passt zur Rolle der Fachärztin und Lehrärztin.
 
@@ -136,90 +209,17 @@ Bei `prefers-reduced-motion: reduce` entfällt alles. Ohne JS ist alles sofort s
 
 ---
 
-## 4. Entwurf 3 „Eigenständig“
-
-**Leitidee:** *Register.* Die Praxis als präzise geordnetes Register, wie das Inhaltsverzeichnis einer guten Monografie oder das Wegeleitsystem eines Museums. Die Gestaltung folgt der Schweizer Moderne: eine einzige Schriftfamilie in mehreren Breiten, nummerierte Wege, viel Raum. Marineblau dient als ruhige Markenfläche, Türkis als Knopf, Linie und Ziffer, Creme als Grund – dieselbe Farbwelt wie Entwurf 1. Das wirkt international und hochwertig, ohne Arztpraxis-Klischee.
-
-**Farbpalette** (geändert am 12.10.2026 auf Wunsch, vorher Aubergine/Messing/Kalkstein)
-
-| Name | Hex | Rolle | Kontrast |
-|---|---|---|---|
-| Marineblau | `#2C3662` | Markenflächen (Hero, CTA-Band), Überschriften | 10,5 : 1 auf Creme; Weiß darauf 11,6 : 1 |
-| Marine tief | `#222A4E` | Fuß, Hover | – |
-| Tinte | `#212848` | Fließtext | 13,0 : 1 auf Creme |
-| Creme | `#F6F3ED` | Grundfläche (wie Entwurf 1) | – |
-| Papier | `#FFFFFF` | Register-Spalte, Karten, Bildrahmen | – |
-| Stein | `#DDD7CA` | Linien | – |
-| Türkis | `#47CCC8` | Primärknöpfe, Ziffern und Marken auf Marine | Marine darauf 5,9 : 1; auf Marine 5,9 : 1 |
-| Logo-Türkis | `#00A09B` | Linien, Markierungen | nur Deko |
-| Türkis groß | `#00928D` | große Ziffern auf Hell | 3,5 : 1 auf Creme (≥ 3 : 1 für große Schrift) |
-| Türkis-Text | `#0A6F6B` | kleine Ziffern, Marken, Hinweisrahmen auf Hell | 5,4 : 1 auf Creme, 6,0 : 1 auf Weiß |
-| Nebentext | `#4D5675` | sekundärer Text | 6,5 : 1 auf Creme |
-
-**Schrift:** eine Familie, *Archivo* (`@fontsource-variable/archivo`, Achsen wdth 62–125, wght 100–900, OFL, latin + latin-ext). Die Breitenachse trägt die Hierarchie:
-- Titel breit und leicht (wdth 115–125, wght 300–420, enge Laufweite)
-- Register-Ziffern schmal (wdth 62–75, tabellarische Ziffern)
-- Marken in Versalien (wdth 100, wght 600, Laufweite .14em)
-- Fließtext normal (wdth 100, wght 400, 1.0625rem/1.65)
-
-Größen: h1 `clamp(2.4rem, 1.2rem + 5.2vw, 5.8rem)`, h2 `clamp(1.8rem, 1.2rem + 2.6vw, 3.2rem)`.
-
-**Layout-Konzept:**
-- Auf dem Desktop eine **feste Register-Spalte** links (288 px, Papierweiß, Türkis-Haarlinie rechts) mit Logo, nummeriertem Register, Sprachwahl und CTA.
-- Daneben eine asymmetrische Inhaltsfläche mit großen typografischen Setzungen und vollflächigen Marine-Bändern.
-- Bildbehandlung im **Passepartout**: Das Porträt steht quadratisch beschnitten in einem weißen Rahmen mit versetzter Türkis-Linie und einer Bildlegende wie ein Museumsschild.
-- Karten als **Register-Zeilen** (ganze Breite, große Ziffer, Titel, eine Zeile Text, Pfeil). Ecken eckig, keine Schatten.
-
-**Navigationskonzept „Register“:**
-- 01 Die Praxis · 02 Anliegen · 03 Naturheilkunde · 04 Besuch planen. Die aktive Seite trägt eine Türkis-Marke.
-- Sprachwahl als Textliste „Deutsch / English / Türkçe“ am Fuß der Spalte.
-- CTA „Termin online buchen“ als Türkis-Knopf.
-- **Mobil:** schlanke Kopfzeile (Logo + Knopf „Register“). Das Register öffnet sich als **Bogen von unten** (Bottom Sheet, Fokusfalle, Esc, Wischgeste nicht nötig).
-- Auf Landing Pages zusätzlich ein haftendes Inhaltsregister „Auf dieser Seite“, dessen Marke dem Lesefortschritt folgt.
-
-**Hero-Komposition:**
-- Vollbreites Marine-Feld mit Eyebrow in Türkis („Praxis zum Schloss · Schloßstraße 21 · Charlottenburg“).
-- H1 breit gesetzt: „Fachärztin für Allgemeinmedizin“, darüber der Name in Versalien.
-- Unterzeile: „Hausärztliche Versorgung – fachärztlich, mit Erfahrung in der Lehre, ergänzt um Naturheilverfahren, wo es ärztlich sinnvoll ist.“
-- Rechts das Porträt im Passepartout.
-- Darunter **drei Wege** als große Register-Zeilen: 01 Hausärztliche Versorgung · 02 Naturheilkunde, ärztlich ergänzt · 03 Die Praxis kennenlernen.
-
-**Bewegungssprache** (anders als 1 und 2):
-1. **Seitenübergänge** mit der View Transitions API (`@view-transition { navigation: auto; }`): Der Seitentitel trägt `view-transition-name: seitentitel` und wechselt weich, die Register-Marke gleitet zum neuen Eintrag, der Inhalt blendet kurz über (220 ms). Browser ohne Unterstützung wechseln die Seite normal.
-2. **Register-Zeilen:** Bei Hover/Fokus rückt der Text um 12 px ein, eine Türkis-Linie wächst von links (`scaleX`, 240 ms), die Ziffer wechselt von Türkis zu Marine.
-3. **Inhaltsregister mit Lesemarke:** Die Marke folgt dem aktiven Abschnitt (IntersectionObserver, `transform`).
-4. **Bottom Sheet** gleitet von unten herein (`translateY`, 300 ms, `cubic-bezier(.2,.8,.2,1)`).
-5. Sonst keine Einblendungen beim Scrollen. Die Seite steht ruhig, die Bewegung liegt im Übergang und in der Bedienung.
-
-Bei `prefers-reduced-motion: reduce` gibt es keine View Transitions und keine Bewegung. Ohne JS bleibt das Register auf dem Desktop sichtbar; mobil ist es als Liste am Seitenende erreichbar.
-
-**Komponenten für Unterseiten:**
-- **Brotkrumen als Registerpfad:** „02 Anliegen / 02.1 Vorsorge“.
-- **Seitenkopf:** Registernummer, H1 breit, Lead.
-- **Kurzantwort:** Absatz mit Türkis-Initialziffer.
-- **Ablauf:** horizontale Schrittfolge mit schmalen Türkis-Ziffern, mobil vertikal.
-- **Was Sie wissen sollten:** „Datenblatt“ mit schmaler Versalien-Labelspalte.
-- **FAQ:** nummerierte Fragen, Plus/Minus.
-- **Hub:** Register-Zeilen.
-- **CTA-Band:** Marine, Creme-Text.
-- **Hinweis:** Rahmen in Türkis-Text.
-- **Platzhalter:** gepunkteter Türkis-Rahmen „Angabe folgt“.
-
-**Abgrenzung:** zu Entwurf 1 (Bogen, Creme, Fraunces, Zeichnen/Schweben) und Entwurf 2 (Mega-Menü, Marine/Türkis/Creme, Masken- und Scroll-Reveals) in Farbe, Schrift, Navigation, Bildbehandlung und Bewegung. Gemeinsam bleiben nur das Logo (auf Papierweiß in Originalfarben) und das Porträt.
-
----
-
 ## 5. Vergleichstabelle
 
-| | Entwurf 1 „Fundament“ | Entwurf 2 „Verwandt“ | Entwurf 3 „Eigenständig“ |
+| | Entwurf 1 „Fundament“ | Entwurf 2 „Eigenständig“ | Entwurf 3 „Verwandt“ |
 |---|---|---|---|
-| **Leitidee** | Bogenfenster aus dem Schloss-Emblem als Bühne; warm, freundlich, einladend | ruhiges Dossier; editoriales Raster, Haarlinien, Fachpublikation | Register; Schweizer Moderne, nummerierte Wege, Museums-Anmutung |
-| **Farbpalette** | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED` | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED`, Nebel `#D9F1EF` (helles Türkis) | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED`, Tinte `#212848` |
-| **Schriften** | Fraunces (Serife, Titel) + Figtree (Sans, Text) | Instrument Sans (Sans, Titel/UI) + Source Serif 4 (Serife, Text) | Archivo allein (Breitenachse trägt die Hierarchie) |
-| **Navigation** | Glas-Kopfleiste, Aufklapper „Leistungen“, Vollflächen-Menü mobil | Service-Leiste + Mega-Menü, Vollbild-Überlagerung mobil | feste Register-Spalte links, Bottom Sheet mobil |
-| **Sprachmenü** | Pille „DE ▾“ mit Liste | Segment-Schalter „DE \| EN \| TR“ in der Service-Leiste | Textliste „Deutsch / English / Türkçe“ im Register |
-| **Hero** | Porträt im Bogenfenster, schwebende Glaskarten, Emblem zeichnet sich | Porträt im hohen Rechteck auf Türkis-Feld, Faktenleiste | Marine-Feld, breiter Titel, Porträt im Passepartout, drei Wege |
-| **Raster/Formen** | weiche Radien (28 px), Glas, Kacheln | 12er-Raster mit Abschnittsleiste, Haarlinien, 2 px | asymmetrisch, eckig, Register-Zeilen, Datenblatt |
-| **Bewegung** | Zeichnen, Schweben, Wort-für-Wort, Magnet, Lichtkegel, Laufband, Live-Status | Masken-Reveals, Clip-Reveals, zeichnende Haarlinien, scrollgesteuerter Fortschritt, maßvolle Parallax | Seitenübergänge (View Transitions), Register-Mikrointeraktionen, Lesemarke |
-| **Seitenstruktur** | 23 Seiten, jede Leistung einzeln (Referenz) | 18 Seiten, Leistungen gestrafft, Themenseite „Hausärztliche Versorgung“ | 17 Seiten, drei Wege, Anliegen-Hub, erzählte Praxisseite |
-| **Wirkung** | nahbar, warm, mit lokalem Bezug | sachlich-akademisch, präzise, kühl-elegant | selbstbewusst, international, galerieartig ruhig |
+| **Leitidee** | Bogenfenster aus dem Schloss-Emblem als Bühne; warm, freundlich, einladend | Register; Schweizer Moderne, nummerierte Wege, Museums-Anmutung | ruhiges Dossier; editoriales Raster, Haarlinien, Fachpublikation |
+| **Farbpalette** | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED` | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED`, Tinte `#212848` | Marine `#2C3662`, Türkis `#47CCC8` / `#00A09B`, Creme `#F6F3ED`, Nebel `#D9F1EF` (helles Türkis) |
+| **Schriften** | Fraunces (Serife, Titel) + Figtree (Sans, Text) | Archivo allein (Breitenachse trägt die Hierarchie) | Instrument Sans (Sans, Titel/UI) + Source Serif 4 (Serife, Text) |
+| **Navigation** | Glas-Kopfleiste, Aufklapper „Leistungen“, Vollflächen-Menü mobil | feste Register-Spalte links, Bottom Sheet mobil | Service-Leiste + Mega-Menü, Vollbild-Überlagerung mobil |
+| **Sprachmenü** | Pille „DE ▾“ mit Liste | Textliste „Deutsch / English / Türkçe“ im Register | Segment-Schalter „DE \| EN \| TR“ in der Service-Leiste |
+| **Hero** | Porträt im Bogenfenster, schwebende Glaskarten, Emblem zeichnet sich | Marine-Feld, breiter Titel, Porträt im Passepartout, drei Wege | Porträt im hohen Rechteck auf Türkis-Feld, Faktenleiste |
+| **Raster/Formen** | weiche Radien (28 px), Glas, Kacheln | asymmetrisch, eckig, Register-Zeilen, Datenblatt | 12er-Raster mit Abschnittsleiste, Haarlinien, 2 px |
+| **Bewegung** | Zeichnen, Schweben, Wort-für-Wort, Magnet, Lichtkegel, Laufband, Live-Status | Seitenübergänge (View Transitions), Register-Mikrointeraktionen, Lesemarke | Masken-Reveals, Clip-Reveals, zeichnende Haarlinien, scrollgesteuerter Fortschritt, maßvolle Parallax |
+| **Seitenstruktur** | 23 Seiten, jede Leistung einzeln (Referenz) | 17 Seiten, drei Wege, Anliegen-Hub, erzählte Praxisseite | 18 Seiten, Leistungen gestrafft, Themenseite „Hausärztliche Versorgung“ |
+| **Wirkung** | nahbar, warm, mit lokalem Bezug | selbstbewusst, international, galerieartig ruhig | sachlich-akademisch, präzise, kühl-elegant |

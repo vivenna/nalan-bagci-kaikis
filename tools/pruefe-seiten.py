@@ -26,7 +26,7 @@ from urllib.parse import unquote, urlsplit
 
 DOCTOLIB = 'https://www.doctolib.de/allgemeinmedizin/berlin/nalan-bagci-kaikis-berlin/booking/'
 WURZEL = Path(__file__).resolve().parent.parent
-STANDARD = ['index.html', 'entwurf-1-fundament', 'entwurf-2-verwandt', 'entwurf-3-eigenstaendig']
+STANDARD = ['index.html', 'entwurf-1-fundament', 'entwurf-2-eigenstaendig', 'entwurf-3-verwandt']
 
 
 class Sammler(HTMLParser):

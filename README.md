@@ -17,14 +17,14 @@ Im Repo-Root starten, dann `http://localhost:8000` öffnen. Die Übersichtsseite
 
 ## Die drei Entwürfe
 
-| | Entwurf 1 „Fundament“ | Entwurf 2 „Verwandt“ | Entwurf 3 „Eigenständig“ |
+| | Entwurf 1 „Fundament“ | Entwurf 2 „Eigenständig“ | Entwurf 3 „Verwandt“ |
 |---|---|---|---|
-| Ordner | `entwurf-1-fundament/` | `entwurf-2-verwandt/` | `entwurf-3-eigenstaendig/` |
-| Idee | baut nahtlos auf dem vorhandenen Startseiten-Entwurf auf; Bogenfenster aus dem Schloss-Emblem | gleiche Herkunft, ruhigere redaktionelle Haltung; Haarlinien, Dossier-Landing-Pages | eigenes Konzept: die Website als nummeriertes Register |
-| Seiten | 23 – jede alte Leistung einzeln | 18 – Hausärztliches gebündelt | 17 – Leistungen nach Anliegen |
-| Navigation | Kopfleiste mit Untermenü | Serviceleiste und Mega-Menü | feste Register-Spalte, mobil als Bogen von unten |
-| Schrift | Fraunces + Figtree | Instrument Sans + Source Serif 4 | Archivo |
-| Farben | Marineblau, Türkis, Creme | dieselbe Farbwelt, Türkis als Knopf und Fläche | dieselbe Farbwelt, Türkis als Knopf, Linie und Ziffer |
+| Ordner | `entwurf-1-fundament/` | `entwurf-2-eigenstaendig/` | `entwurf-3-verwandt/` |
+| Idee | baut nahtlos auf dem vorhandenen Startseiten-Entwurf auf; Bogenfenster aus dem Schloss-Emblem | eigenes Konzept: die Website als nummeriertes Register | gleiche Herkunft, ruhigere redaktionelle Haltung; Haarlinien, Dossier-Landing-Pages |
+| Seiten | 23 – jede alte Leistung einzeln | 17 – Leistungen nach Anliegen | 18 – Hausärztliches gebündelt |
+| Navigation | Kopfleiste mit Untermenü | feste Register-Spalte, mobil als Bogen von unten | Serviceleiste und Mega-Menü |
+| Schrift | Fraunces + Figtree | Archivo | Instrument Sans + Source Serif 4 |
+| Farben | Marineblau, Türkis, Creme | dieselbe Farbwelt, Türkis als Knopf, Linie und Ziffer | dieselbe Farbwelt, Türkis als Knopf und Fläche |
 
 Ausführlich: [docs/design-entscheidungen.md](docs/design-entscheidungen.md) und [docs/sitemap.md](docs/sitemap.md).
 
@@ -34,8 +34,8 @@ Ausführlich: [docs/design-entscheidungen.md](docs/design-entscheidungen.md) und
 index.html                  Übersicht der drei Entwürfe
 vorschau/                   Vorschaubilder für die Übersicht
 entwurf-1-fundament/        Entwurf 1 (HTML-Seiten, assets/css, assets/js, assets/fonts)
-entwurf-2-verwandt/         Entwurf 2 (dazu inhalte/ mit entwurfseigenen Texten)
-entwurf-3-eigenstaendig/    Entwurf 3 (dazu inhalte/ mit entwurfseigenen Texten)
+entwurf-2-eigenstaendig/    Entwurf 2 (dazu inhalte/ mit entwurfseigenen Texten)
+entwurf-3-verwandt/         Entwurf 3 (dazu inhalte/ mit entwurfseigenen Texten)
 shared/
   inhalte/praxisdaten.yml   Praxisdaten: Adresse, Telefon, Sprechzeiten, Doctolib-URL
   inhalte/de/               alle Seitentexte auf Deutsch, eine Markdown-Datei je Seite
