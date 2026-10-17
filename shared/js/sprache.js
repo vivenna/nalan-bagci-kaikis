@@ -11,7 +11,8 @@
    - Knöpfe mit data-sprache-wahl="de|en|tr" schalten um (aria-pressed).
    - Übersetzt wird nur die Startseite (body mit data-i18n-seite="voll").
      Auf allen anderen Seiten bleibt das Sprachmenü sichtbar, ein Klick
-     darauf bewirkt nichts; die Seite bleibt Deutsch, auch wenn auf der
+     darauf bewirkt nichts außer dem Hinweis „noch nicht übersetzt“
+     (noch-nicht.js); die Seite bleibt Deutsch, auch wenn auf der
      Startseite eine andere Sprache gewählt wurde.
    - Die Wahl wird in localStorage gemerkt; <html lang> wird gesetzt.
    - Die Übersetzungen (shared/inhalte/uebersetzungen/en.js, tr.js) werden

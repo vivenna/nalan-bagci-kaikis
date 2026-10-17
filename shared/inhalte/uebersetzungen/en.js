@@ -54,6 +54,8 @@
   "allg.nav.untermenue": "Services submenu",
   "allg.nav.vorsorge-impfungen": "Check-ups and vaccinations",
   "allg.neues-fenster": "(new window)",
+  "allg.noch-nicht-erstellt": "This page has not been created yet.",
+  "allg.nicht-uebersetzt": "This page has not been translated yet.",
   "allg.notfall.bereitschaft": "Medical on-call service",
   "allg.notfall.notruf": "Emergency (life-threatening)",
   "allg.notfall.titel": "Outside consultation hours",

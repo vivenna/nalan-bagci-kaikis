@@ -54,6 +54,8 @@
   "allg.nav.untermenue": "Hizmetler alt menüsü",
   "allg.nav.vorsorge-impfungen": "Check-up ve aşılar",
   "allg.neues-fenster": "(yeni pencere)",
+  "allg.noch-nicht-erstellt": "Bu sayfa henüz oluşturulmadı.",
+  "allg.nicht-uebersetzt": "Bu sayfa henüz çevrilmedi.",
   "allg.notfall.bereitschaft": "Nöbetçi hekim hizmeti",
   "allg.notfall.notruf": "Hayati tehlikede acil çağrı",
   "allg.notfall.titel": "Muayene saatleri dışında",
